@@ -124,6 +124,31 @@
               background-color: white;
               box-shadow: 0 2px 4px rgba(0,0,0,.18);
               float: left;
+              &__picture {
+                height: 188px;
+                width: 188px;
+                background-color: yellow;
+                padding-top: 152px;
+                box-sizing: border-box;
+                &__price {
+                  height: 28px;
+                  width: 78.05px;
+                  line-height: 28px;
+                  font-size: 17px;
+                  text-align: center;
+                  color: white;
+                  background-color: rgba(0, 0, 0, 0.4);
+                  border-radius: 0 14px 14px 0;
+                }
+              }
+              &__name {
+                height: 64px;
+                width: 188px;
+                padding: 12.4px 14px;
+                font-size: 14px;
+                line-height: 19.6px;
+                box-sizing: border-box;
+              }
             }
             &__item2 {
               height: 252px;
