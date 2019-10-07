@@ -1,3 +1,49 @@
+@mixin box {
+  display: flex;
+  -webkit-box-pack: justify;
+}
+
+@mixin categories {
+  cursor: pointer;
+  height: 44px;
+  z-index: 3;
+  position: relative;
+  &__link {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 36px;
+    white-space: nowrap;
+    &__icon{
+    }
+  }
+}
+
+@mixin list_user {
+  cursor: pointer;
+  padding-right: 14px;
+  height: 44px;
+  position: relative;
+  &__link {
+    -webkit-box-align: center;
+    align-items: center;display: flex;
+    font-size: 14px;
+    height: 32px;
+    &__icon {
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.icon-orange {
+  color: rgb(234, 53, 45);
   margin-right: 4px;
   max-width: 100%;
   max-height: 100%;
