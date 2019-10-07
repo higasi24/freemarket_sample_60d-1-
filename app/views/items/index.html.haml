@@ -1,4 +1,4 @@
-= render partial: "layouts/header"
+-# = render partial: "layouts/header"
 .body
   .slick_bar
     .slick_bar__left
@@ -31,7 +31,10 @@
           .category__new-items__lower__up
             .category__new-items__lower__up__item1
               .category__new-items__lower__up__item1__picture
+                .category__new-items__lower__up__item1__picture__price
+                  ¥9,999
               .category__new-items__lower__up__item1__name
+                ああああああああああああああ
             .category__new-items__lower__up__item2
             .category__new-items__lower__up__item3
             .category__new-items__lower__up__item4
@@ -58,7 +61,7 @@
       .brand__new-items
         .brand__new-items__upper
           .brand__new-items__upper__text
-            レディース新着アイテム
+            シャネル新着アイテム
           .brand__new-items__upper__more
             もっと見る >
         .brand__new-items__lower
@@ -74,5 +77,10 @@
             .brand__new-items__lower__down__item8
             .brand__new-items__lower__down__item9
             .brand__new-items__lower__down__item10
+  .exhibit-button
+    .exhibit-button__text
+      出品
+    .exhibit-button__font
+      = fa_icon 'camera'
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'

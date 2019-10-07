@@ -1,6 +1,7 @@
 .body {
   padding-top: 100px;
   overflow: scroll;
+  box-sizing: border-box;
   .slick_bar {
     height: 390px;
     width: 100%;
@@ -15,6 +16,7 @@
         text-align: right;
         font-size: 46px;
         color: white;
+        font-weight: 400;
       }
     }
     &__right {
@@ -25,6 +27,7 @@
       &__button {
         font-size: 46px;
         color: white;
+        font-weight: 400;
       }
     }
   }
@@ -38,7 +41,7 @@
           width: 100%;
           text-align: center;
           font-size: 28px;
-          font-weight: bold;
+          font-weight: 600;
           color: rgb(51, 51, 51);
         }
         &__contents {
@@ -47,7 +50,7 @@
           height: 40px;
           box-sizing: border-box;
           width: 100%;
-          font-weight: bold;
+          font-weight: 600;
           color: rgb(51, 51, 51);
           padding-left: calc(50vw - 287.54px);
           &__rank1 {
@@ -106,11 +109,14 @@
             font-size: 24px;
             float: left;
             line-height: 33px;
+            font-weight: 600;
           }
           &__more {
             color: rgb(0,149,238);
             text-align: right;
             line-height: 33px;
+            font-size: 14px;
+            font-weight: 600;
           }
         }
         &__lower {
@@ -124,6 +130,31 @@
               background-color: white;
               box-shadow: 0 2px 4px rgba(0,0,0,.18);
               float: left;
+              &__picture {
+                height: 188px;
+                width: 188px;
+                background-color: yellow;
+                padding-top: 152px;
+                box-sizing: border-box;
+                &__price {
+                  height: 28px;
+                  width: 78.05px;
+                  line-height: 28px;
+                  font-size: 17px;
+                  text-align: center;
+                  color: white;
+                  background-color: rgba(0, 0, 0, 0.4);
+                  border-radius: 0 14px 14px 0;
+                }
+              }
+              &__name {
+                height: 64px;
+                width: 188px;
+                padding: 12.4px 14px;
+                font-size: 14px;
+                line-height: 19.6px;
+                box-sizing: border-box;
+              }
             }
             &__item2 {
               height: 252px;
@@ -214,7 +245,7 @@
           width: 100%;
           text-align: center;
           font-size: 28px;
-          font-weight: bold;
+          font-weight: 600;
           color: rgb(51, 51, 51);
         }
         &__contents {
@@ -223,7 +254,7 @@
           height: 40px;
           box-sizing: border-box;
           width: 100%;
-          font-weight: bold;
+          font-weight: 600;
           color: rgb(51, 51, 51);
           padding-left: calc(50vw - 210.545px);
           &__rank1 {
@@ -282,11 +313,14 @@
             font-size: 24px;
             float: left;
             line-height: 33px;
+            font-weight: 600;
           }
           &__more {
             color: rgb(0,149,238);
             text-align: right;
             line-height: 33px;
+            font-size: 14px;
+            font-weight: 600;
           }
         }
         &__lower {
@@ -380,6 +414,30 @@
           }
         }
       }
+    }
+  }
+  .exhibit-button {
+    height: 160px;
+    width: 160px;
+    border-radius: 80px;
+    background-color: rgb(234,53,45);
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    text-align: center;
+    color: rgb(255,255,255);
+    &__text {
+      height: 22px;
+      font-size: 22px;
+      line-height: 22px;
+      padding-top: 32px;
+    }
+    &__font {
+      height: 54px;
+      width: 60px;
+      margin-left: 50px;
+      margin-right: 50px;
+      font-size: 56px;
     }
   }
 }
