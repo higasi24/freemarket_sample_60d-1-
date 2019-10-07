@@ -8,3 +8,8 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 end
+  root to: "items#index"
+  resources :items do
+    get :search, on: :collection
+  end
+end
