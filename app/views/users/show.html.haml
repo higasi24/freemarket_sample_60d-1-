@@ -3,12 +3,26 @@
   = render partial: "side_bar"
   .right
     .right__profile
-      .right__profile__text
-        プロフィール
-      .right__profile__background
-        .right__profile__background__name
-      .right__profile__text-form
-      .right__profile__submit
+      .right__profile__user
+        .right__profile__user__icon
+        .right__profile__user__name
+          ユーザー
+        .right__profile__user__reviews
+          評価　200　出品数　100
+      .right__profile__lower
+        .right__profile__lower__tab
+          .right__profile__lower__tab__news
+            お知らせ
+          .right__profile__lower__tab__lists
+            やることリスト
+        .right__profile__lower__li
+        .right__profile__lower__li
+        .right__profile__lower__li
+        .right__profile__lower__li
+        .right__profile__lower__li
+        .right__profile__lower__more
+    .right__bought-items
+      購入した商品
 = render partial: 'layouts/button' 
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'
