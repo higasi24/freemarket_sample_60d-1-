@@ -34,6 +34,15 @@
   }
 }
 
+@mixin btn {
+  display: block;
+  font-size: 14px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
 a {
   text-decoration: none;
   color: rgb(34,34,34);
@@ -160,6 +169,26 @@ ul {
           }
         }
       }
+      &__btn-box{
+        display: flex;
+        &__btn{
+          text-align: center;
+          margin-left: 11px;
+          &__orange{
+            background-color: rgb(234, 53, 45);
+            color: rgb(255,255,255);
+            border-color: rgb(234, 53, 45);
+            @include btn;
+          }
+          &__blue{
+            background-color: rgb(255,255,255);
+            color: rgb(0,149,238);
+            border-color: rgb(0,149,238);
+            @include btn
+          }
+        }
+      }
     }
   }
 }
+
