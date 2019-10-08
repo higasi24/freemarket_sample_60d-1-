@@ -71,5 +71,6 @@
       電話番号
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
-      ログアウト
-      = fa_icon 'chevron-right', class: 'left__title__li__fa'
+      = link_to logout_users_path do
+        ログアウト
+        = fa_icon 'chevron-right', class: 'left__title__li__fa'
