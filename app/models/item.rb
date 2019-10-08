@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
   belongs_to :user
-  belongs_to :prefecture
   belongs_to :brand
   has_many :images
   has_many :categories, through: :categories_items
