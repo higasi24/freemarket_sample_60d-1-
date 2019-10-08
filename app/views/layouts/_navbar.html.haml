@@ -1,0 +1,15 @@
+%nav.nav
+  %ul.nav__list
+    %li.nav__list__log
+      = link_to(root_path, class:"nav__list__log__link") do
+        %span
+          メルカリ
+      = fa_icon 'chevron-right', class:"nav__list__log__icon"
+    %li.nav__list__log
+      = link_to(root_path, class:"nav__list__log__link") do
+        %span
+          マイページ
+      = fa_icon 'chevron-right', class:"nav__list__log__icon"
+    %li.nav__list__log
+      %span.title
+        本人情報の登録
