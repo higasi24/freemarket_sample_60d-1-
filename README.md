@@ -69,11 +69,11 @@ Things you may want to cover:
 ## addressesテーブル
 |column|Type|Option|
 |-------|----|-----|
-|prefecture|string|null: false|
 |city|string|null: false|
 |block|string|null: false|
 |building|string||
 |user_id|integer|null: false, foreign_key: true|
+|prefecture_id|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -133,10 +133,11 @@ Things you may want to cover:
 ### Association
 - belongs_to :user
 
-## areasテーブル
+<!-- 自作 -->
+## prefecturesテーブル
 |column|Type|Option|
 |-------|----|-----|
-|area|string|null: false, unique: true|
+|name|string|null: false, unique: true|
 
 ### Association
 - has_many :items
@@ -197,4 +198,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-

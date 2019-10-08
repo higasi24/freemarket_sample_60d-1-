@@ -10,23 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_113140) do
+ActiveRecord::Schema.define(version: 2019_10_08_045747) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "prefecture", null: false
     t.string "city", null: false
     t.string "block", null: false
     t.string "building"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "prefecture_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
-  end
-
-  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "area", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -85,14 +79,12 @@ ActiveRecord::Schema.define(version: 2019_10_06_113140) do
     t.integer "price", null: false
     t.string "delivery_method", null: false
     t.string "delivery_date", null: false
-    t.integer "buyer_id"
-    t.integer "saler_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "area_id"
     t.bigint "brand_id"
-    t.index ["area_id"], name: "index_items_on_area_id"
+    t.bigint "prefecture_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -138,6 +130,16 @@ ActiveRecord::Schema.define(version: 2019_10_06_113140) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname", null: false
+    t.string "first_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "family_name_kana", null: false
+    t.integer "birth_year", null: false
+    t.integer "birth_month", null: false
+    t.integer "birth_day", null: false
+    t.string "tel", null: false
+    t.string "credit"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -149,7 +151,6 @@ ActiveRecord::Schema.define(version: 2019_10_06_113140) do
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
   add_foreign_key "images", "items"
-  add_foreign_key "items", "areas"
   add_foreign_key "items", "brands"
   add_foreign_key "messages", "items"
   add_foreign_key "messages", "users"
