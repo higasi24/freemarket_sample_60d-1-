@@ -1,17 +1,29 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.all
+  = render partial: "layouts/simpleheader"
+
+  .registry-box.login__box
+    .registry-box__title
+      .registry-box__title__text
+        アカウントをお持ちでない方はこちら
+      = link_to(new_user_registration_path, class: 'link-registration') do
+        新規会員登録
+    .registry-box__content.session
+      .registry-box__content__box
+        = link_to("https://www.facebook.com/mercarijp", class: 'registry-box__content__box__facebook') do
+          = fa_icon 'facebook-square', class:"icon__facebook"
+          Facebookでログイン
+        = link_to('https://www.google.com/?hl=ja', class: 'registry-box__content__box__google') do
+          = image_tag '/assets/google.png', height: '25', width: '25', class: 'icon__google'
+          Googleでログイン
+      // メアド入力から クラス名保留
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .registry-box__content__box__email.session__email
+          = f.email_field :email, placeholder: "メールアドレス", autofocus: true, autocomplete: "email"
+        .registry-box__content__box__password.session__password
+          = f.password_field :password, placeholder: "パスワード", autocomplete: "current-password"
+        .registry-box__content__box__robot.session__robot
+          ここに「私はロボットではねえ」を記述
+      = link_to(root_path, class: 'registry-box__content__box__mail') do
+        ログイン
+      = link_to(new_password_path(resource_name), class: 'password-forget') do
+        パスワードをお忘れの方
