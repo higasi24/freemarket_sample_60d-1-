@@ -211,5 +211,21 @@
         line-height: 236px;
       }
     }
+    &__logout {
+      height: 179px;
+      width: 700px;
+      background-color: rgb(255,255,255);
+      padding: 64px 190px;
+      box-sizing: border-box;
+      &__button {
+        height: 50px;
+        width: 320px;
+        background-color: rgb(234,53,45);
+        color: rgb(255,255,255);
+        font-size: 14px;
+        text-align: center;
+        line-height: 50px;
+      }
+    }
   }
 }
