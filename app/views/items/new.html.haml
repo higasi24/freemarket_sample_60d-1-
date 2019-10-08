@@ -1,0 +1,144 @@
+.send
+  .send__header
+  .send__main
+    .send__main__content
+      %h2.send__main__content__input
+        商品の情報を入力
+      .send__main__content__form
+        .send__main__content__form__box1
+          %h3.send__main__content__form__box1__title
+            出品画像
+            %span#mark
+              必須
+          %p.send__main__content__form__box1__comment
+            最大10枚までアップロードできます
+          .send__main__content__form__box1__image
+            %ul.send__main__content__form__box1__image__item
+              %li.send__main__content__form__box1__image__item__upload
+                %figure#figure
+                .send__main__content__form__box1__image__item__upload__edit
+                  =link_to items_path, id: "edit" do
+                    編集
+                  =link_to items_path, id: "destroy" do
+                    削除
+          .send__main__content__form__box1__content
+            .send__main__content__form__box1__content__item
+              %pre.send__main__content__form__box1__content__item__pc
+                ドラッグアンドドロップ
+                またはクリックしてファイルをアップロード
+        .send__main__content__form__box2
+          .send__main__content__form__box2__group1
+            %label#title
+              商品名
+              %span#mark
+                必須
+            .send__main__content__form__box2__group1__content
+              %input.send__main__content__form__box2__group1__content__form{placeholder: "商品名（必須 40文字まで)"}
+          .send__main__content__form__box2__group2
+            %label#title
+              商品の説明
+              %span#mark
+                必須
+            %textarea.send__main__content__form__box2__group2__form{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+        .send__main__content__form__box3
+          %h3.send__main__content__form__box3__title
+            商品の詳細
+          .send__main__content__form__box3__content
+            .send__main__content__form__box3__content__group1
+              %label#title
+                カテゴリー
+                %span#mark
+                  必須
+              .send__main__content__form__box3__content__group1__div
+                .send__main__content__form__box3__content__group1__div__select
+                  %select.send__main__content__form__box3__content__group1__div__select__show
+                    %option{value: ""}
+                      \---
+            .send__main__content__form__box3__content__group2
+              %label#title
+                商品の状態
+                %span#mark
+                  必須
+              .send__main__content__form__box3__content__group2__select
+                %select.send__main__content__form__box3__content__group2__select__show
+                  %option{value: ""}
+        .send__main__content__form__box4
+          %h3.send__main__content__form__box4__title
+            配送について
+          =link_to items_path, id: "question" do
+            ?
+          .send__main__content__form__box4__content
+            .send__main__content__form__box4__content__group1
+              %label#title
+                配送料の負担
+                %span#mark
+                  必須
+              .send__main__content__form__box4__content__group1__select
+                %select.send__main__content__form__box4__content__group1__select__show
+                  %option{value: ""}
+            .send__main__content__form__box4__content__group2
+              %label#title
+                発送元の地域
+                %span#mark
+                  必須
+              .send__main__content__form__box4__content__group2__select
+                %select.send__main__content__form__box4__content__group2__select__show
+                  %option{value: ""}
+            .send__main__content__form__box4__content__group3
+              %label#title
+                発送までの日数
+                %span#mark
+                  必須
+              .send__main__content__form__box4__content__group3__select
+                %select.send__main__content__form__box4__content__group3__select__show
+                  %option{value: ""}
+        .send__main__content__form__box5
+          %h3.send__main__content__form__box5__title
+            販売価格(300〜9,999,999)
+          =link_to items_path, id: "question" do
+            ?
+          %ul.send__main__content__form__box5__content
+            %li.send__main__content__form__box5__content__group1
+              .send__main__content__form__box5__content__group1__title
+                %label#title
+                  価格
+                  %span#mark
+                    必須
+                .send__main__content__form__box5__content__group1__title__box
+                  ¥
+                  .send__main__content__form__box5__content__group1__title__box__div
+                    %input.send__main__content__form__box5__content__group1__title__box__div__form{placeholder: "例) 300"}
+            %li.send__main__content__form__box5__content__group2
+              .send__main__content__form__box5__content__group2__left
+                販売手数料(10%)
+              .send__main__content__form__box5__content__group2__right
+                \-
+            %li.send__main__content__form__box5__content__group3
+              .send__main__content__form__box5__content__group3__left
+                販売利益
+              .send__main__content__form__box5__content__group3__right
+                \-
+        .send__main__content__form__box6
+        .send__main__content__form__box7
+          .send__main__content__form__box7__notice
+            %p.send__main__content__form__box7__notice__content
+              =link_to items_path, id: "detail" do
+                禁止されている出品
+              、
+              =link_to items_path, id: "detail" do
+                行為
+              を必ずご確認ください。
+            %p.send__main__content__form__box7__notice__content
+              またブランド品でシリアルナンバー等がある場合はご記載ください。
+              =link_to items_path, id: "detail" do
+                偽ブランドの販売
+              は犯罪であり処罰される可能性があります。
+            %p.send__main__content__form__box7__notice__content
+              また、出品をもちまして
+              =link_to items_path, id: "detail" do
+                加盟店規約
+              に同意したことになります。
+          %button#post{type: "submit"}
+            出品する
+          =link_to items_path, class: "send__main__content__form__box7__return" do
+            もどる
