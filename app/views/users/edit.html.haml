@@ -33,7 +33,7 @@
           .form-group
             = f.label :都道府県, class:"form-group__label"
             %span.form-group__span 任意
-            = f.collection_select(:prefecture, Area.all, :id, :area, {prompt: ""}, {class: "form-group__form"} )
+            = f.collection_select(:name, Prefecture.all, :id, :name, {prompt: ""}, {class: "form-group__form"} )
           .form-group
             = f.label :市町村区, class:"form-group__label"
             %span.form-group__span 任意
@@ -52,5 +52,8 @@
               = link_to root_path, class:"color" do
                 本人情報の登録について
                 %i.fa.fa-chevron-right
+    = render partial: "side_bar"
+
+= render partial: 'layouts/button'
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'
