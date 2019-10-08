@@ -65,8 +65,9 @@
       メール/パスワード
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
-      本人情報
-      = fa_icon 'chevron-right', class: 'left__title__li__fa'
+      = link_to edit_user_path(current_user.id) do
+        本人情報
+        = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       電話番号
       = fa_icon 'chevron-right', class: 'left__title__li__fa'

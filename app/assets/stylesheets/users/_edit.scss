@@ -44,9 +44,7 @@
       &__section {
         background-color: rgb(255, 255, 255);
         &__title {
-          display: block;
-          box-sizing: border-box;
-          height: 100%;
+          height: calc(100% - 3px);
           font-size: 24px;
           padding: 8px 24px;
           text-align: center;
@@ -94,5 +92,52 @@
   }
 }
 
+.left {
+  height: 1252px;
+  width: 280px;
+  float: left;
+  box-sizing: border-box;
+  margin-right: 40px;
+  &__mypage {
+    height: 686px;
+    box-sizing: border-box;
+    &__li {
+      height: 49px;
+      width: 280px;
+      padding: 16px;
+      box-sizing: border-box;
+      font-size: 14px;
+      font-weight: 400;
+      background-color: rgb(255,255,255);
+      border-bottom-style: solid;
+      border-bottom-width: thin;
+      border-bottom-color: rgb(245, 245, 245);
+      &__fa {
+        float: right;
+        color: rgb(141,141,141);
+      }
+    }
+  }
+  &__title {
+    margin-top: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    &__li {
+      height: 49px;
+      padding: 16px;
+      box-sizing: border-box;
+      font-size: 14px;
+      font-weight: 400;
+      background-color: rgb(255,255,255);
+      border-bottom-style: solid;
+      border-bottom-width: thin;
+      border-bottom-color: rgb(245, 245, 245);
+      &__fa {
+        float: right;
+        color: rgb(141,141,141);
+      }
+    }
+  }
+}
 
 
