@@ -1,0 +1,75 @@
+@mixin box-style{
+  border-radius: 4px;
+  display: block;
+  position: relative;
+}
+@mixin box-mailFacebook {
+  height: 50px;
+  color: #ffffff;
+}
+@mixin icon-style {
+  display: block;
+  position: absolute; top: 15px; left: 15px;
+  font-size: 20px;
+}
+
+.all{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(245, 245, 245);
+}
+
+.registry-box{
+  width: 700px;
+  margin: 0 auto;
+  &__title{
+    text-align: center;
+    padding: 32px;
+    font-size: 22px;
+    background-color: #ffffff;
+    margin-bottom: 1px;
+  }
+  &__content{
+    padding: 40px 40px 64px;
+    background-color: #ffffff;
+    &__box{
+      max-width: 343px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 50px;
+      font-size: 13px;
+      &__mail{
+        @include box-style;
+        @include box-mailFacebook;
+        background-color: #ea352d;
+      }
+      &__facebook{
+        @include box-style;
+        @include box-mailFacebook;
+        margin-top: 16px;
+        background-color: #385185;
+      }
+      &__google{
+        @include box-style;
+        margin-top: 16px;
+        height: 48px;
+        border: #979797 solid 1px;
+        color: #000000;
+      }
+    }
+  }
+
+}
+
+.icon{
+  &__mail{
+    @include icon-style;
+  }
+  &__facebook{
+    @include icon-style;
+  }
+  &__google{
+    display: block;
+    position: absolute; top: 10px; left: 10px;
+  }
+}
