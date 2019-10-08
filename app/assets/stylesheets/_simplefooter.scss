@@ -1,0 +1,16 @@
+.simple-footer {
+  height: 220px;
+  width: 100%;
+  background-color: blue;
+  box-sizing: border-box;
+  &__center {
+    height: 220px;
+    width: 456px;
+    margin-left: calc(50vw - 228px);
+    margin-right: calc(50vw - 228px);
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: green;
+    box-sizing: border-box;
+  }
+}
