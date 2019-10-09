@@ -1,0 +1,156 @@
+-# = render partial: "layouts/header"
+.show-wrapper
+  .show-box
+    .show-box__head
+      .show-box__head__name 商品名
+      .show-box__head__text 『♪♪ ZARA 長袖ブラウス』は、300回の取引実績を持つギリシアンさんから出品されました。ザラベーシック（チュニック/レディース）の商品で、茨城県から~3日で発送されます。
+    .show-box__main
+      .show-box__main__image-box
+        .show-box__main__image-box__main-image
+        .show-box__main__image-box__sub-image
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+        .show-box__main__image-box__sub-image
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+          .show-box__main__image-box__sub-image__small
+      %table.show-box__main__detail-box
+        %tr
+          %td.th1 カテゴリー
+          %td.th2 レディース アクセサリー ブローチ/コサージュ
+        %tr
+          %td.th1 ブランド
+          %td.th2 NIKE
+        %tr
+          %td.th1 商品の状態
+          %td.th2 やや傷や汚れあり
+        %tr
+          %td.th1 配送料の負担
+          %td.th2 送料込み(出品者負担)
+        %tr
+          %td.th1 配送の方法
+          %td.th2 らくらくメルカリ便
+        %tr
+          %td.th1 発送元地域
+          %td.th2 大阪府
+        %tr
+          %td.th1 発送日の目安
+          %td.th2 ~日で発送
+    .show-box__item-price-box
+      %span.show-box__item-price-box__price ¥1,000
+      %span.show-box__item-price-box__tax (税込)
+      %span.show-box__item-price-box__fee 送料込み
+    %button.show-box__btn 購入画面に進む
+    .show-box__comment
+      %p ご覧いただきありがとうございます。目立った汚れやキズはありませんが、袖口や身ごろに毛玉ができています。柄物なので、あまり目立たないようです。着丈は、約60㎝です。今頃着るのにちょうど良いですね。
+    .show-box__action-box
+      .show-box__action-box__left
+        = fa_icon 'heart-o'
+        %span いいね!
+        %span 0
+      .show-box__action-box__center
+        = fa_icon 'flag-o'
+        %span 不適切な商品の報告
+      .show-box__action-box__right
+        = link_to root_path do
+          = fa_icon 'lock'
+          あんしん・あんぜんへの取り組み
+  .message-box
+    %ul.message-box__message-list
+      %li.message-box__message-list__list
+        .message-box__message-list__list__image-box
+          %img.message-box__message-list__list__image-box__image{src: "http://www.tmyun.com/mid/yun_3048.jpg"}
+        .message-box__message-list__list__detail
+          .message-box__message-list__list__detail__name 山田
+          .message-box__message-list__list__detail__message-body
+            .message-box__message-list__list__detail__message-body__text こんばんは 購入希望です
+            .message-box__message-list__list__detail__message-body__icons
+              .message-box__message-list__list__detail__message-body__icons__left
+                = fa_icon 'clock-o'
+                %span.message-box__message-list__list__detail__message-body__icons__left__favorite
+                  3日前
+              .message-box__message-list__list__detail__message-body__icons__right
+                .message-box__message-list__list__detail__message-body__icons__right__form
+                = fa_icon 'flag-o'
+            .message-box__message-list__list__detail__message-body__balloon
+      %li.message-box__message-list__list
+        .message-box__message-list__list__image-box
+          %img.message-box__message-list__list__image-box__image{src: "http://www.tmyun.com/mid/yun_3048.jpg"}
+          .message-box__message-list__list__image-box__seller 出品者
+        .message-box__message-list__list__detail
+          .message-box__message-list__list__detail__name 山田
+          .message-box__message-list__list__detail__message-body
+            .message-box__message-list__list__detail__message-body__text こんばんは 購入希望です
+            .message-box__message-list__list__detail__message-body__icons
+              .message-box__message-list__list__detail__message-body__icons__left
+                = fa_icon 'clock-o'
+                %span.message-box__message-list__list__detail__message-body__icons__left__favorite
+                  3日前
+              .message-box__message-list__list__detail__message-body__icons__right
+                .message-box__message-list__list__detail__message-body__icons__right__form
+                = fa_icon 'flag-o'
+            .message-box__message-list__list__detail__message-body__balloon
+  .nav
+    .nav__prev
+      %a.nav__prev__btn
+        = fa_icon 'chevron-left'
+        後ろ
+    .nav__next
+      %a.nav__next__btn
+        前
+        = fa_icon 'chevron-right'
+  .sns
+    .sns__sns-box
+      %a.sns__sns-box__facebook
+        = fa_icon 'facebook-square', class: 'sns-icon'
+      %a.sns__sns-box__twitter
+        = fa_icon 'twitter', class: 'sns-icon'
+      %a.sns__sns-box__pinterest
+        = fa_icon 'pinterest', class: 'sns-icon'
+  .user-item
+    %a.user-item__head
+      〜さんのその他の出品
+    .user-item__box
+      %a.user-item__box__card
+        .user-item__box__card__photo
+          %img.user-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
+        .user-item__box__card__body
+          .user-item__box__card__body__text NIKE スニーカー
+          .user-item__box__card__body__num
+            .user-item__box__card__body__num__price ¥1,000
+            .user-item__box__card__body__num__icon
+              = fa_icon 'heart-o', class: 'num-icon'
+              %span 0
+      %a.user-item__box__card
+        .user-item__box__card__photo
+          %img.user-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
+          .user-item__box__card__photo__text SOLD
+          .user-item__box__card__photo__soldout
+        .user-item__box__card__body
+          .user-item__box__card__body__text NIKE スニーカー
+          .user-item__box__card__body__num
+            .user-item__box__card__body__num__price ¥1,000
+            .user-item__box__card__body__num__icon
+              = fa_icon 'heart-o', class: 'num-icon'
+              %span 0
+  .similar-item
+    %a.similar-item__box__card
+      .similar-item__box__card__photo
+        %img.similar-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
+        .similar-item__box__card__photo__text SOLD
+        .similar-item__box__card__photo__soldout
+      .similar-item__box__card__body
+        .similar-item__box__card__body__text NIKE スニーカー
+        .similar-item__box__card__body__num
+          .similar-item__box__card__body__num__price ¥1,000
+          .similar-item__box__card__body__num__icon
+            = fa_icon 'heart-o', class: 'num-icon'
+            %span 0
+  .pre-bottom
+-# = render partial: 'layouts/aside'
+-# = render partial: 'layouts/footer'
