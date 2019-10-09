@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit]
   resources :users, only: :show do
     get :logout, on: :collection
+    get :profile, on: :collection
   end
   resources :items do
     get :search, on: :collection
