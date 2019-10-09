@@ -2,35 +2,43 @@
   .header__box
     .header__box__upper
       .header__box__upper__logo
-        %a{href:"", class:"logo-link"}
+        = link_to(root_path, class:"logo-link") do
           %img{src:"https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class:"logo-link__image"}
-      = form_with url: search_items_path do |f|
-        = f.text_field :text, class:"search-form", placeholder:"何かお探しですか？"
-        = f.button :submit, class:"search-form__btn" do
-          = fa_icon 'list-ul',
-      .header__box__upper__search-box
-        %input{type:"search", placeholder: "何かお探しですか？", class:"search-form"}
-          %label{ fa_icon:"picture-o", class:"search-form__btn"}
+      = form_with(url: search_items_path, class:"header__box__upper__search-form") do |f|
+        = f.text_field :text, class:"header__box__upper__search-form__input", placeholder:"何かお探しですか？"
+        = f.button :submit, class:"header__box__upper__search-form__btn" do
+          = fa_icon 'search', class:"icon__black"
     .header__box__lower
-      .header__box__lower__list-left
-        .list-right
-          = link_to root_path do
-            = fa_icon 'list-ul', class:"icon__orange"
+      .header__box__lower__list-categories
+        .header__box__lower__list-categories__category
+          = link_to(root_path, class:"header__box__lower__list-categories__category__link") do
+            = fa_icon 'list-ul', class:"header__box__lower__list-categories__category__link__icon icon-orange"
             カテゴリーから探す
-        .list-left
-          = link_to root_path do
-            = fa_icon 'tag', class:"icon__orange"
+        .header__box__lower__list-categories__brand
+          = link_to(root_path, class:"header__box__lower__list-categories__brand__link") do
+            = fa_icon 'tag', class:"header__box__lower__list-categories__brand__link__icon icon-orange"
             ブランドから探す
-      %ul.header__box__lower__list-right
-        %li
-          = link_to root_path do
-            = fa_icon 'bell', class:"icon__gray"
-            お知らせ
-        %li
-          = link_to root_path do
-            = fa_icon 'check', class:"icon__gray"
-            やることリスト
-        %li
-          = link_to root_path do
-            = fa_icon 'check', class:"icon__gray"
-            マイページ
+      - if user_signed_in?
+        %ul.header__box__lower__list-user
+          %li.header__box__lower__list-user__favorite
+            = link_to(root_path, class:"header__box__lower__list-user__favorite__link") do
+              = fa_icon 'heart-o', class:"header__box__lower__list-user__favorite__link__icon icon-gray"
+              いいね！一覧
+          %li.header__box__lower__list-user__notice
+            = link_to(root_path, class:"header__box__lower__list-user__notice__link") do
+              = fa_icon 'bell-o', class:"header__box__lower__list-user__notice__link__icon icon-gray"
+              お知らせ
+          %li.header__box__lower__list-user__todo
+            = link_to(root_path, class:"header__box__lower__list-user__todo__link") do
+              = fa_icon 'check', class:"header__box__lower__list-user__todo__link__icon icon-gray"
+              やることリスト
+          %li.header__box__lower__list-user__mypage
+            = link_to(user_path(current_user.id), class:"header__box__lower__list-user__mypage__link") do
+              %img{src:"https://static.mercdn.net/images/member_photo_noimage_thumb.png", class:"header__box__lower__list-user__mypage__link__icon"}
+              マイページ
+      - else
+        .header__box__lower__btn-box
+          .header__box__lower__btn-box__btn
+            = link_to("新規会員登録", new_user_registration_path, class:"header__box__lower__btn-box__btn__orange")
+          .header__box__lower__btn-box__btn
+            = link_to("ログイン", new_user_session_path, class:"header__box__lower__btn-box__btn__blue")
