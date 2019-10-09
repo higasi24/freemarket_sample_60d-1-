@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   resources :items do
     get :search, on: :collection
   end
+
+  get "/order/buy/:item_id", to: "orders#new", as: "buy"
+
 end
