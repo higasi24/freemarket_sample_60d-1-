@@ -7,7 +7,7 @@
       = form_with url: search_items_path do |f|
         = f.text_field :text, class:"search-form", placeholder:"何かお探しですか？"
         = f.button :submit, class:"search-form__btn" do
-          = fa_icon 'list-ul', 
+          = fa_icon 'list-ul',
       .header__box__upper__search-box
         %input{type:"search", placeholder: "何かお探しですか？", class:"search-form"}
           %label{ fa_icon:"picture-o", class:"search-form__btn"}
