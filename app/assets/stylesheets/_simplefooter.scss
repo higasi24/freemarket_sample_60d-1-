@@ -1,7 +1,6 @@
 .simple-footer {
   height: 220px;
   width: 100%;
-  background-color: blue;
   box-sizing: border-box;
   &__center {
     height: 220px;
@@ -12,5 +11,16 @@
     padding-bottom: 40px;
     background-color: green;
     box-sizing: border-box;
+    color: rgb(51,51,51);
+    &__pr {
+      height: 12px;
+      width: 456px;
+      padding-left: 38.655px;
+      &__li {
+        font-size: 12px;
+        line-height: 12px;
+        float: left;
+      }
+    }
   }
 }
