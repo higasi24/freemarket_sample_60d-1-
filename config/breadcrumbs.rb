@@ -7,6 +7,11 @@ crumb :users do
   parent :root
 end
 
+crumb :profile do
+  link "プロフィール", profile_users_path
+  parent :users
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
