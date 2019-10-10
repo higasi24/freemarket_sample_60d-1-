@@ -1,8 +1,9 @@
 .left
   .left__mypage
     .left__mypage__li
-      マイページ
-      = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
+      = link_to user_path(current_user.id) do
+        マイページ
+        = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
     .left__mypage__li
       お知らせ
       = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
