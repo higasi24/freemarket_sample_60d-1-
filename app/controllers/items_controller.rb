@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   def index
-    
   end
 
   def show
@@ -19,7 +18,11 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
+  
+  def edit
+  end
+  
+  
   private
   def item_params
     params.permit(:name, :detail, :state, :delivery_fee, :delivery_method, :price, :delivery_date, :area_id).merge( saler_id: current_user.id)

@@ -4,6 +4,7 @@ lock "~> 3.11.2"
 set :application, "freemarket_sample_60d-1-"
 set :repo_url, "git@github.com:higasi24/freemarket_sample_60d-1-.git"
 
+append :linked_files, 'config/master.key'
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
@@ -28,7 +29,7 @@ set :default_env, {
   AWS_SECRET_ACCESS_KEY: ENV["AWS_SECRET_ACCESS_KEY"]
 }
 
-set :linked_files, %w{ config/secrets.yml }
+set :linked_files, %w{ config/master.key }
 
 # デプロイ処理が終わった後、Unicornを再起動するための記述
 after 'deploy:publishing', 'deploy:restart'
@@ -39,13 +40,13 @@ namespace :deploy do
     # invoke 'unicorn:start'
   end
 
-  desc 'upload secrets.yml'
+  desc 'upload master.key'
   task :upload do
     on roles(:app) do |host|
       if test "[ ! -d #{shared_path}/config ]"
         execute "mkdir -p #{shared_path}/config"
       end
-      upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
+      upload!('config/master.key', "#{shared_path}/config/master.key")
     end
   end
   before :starting, 'deploy:upload'

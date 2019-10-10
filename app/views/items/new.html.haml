@@ -1,5 +1,5 @@
+= render partial: "layouts/simpleheader"
 .send
-  .send__header
   .send__main
     .send__main__content
       %h2.send__main__content__input
@@ -136,3 +136,4 @@
           = f.button "出品する", id:"post"
           =link_to items_path, class: "send__main__content__form__box7__return" do
             もどる
+= render partial: "layouts/simplefooter"
