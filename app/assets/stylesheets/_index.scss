@@ -1,17 +1,23 @@
-
 .body {
   overflow: scroll;
   box-sizing: border-box;
   .slick_bar {
     height: 390px;
     width: 100%;
-    background-color: gray;
+    background-color: rgb(230,230,230);
     box-sizing: border-box;
+    position: relative;
+    &__image {
+      height: 390px;
+      padding-left: calc(50vw - 380.25px);
+      position: absolute;
+    }
     &__left {
       height: 46px;
       width: 91px;
       float: left;
       line-height: 390px;
+      position: absolute;
       &__button {
         text-align: right;
         font-size: 46px;
@@ -20,10 +26,12 @@
       }
     }
     &__right {
-      margin: 0 0 0 auto;
       height: 46px;
       width: 91px;
+      float: right;
       line-height: 390px;
+      position: absolute;
+      left: calc(100vw - 91px);
       &__button {
         font-size: 46px;
         color: white;
