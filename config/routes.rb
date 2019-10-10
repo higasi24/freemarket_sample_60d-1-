@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  get "/order/buy/:item_id", to: "orders#new", as: "buy"
+  scope(path_names: { new: 'buy/:item_id'}) do
+    resources :orders, path: 'order'
+  end
 
 end

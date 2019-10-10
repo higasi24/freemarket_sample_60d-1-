@@ -5,7 +5,7 @@
       .oreder-new__body__header 購入内容の確認
       .oreder-new__body__main
         .oreder-new__body__main__inner
-          %img.oreder-new__body__main__inner__image{src:"https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723"}
+          = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"oreder-new__body__main__inner__image"
           .oreder-new__body__main__inner__item-name 秋冬お嬢様ワンピース
           .oreder-new__body__main__inner__form
             .oreder-new__body__main__inner__form__price-box
@@ -41,4 +41,4 @@
           .oreder-new__body__payment-box__inner__edit
             変更する
             = fa_icon 'chevron-right'
-  = render partial: "layouts/simplefooter"
+  -# = render partial: "layouts/simplefooter"
