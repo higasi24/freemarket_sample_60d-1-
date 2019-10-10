@@ -60,6 +60,16 @@
         = link_to root_path do
           = fa_icon 'lock'
           あんしん・あんぜんへの取り組み
+  .selection-box
+    .selection-box__edit
+      = link_to edit_item_path do
+        商品の編集
+    .selection-box__text-center
+      or
+    .selection-box__button
+      出品を一旦停止する
+    .selection-box__button
+      この商品を削除する
   .message-box
     %ul.message-box__message-list
       %li.message-box__message-list__list
@@ -95,6 +105,12 @@
                 .message-box__message-list__list__detail__message-body__icons__right__form
                 = fa_icon 'flag-o'
             .message-box__message-list__list__detail__message-body__balloon
+  .message-submit
+    .message-submit__attention
+      相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+    %textarea.message-submit__textform
+    .message-submit__button
+      コメントする
   .nav
     .nav__prev
       %a.nav__prev__btn
