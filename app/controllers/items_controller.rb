@@ -1,8 +1,11 @@
 class ItemsController < ApplicationController
+  # before_action :set_order, :set_address
+
   def index
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def new
