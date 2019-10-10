@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :user
   belongs_to :brand
+  belongs_to :saler, class_name: "User"
+  belongs_to :buyer, class_name: "User"
   has_many :images
   has_many :categories, through: :categories_items
   has_many :favorites, dependent: :destroy

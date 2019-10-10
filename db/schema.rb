@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_061119) do
+ActiveRecord::Schema.define(version: 2019_10_10_082713) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "city", null: false
@@ -82,9 +82,10 @@ ActiveRecord::Schema.define(version: 2019_10_08_061119) do
     t.string "delivery_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "brand_id"
+    t.integer "saler_id", null: false
+    t.integer "buyer_id"
+    t.index ["area_id"], name: "index_items_on_area_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
-  end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "message", null: false
