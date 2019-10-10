@@ -4,7 +4,7 @@
     .send__main__content
       %h2.send__main__content__input
         商品の情報を入力
-      .send__main__content__form
+      = form_with( model: @item, url: {action: "create"}, data: {remote: false}, class:"send__main__content__form" ) do |f|
         .send__main__content__form__box1
           %h3.send__main__content__form__box1__title
             出品画像
@@ -12,56 +12,51 @@
               必須
           %p.send__main__content__form__box1__comment
             最大10枚までアップロードできます
-          .send__main__content__form__box1__image
-            %ul.send__main__content__form__box1__image__item
-              %li.send__main__content__form__box1__image__item__upload
-                %figure#figure
-                .send__main__content__form__box1__image__item__upload__edit
-                  =link_to items_path, id: "edit" do
-                    編集
-                  =link_to items_path, id: "destroy" do
-                    削除
-          .send__main__content__form__box1__content
-            .send__main__content__form__box1__content__item
-              %pre.send__main__content__form__box1__content__item__pc
+          .send__main__content__form__box1__box
+            .send__main__content__form__box1__box__image
+              %ul.send__main__content__form__box1__box__image__item
+                %li.send__main__content__form__box1__box__image__item__upload
+                  %figure#figure
+                  .send__main__content__form__box1__box__image__item__upload__edit
+                    =link_to items_path, id: "edit" do
+                      編集
+                    =link_to items_path, id: "destroy" do
+                      削除
+            = fields_for @images, class:"send__main__content__form__box1__box__content" do |i|
+              = i.file_field :image, class:"send__main__content__form__box1__box__content__item"
+              %pre.send__main__content__form__box1__box__content__item__pc
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
+              = fa_icon 'camera', class:"send__main__content__form__box1__box__content__item__icon"
         .send__main__content__form__box2
           .send__main__content__form__box2__group1
-            %label#title
-              商品名
-              %span#mark
-                必須
+            = f.label :商品名, id:"title"
+            %span#mark
+              必須
             .send__main__content__form__box2__group1__content
-              %input.send__main__content__form__box2__group1__content__form{placeholder: "商品名（必須 40文字まで)"}
+              = f.text_field :name, class:"send__main__content__form__box2__group1__content__form", placeholder: "商品名（必須 40文字まで)"
           .send__main__content__form__box2__group2
-            %label#title
-              商品の説明
-              %span#mark
-                必須
-            %textarea.send__main__content__form__box2__group2__form{placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+            = f.label :商品の説明, id:"title"
+            %span#mark
+              必須
+            = f.text_area :detail, class:"send__main__content__form__box2__group2__form", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
         .send__main__content__form__box3
           %h3.send__main__content__form__box3__title
             商品の詳細
           .send__main__content__form__box3__content
             .send__main__content__form__box3__content__group1
-              %label#title
-                カテゴリー
-                %span#mark
-                  必須
+              = f.label :カテゴリー, id:"title"
+              %span#mark
+                必須
               .send__main__content__form__box3__content__group1__div
                 .send__main__content__form__box3__content__group1__div__select
-                  %select.send__main__content__form__box3__content__group1__div__select__show
-                    %option{value: ""}
-                      \---
+                  = f.collection_select(:category, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
             .send__main__content__form__box3__content__group2
-              %label#title
-                商品の状態
-                %span#mark
-                  必須
+              = f.label :商品の状態, id:"title"
+              %span#mark
+                必須
               .send__main__content__form__box3__content__group2__select
-                %select.send__main__content__form__box3__content__group2__select__show
-                  %option{value: ""}
+                = f.select :state, [["新品、未使用", "新品、未使用"], ["未使用に近い", "未使用に近い"], ["目立った傷や汚れなし", "目立った傷や汚れなし"], ["やや傷や汚れあり", "やや傷や汚れあり"], ["傷や汚れあり", "傷や汚れあり"], ["全体的に状態が悪い", "全体的に状態が悪い"]], {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"}
         .send__main__content__form__box4
           %h3.send__main__content__form__box4__title
             配送について
@@ -69,29 +64,29 @@
             ?
           .send__main__content__form__box4__content
             .send__main__content__form__box4__content__group1
-              %label#title
-                配送料の負担
-                %span#mark
-                  必須
+              = f.label :配送料の負担, id:"title"
+              %span#mark
+                必須
               .send__main__content__form__box4__content__group1__select
-                %select.send__main__content__form__box4__content__group1__select__show
-                  %option{value: ""}
+                = f.select :delivery_fee, [["送料込み（出品者負担）", "送料込み（出品者負担）"],["着払い（購入者負担）", "着払い（購入者負担）"]], {prompt: "---"}, {class:"send__main__content__form__box4__content__group1__select__show"}
+            .send__main__content__form__box4__content__group1
+              = f.label :配送料の負担, id:"title"
+              %span#mark
+                必須
+              .send__main__content__form__box4__content__group1__select
+                = f.select :delivery_method, [["未定", "未定"],["らくらくメルカリ便", "らくらくメルカリ便"],["ゆうメール", "ゆうメール"],["レターパック", "レターパック"],["普通郵便（定形、定形外）", "普通郵便（定形、定形外）"],["クロネコヤマト", "クロネコヤマト"],["ゆうパック", "ゆうパック"],["クリックポスト", "クリックポスト"],["ゆうパケット", "ゆうパケット"]], {prompt: "---"}, {class:"send__main__content__form__box4__content__group1__select__show"}
             .send__main__content__form__box4__content__group2
-              %label#title
-                発送元の地域
-                %span#mark
-                  必須
+              = f.label :発送元の地域, id:"title"
+              %span#mark
+                必須
               .send__main__content__form__box4__content__group2__select
-                %select.send__main__content__form__box4__content__group2__select__show
-                  %option{value: ""}
+                = f.collection_select(:area_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: "send__main__content__form__box4__content__group2__select__show"} )
             .send__main__content__form__box4__content__group3
-              %label#title
-                発送までの日数
-                %span#mark
-                  必須
+              = f.label :発送までの日数, id:"title"
+              %span#mark
+                必須
               .send__main__content__form__box4__content__group3__select
-                %select.send__main__content__form__box4__content__group3__select__show
-                  %option{value: ""}
+                = f.select :delivery_date, [["１〜２日で発送", "１〜２日で発送"],["２〜３日で発送", "２〜３日で発送"],["４〜７日で発送", "４〜７日で発送"]], {prompt: "---"}, {class:"send__main__content__form__box4__content__group1__select__show"}
         .send__main__content__form__box5
           %h3.send__main__content__form__box5__title
             販売価格(300〜9,999,999)
@@ -138,8 +133,7 @@
               =link_to items_path, id: "detail" do
                 加盟店規約
               に同意したことになります。
-          %button#post{type: "submit"}
-            出品する
+          = f.button "出品する", id:"post"
           =link_to items_path, class: "send__main__content__form__box7__return" do
             もどる
 = render partial: "layouts/simplefooter"
