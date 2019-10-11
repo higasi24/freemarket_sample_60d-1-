@@ -199,7 +199,7 @@
 
         &__box3 {
           padding: 40px;
-          height: 180px;
+          min-height: 500px;
           border-top: 1px solid #eee;
         
           &__title {
@@ -210,12 +210,12 @@
 
           &__content {
             width: 400px;
-            height: 186px;
+            min-height: 186px;
             background-color: white;
             float: right;
           
             &__group1 {
-              height: 80px;
+              height: 200px;
               #title {
                 @include font-weight;
                 #mark {
@@ -285,7 +285,7 @@
         }
 
         &__box4 {
-          height: 296px;
+          height: 350px;
           padding: 40px;
           border-top: 1px solid #eee;
         

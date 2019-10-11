@@ -6,28 +6,29 @@
         商品の情報を入力
       = form_with( model: @item, url: {action: "create"}, data: {remote: false}, class:"send__main__content__form" ) do |f|
         .send__main__content__form__box1
-          %h3.send__main__content__form__box1__title
-            出品画像
-            %span#mark
-              必須
-          %p.send__main__content__form__box1__comment
-            最大10枚までアップロードできます
-          .send__main__content__form__box1__box
-            .send__main__content__form__box1__box__image
-              %ul.send__main__content__form__box1__box__image__item
-                %li.send__main__content__form__box1__box__image__item__upload
-                  %figure#figure
-                  .send__main__content__form__box1__box__image__item__upload__edit
-                    =link_to items_path, id: "edit" do
-                      編集
-                    =link_to items_path, id: "destroy" do
-                      削除
-            = fields_for @images, class:"send__main__content__form__box1__box__content" do |i|
-              = i.file_field :image, class:"send__main__content__form__box1__box__content__item"
-              %pre.send__main__content__form__box1__box__content__item__pc
+          = f.fields_for :images do |i|
+            %h3.send__main__content__form__box1__title
+              = i.label :出品画像
+              %span#mark
+                必須
+            %p.send__main__content__form__box1__comment
+              最大10枚までアップロードできます
+            .send__main__content__form__box1__box
+              .send__main__content__form__box1__box__image
+                %ul.send__main__content__form__box1__box__image__item
+                  %li.send__main__content__form__box1__box__image__item__upload
+                    %figure#figure
+                    .send__main__content__form__box1__box__image__item__upload__edit
+                      =link_to items_path, id: "edit" do
+                        編集
+                      =link_to items_path, id: "destroy" do
+                        削除
+              = i.file_field :image, class:"send__main__content__form__box1__box__content" do
+                .send__main__content__form__box1__box__content__item
+                %pre.send__main__content__form__box1__box__content__item__pc
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
-              = fa_icon 'camera', class:"send__main__content__form__box1__box__content__item__icon"
+                = fa_icon 'camera', class:"send__main__content__form__box1__box__content__item__icon"
         .send__main__content__form__box2
           .send__main__content__form__box2__group1
             = f.label :商品名, id:"title"
@@ -44,13 +45,26 @@
           %h3.send__main__content__form__box3__title
             商品の詳細
           .send__main__content__form__box3__content
-            .send__main__content__form__box3__content__group1
-              = f.label :カテゴリー, id:"title"
+            = f.fields_for :category_items do |c|
+              .send__main__content__form__box3__content__group1
+                = c.label :カテゴリー, id:"title"
+                %span#mark
+                  必須
+                .send__main__content__form__box3__content__group1__div
+                  .send__main__content__form__box3__content__group1__div__select
+                    = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
+                .send__main__content__form__box3__content__group1__div
+                  .send__main__content__form__box3__content__group1__div__select
+                    = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
+                    .send__main__content__form__box3__content__group1__div
+                  .send__main__content__form__box3__content__group1__div__select
+                    = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
+            .send__main__content__form__box3__content__group2
+              = f.label :サイズ, id:"title"
               %span#mark
                 必須
-              .send__main__content__form__box3__content__group1__div
-                .send__main__content__form__box3__content__group1__div__select
-                  = f.collection_select(:category, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
+              .send__main__content__form__box3__content__group2__select
+                = f.select :size, [["XXS以下", "XXS以下"], ["XS(SS)", "XS(SS)"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL(LL)", "XL(LL)"],["2XL(3L)", "2XL(3L)"],["3XL(4L)", "3XL(4L)"],["4XL(5L)", "4XL(5L)"],["FREE SIZE", "FREE SIZE"]], {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"}
             .send__main__content__form__box3__content__group2
               = f.label :商品の状態, id:"title"
               %span#mark
@@ -102,7 +116,7 @@
                 .send__main__content__form__box5__content__group1__title__box
                   ¥
                   .send__main__content__form__box5__content__group1__title__box__div
-                    %input.send__main__content__form__box5__content__group1__title__box__div__form{placeholder: "例) 300"}
+                    = f.text_field :price, class:"send__main__content__form__box5__content__group1__title__box__div__form", placeholder: "例) 300"
             %li.send__main__content__form__box5__content__group2
               .send__main__content__form__box5__content__group2__left
                 販売手数料(10%)
@@ -133,7 +147,7 @@
               =link_to items_path, id: "detail" do
                 加盟店規約
               に同意したことになります。
-          = f.button "出品する", id:"post"
+          = f.submit "出品する", id:"post"
           =link_to items_path, class: "send__main__content__form__box7__return" do
             もどる
 = render partial: "layouts/simplefooter"
