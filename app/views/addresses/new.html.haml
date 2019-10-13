@@ -15,14 +15,13 @@
           - if @address.errors.any?
             .error
               = "#{@address.errors.count}件のエラーが発生しました"
-          -# = render "devise/shared/error_messages", resource: resource
 
-          -# .field
-          -#   .string
-          -#     = f.label :postal_code, "郵便番号", class: "text"
-          -#     .required
-          -#       必須
-          -#   = f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "textfield", placeholder: "例）123-4567"
+          .field
+            .string
+              = f.label :postal_code, "郵便番号", class: "text"
+              .required
+                必須
+            = f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "textfield", placeholder: "例）123-4567"
           .field
             .string
               = f.label :prefecture_id, "都道府県", class: "text"
