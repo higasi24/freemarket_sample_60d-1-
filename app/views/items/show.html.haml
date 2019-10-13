@@ -1,11 +1,19 @@
+-# %head
+-#   %link{:href => "https://use.fontawesome.com/releases/v5.6.3/css/all.css", :rel => "stylesheet"}/
 = render partial: "layouts/header"
 .show-wrapper
   .show-box
     .show-box__head
       .show-box__head__name
-        出品者
+        = link_to("#{@item.name}", root_path)
       .show-box__head__text
-        -# 『#{@item.name}』は、300回の取引実績を持つ#{@order.nickname}さんから出品されました。ザラベーシック（チュニック/レディース）の商品で、#{@address.city}から~3日で発送されます。
+        『#{@item.name}』は、300回の取引実績を持つ
+        = link_to("#{@user.nickname}", root_path)
+        さんから出品されました。
+        = link_to("#{@brand.brand}", root_path)
+        （
+        = link_to("#{@category.category}/#{@category.category}", root_path)
+        ）の商品で、#{@address.city}から~3日で発送されます。
     .show-box__main
       .show-box__main__image-box
         .show-box__main__image-box__main-image
@@ -20,14 +28,29 @@
           .show-box__main__image-box__sub-image__small
           .show-box__main__image-box__sub-image__small
           .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
       %table.show-box__main__detail-box
         %tr
+          %td.th1 出品者
+          %td.th2
+            = link_to("#{@user.nickname}", root_path)
+            .show-box__main__detail-box__icon-box
+              .show-box__main__detail-box__icon-box__icons
+                = fa_icon 'laugh', class: "good"
+                %span 10
+              .show-box__main__detail-box__icon-box__icons
+                = fa_icon 'meh', class: "normal"
+                %span 10
+              .show-box__main__detail-box__icon-box__icons
+                = fa_icon 'frown-open', class: "bad"
+                %span 10
+        %tr
           %td.th1 カテゴリー
-          %td.th2 レディース アクセサリー ブローチ/コサージュ
+          %td.th2 
+            = link_to("#{@category.category}", root_path)
         %tr
           %td.th1 ブランド
-          %td.th2 NIKE
+          %td.th2
+            = link_to("#{@brand.brand}", root_path)
         %tr
           %td.th1 商品の状態
           %td.th2 やや傷や汚れあり
@@ -39,46 +62,60 @@
           %td.th2 らくらくメルカリ便
         %tr
           %td.th1 発送元地域
-          %td.th2 大阪府
+          %td.th2 
+            = link_to("#{@address.city}", root_path)
         %tr
           %td.th1 発送日の目安
           %td.th2 ~日で発送
     .show-box__item-price-box
-      %span.show-box__item-price-box__price ¥1,000
+      %span.show-box__item-price-box__price 
+        = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
       %span.show-box__item-price-box__tax (税込)
       %span.show-box__item-price-box__fee 送料込み
-    %button.show-box__btn 購入画面に進む
+    = link_to("購入画面に進む", new_order_path(@item), class: "show-box__btn")
     .show-box__comment
-      %p ご覧いただきありがとうございます。目立った汚れやキズはありませんが、袖口や身ごろに毛玉ができています。柄物なので、あまり目立たないようです。着丈は、約60㎝です。今頃着るのにちょうど良いですね。
+      %p #{@comment.comment}
     .show-box__action-box
       .show-box__action-box__left
-        = fa_icon 'heart-o'
-        %span いいね!
-        %span 0
+        -# = fa_icon 'heart-o'
+        -# %span いいね!
+        -# %span 0
+        = render partial: 'favorites/favorite', collection: @items, as: :item
+
+.like-link{id: "like-link-#{@item.id}"}
+  - if Favorite.find_by(item_id: @item.id)
+    = link_to unlike_path(@item.id), method: :delete, remote: true do
+      .iine__button
+        ❤️ #{@item.favorites.count}
+  - else
+    = link_to like_path(@item.id), method: :post, remote: true do
+      .iine__button
+        ♡️ #{@item.favorites.count}
+
+
       .show-box__action-box__center
-        = fa_icon 'flag-o'
-        %span 不適切な商品の報告
+        = link_to root_path do
+          = fa_icon 'flag-o'
+          %span 不適切な商品の報告
       .show-box__action-box__right
         = link_to root_path do
           = fa_icon 'lock'
           あんしん・あんぜんへの取り組み
   .selection-box
-    .selection-box__edit
-      = link_to edit_item_path do
-        商品の編集
-    .selection-box__text-center
-      or
-    .selection-box__button
-      出品を一旦停止する
-    .selection-box__button
-      この商品を削除する
+    = link_to("商品の編集", edit_item_path, class: "selection-box__edit")
+    .selection-box__text-center or
+    = link_to("出品を一旦停止する", root_path, class: "selection-box__button")
+    = link_to("この商品を削除する", root_path, class: "selection-box__button")
   .message-box
     %ul.message-box__message-list
       %li.message-box__message-list__list
-        .message-box__message-list__list__image-box
-          %img.message-box__message-list__list__image-box__image{src: "http://www.tmyun.com/mid/yun_3048.jpg"}
+        = link_to(root_path, class: "message-box__message-list__list__link") do
+          .message-box__message-list__list__link__user
+            .message-box__message-list__list__link__user__image-box
+              = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"message-box__message-list__list__link__user__image-box__image"
+            %figcaption.message-box__message-list__list__link__user__name 山田
+          .message-box__message-list__list__link__seller 出品者
         .message-box__message-list__list__detail
-          .message-box__message-list__list__detail__name 山田
           .message-box__message-list__list__detail__message-body
             .message-box__message-list__list__detail__message-body__text こんばんは 購入希望です
             .message-box__message-list__list__detail__message-body__icons
@@ -88,14 +125,17 @@
                   3日前
               .message-box__message-list__list__detail__message-body__icons__right
                 .message-box__message-list__list__detail__message-body__icons__right__form
-                = fa_icon 'flag-o'
+                = link_to root_path do
+                  = fa_icon 'flag-o'
             .message-box__message-list__list__detail__message-body__balloon
       %li.message-box__message-list__list
-        .message-box__message-list__list__image-box
-          %img.message-box__message-list__list__image-box__image{src: "http://www.tmyun.com/mid/yun_3048.jpg"}
-          .message-box__message-list__list__image-box__seller 出品者
+        = link_to(root_path, class: "message-box__message-list__list__link") do
+          .message-box__message-list__list__link__user
+            .message-box__message-list__list__link__user__image-box
+              = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"message-box__message-list__list__link__user__image-box__image"
+            %figcaption.message-box__message-list__list__link__user__name 山田
+          .message-box__message-list__list__link__seller 出品者
         .message-box__message-list__list__detail
-          .message-box__message-list__list__detail__name 山田
           .message-box__message-list__list__detail__message-body
             .message-box__message-list__list__detail__message-body__text こんばんは 購入希望です
             .message-box__message-list__list__detail__message-body__icons
@@ -105,7 +145,8 @@
                   3日前
               .message-box__message-list__list__detail__message-body__icons__right
                 .message-box__message-list__list__detail__message-body__icons__right__form
-                = fa_icon 'flag-o'
+                = link_to root_path do
+                  = fa_icon 'flag-o'
             .message-box__message-list__list__detail__message-body__balloon
   .message-submit
     .message-submit__attention
@@ -113,62 +154,73 @@
     %textarea.message-submit__textform
     .message-submit__button
       コメントする
-  .nav
-    .nav__prev
-      %a.nav__prev__btn
-        = fa_icon 'chevron-left'
-        後ろ
-    .nav__next
-      %a.nav__next__btn
-        前
-        = fa_icon 'chevron-right'
+  .item-nav
+    .item-nav__prev
+      .item-nav__prev__btn
+        = link_to root_path do
+          = fa_icon 'chevron-left'
+          後ろ
+    .item-nav__next
+      .item-nav__next__btn
+        = link_to root_path do
+          前
+          = fa_icon 'chevron-right'
   .sns
     .sns__sns-box
-      %a.sns__sns-box__facebook
-        = fa_icon 'facebook-square', class: 'sns-icon'
-      %a.sns__sns-box__twitter
-        = fa_icon 'twitter', class: 'sns-icon'
-      %a.sns__sns-box__pinterest
-        = fa_icon 'pinterest', class: 'sns-icon'
+      .sns__sns-box__facebook
+        = link_to root_path do
+          = fa_icon 'facebook-square', class: 'sns-icon'
+      .sns__sns-box__twitter
+        = link_to root_path do
+          = fa_icon 'twitter', class: 'sns-icon'
+      .sns__sns-box__pinterest
+        = link_to root_path do
+          = fa_icon 'pinterest', class: 'sns-icon'
   .user-item
-    %a.user-item__head
-      〜さんのその他の出品
+    .user-item__head
+      = link_to root_path do
+        #{@user.nickname}さんのその他の出品
     .user-item__box
-      %a.user-item__box__card
-        .user-item__box__card__photo
-          %img.user-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
-        .user-item__box__card__body
-          .user-item__box__card__body__text NIKE スニーカー
-          .user-item__box__card__body__num
-            .user-item__box__card__body__num__price ¥1,000
-            .user-item__box__card__body__num__icon
-              = fa_icon 'heart-o', class: 'num-icon'
-              %span 0
-      %a.user-item__box__card
-        .user-item__box__card__photo
-          %img.user-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
-          .user-item__box__card__photo__text SOLD
-          .user-item__box__card__photo__soldout
-        .user-item__box__card__body
-          .user-item__box__card__body__text NIKE スニーカー
-          .user-item__box__card__body__num
-            .user-item__box__card__body__num__price ¥1,000
-            .user-item__box__card__body__num__icon
-              = fa_icon 'heart-o', class: 'num-icon'
-              %span 0
+      .user-item__box__card
+        = link_to root_path do
+          .user-item__box__card__photo
+            = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"user-item__box__card__photo__image"
+          .user-item__box__card__body
+            .user-item__box__card__body__text NIKE スニーカー
+            .user-item__box__card__body__num
+              .user-item__box__card__body__num__price ¥1,000
+              .user-item__box__card__body__num__icon
+                = fa_icon 'heart-o', class: 'num-icon'
+                %span 0
+      .user-item__box__card
+        = link_to root_path do
+          .user-item__box__card__photo
+            %img.user-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
+            .user-item__box__card__photo__text SOLD
+            .user-item__box__card__photo__soldout
+          .user-item__box__card__body
+            .user-item__box__card__body__text NIKE スニーカー
+            .user-item__box__card__body__num
+              .user-item__box__card__body__num__price ¥1,000
+              .user-item__box__card__body__num__icon
+                = fa_icon 'heart-o', class: 'num-icon'
+                %span 0
   .similar-item
-    %a.similar-item__box__card
-      .similar-item__box__card__photo
-        %img.similar-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
-        .similar-item__box__card__photo__text SOLD
-        .similar-item__box__card__photo__soldout
-      .similar-item__box__card__body
-        .similar-item__box__card__body__text NIKE スニーカー
-        .similar-item__box__card__body__num
-          .similar-item__box__card__body__num__price ¥1,000
-          .similar-item__box__card__body__num__icon
-            = fa_icon 'heart-o', class: 'num-icon'
-            %span 0
-  .pre-bottom
+    .similar-item__head
+      = link_to root_path do
+        #{@category.category}その他の出品
+    .similar-item__box__card
+      = link_to root_path do
+        .similar-item__box__card__photo
+          %img.similar-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
+          .similar-item__box__card__photo__text SOLD
+          .similar-item__box__card__photo__soldout
+        .similar-item__box__card__body
+          .similar-item__box__card__body__text NIKE スニーカー
+          .similar-item__box__card__body__num
+            .similar-item__box__card__body__num__price ¥1,000
+            .similar-item__box__card__body__num__icon
+              = fa_icon 'heart-o', class: 'num-icon'
+              %span 0
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'

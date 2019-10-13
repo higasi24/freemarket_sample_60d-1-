@@ -89,4 +89,4 @@ gem 'font-awesome-rails'
 gem 'devise'
 gem 'pry-rails'
 gem 'active_hash'
-
+gem 'jquery-rails'

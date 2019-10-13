@@ -14,10 +14,11 @@
  *= require_self
  */
 
-@import 'font-awesome';
 @import 'reset';
 @import 'color';
 @import 'mixin';
+@import 'all';
+@import 'font-awesome';
 @import 'header';
 @import 'footer';
 @import 'item/show';
@@ -30,4 +31,3 @@
 @import 'registration';
 @import 'new';
 @import 'order/new';
-
