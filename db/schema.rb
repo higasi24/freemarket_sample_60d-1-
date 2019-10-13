@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_030428) do
+ActiveRecord::Schema.define(version: 2019_10_13_053258) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "city", null: false
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_id"
-    t.string "postal_code"
     t.string "tel"
     t.string "postal_code"
     t.string "tel"
@@ -38,6 +37,13 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -89,6 +95,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
     t.integer "price", null: false
     t.string "delivery_method", null: false
     t.string "delivery_date", null: false
+    t.integer "buyer_id"
+    t.integer "saler_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "area_id"
@@ -154,6 +162,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "cards", "users"
   add_foreign_key "category_items", "categories"
   add_foreign_key "category_items", "items"
   add_foreign_key "comments", "items"

@@ -10,6 +10,7 @@ class User < ApplicationRecord
         has_many :comments
         has_many :messages
         has_many :addresses, dependent: :destroy
+        has_one  :card
         # validates of password
         validates_format_of :password, :with => /([0-9].*[a-zA-Z]|[a-zA-Z].*[0-9])/
         validates :password, length: {minimum: 7}
