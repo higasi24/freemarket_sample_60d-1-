@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(version: 2019_10_13_053258) do
     t.integer "buyer_id"
     t.integer "favorites_count"
     t.string "size"
-    t.index ["area_id"], name: "index_items_on_area_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
   end
 
