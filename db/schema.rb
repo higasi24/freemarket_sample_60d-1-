@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
     t.integer "prefecture_id"
     t.string "postal_code"
     t.string "tel"
+    t.string "postal_code"
+    t.string "tel"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
