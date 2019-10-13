@@ -1,8 +1,9 @@
 .left
   .left__mypage
     .left__mypage__li
-      マイページ
-      = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
+      = link_to user_path(current_user.id) do
+        マイページ
+        = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
     .left__mypage__li
       お知らせ
       = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
@@ -53,8 +54,9 @@
   .left__title
     設定
     .left__title__li
-      プロフィール
-      = fa_icon 'chevron-right', class: 'left__title__li__fa'
+      = link_to profile_users_path do      
+        プロフィール
+        = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       発送元・お届け先住所変更
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
@@ -65,12 +67,14 @@
       メール/パスワード
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
-      本人情報
-      = fa_icon 'chevron-right', class: 'left__title__li__fa'
+      = link_to edit_user_path(current_user.id) do
+        本人情報
+        = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       電話番号
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
-      ログアウト
-      = fa_icon 'chevron-right', class: 'left__title__li__fa'
+      = link_to logout_users_path do
+        ログアウト
+        = fa_icon 'chevron-right', class: 'left__title__li__fa'
       
