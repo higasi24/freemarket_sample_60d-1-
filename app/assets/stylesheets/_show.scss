@@ -211,5 +211,79 @@
         line-height: 236px;
       }
     }
+    &__logout {
+      height: 179px;
+      width: 700px;
+      background-color: rgb(255,255,255);
+      padding: 64px 190px;
+      box-sizing: border-box;
+      &__button {
+        height: 50px;
+        width: 320px;
+        background-color: rgb(234,53,45);
+        color: rgb(255,255,255);
+        font-size: 14px;
+        text-align: center;
+        line-height: 50px;
+      }
+    }
+    &__edit {
+      height: 568px;
+      background-color: rgb(255,255,255);
+      box-sizing: border-box;
+      &__title {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+      }
+      &__header {
+        height: 156px;
+        background-color: rgb(141,141,141);
+        padding: 72px 16px 24px 16px;
+        box-sizing: border-box;
+        margin: auto;
+        &__icon {
+          height: 60px;
+          width: 60px;
+          border-radius: 30px;
+          background-color: rgb(255,255,255);
+          float: left;
+          margin-left: 192px;
+        }
+        &__name {
+          height: 48px;
+          width: 220px;
+          background-color: rgb(255,255,255);
+          float: left;
+          margin-top: 6px;
+          margin-left: 8px;
+          padding: 10px 16px 8px 16px;
+          box-sizing: border-box;
+        }
+      }
+      &__comment {
+        height: 362px;
+        padding: 40px 16px;
+        &__textarea {
+          border-style: solid;
+          border-width: 1px;
+          border-color: rgb(204,204,204);
+          min-height: 216px;
+          width: 668px;
+          padding: 10px;
+          box-sizing: border-box;
+        }
+        &__submit {
+          margin-top: 16px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+          background-color: rgb(234,53,45);
+          color: rgb(255,255,255);
+        }
+      }
+    }
   }
 }

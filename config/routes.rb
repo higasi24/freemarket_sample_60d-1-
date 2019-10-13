@@ -11,20 +11,18 @@ Rails.application.routes.draw do
       get :smsConfirmation
     end
   end
-  # resources :signup do
-  #   collection do
-  #     get :basic
-  #     get :sms
-  #     get :smsConfirmation
-  #     get :add
-  #     get :card
-  #     get :done
-  #   end
-  # end
   resources :items do
     get :search, on: :collection
   end
   resources :addresses
 end
+  resources :users, only: [:show, :edit] do
+    get :logout, on: :collection
+    get :profile, on: :collection
+  end
 
+  scope(path_names: { new: 'buy/:item_id'}) do
+    resources :orders, path: 'order'
+  end
 
+end

@@ -45,15 +45,16 @@
 
 a {
   text-decoration: none;
-  color: rgb(34,34,34);
+  color: inherit;
 }
 
-a:hover {
-  color: rgb(0,149,238);
-}
-
-i:hover {
-  color: rgb(0,149,238);
+.header {
+  a:hover {
+    color: rgb(0,149,238);
+  }
+  i:hover {
+    color: rgb(0,149,238);
+  }
 }
 
 ul {
@@ -79,7 +80,7 @@ ul {
 .header {
   width: 100%;
   background-color: rgb(255,255,255);
-  box-shadow: 0 0 5px;
+  // box-shadow: 0 0 5px;
   height: 100px;
   &__box {
     height: calc(100% - 7px);
