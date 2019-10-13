@@ -22,13 +22,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
     t.integer "prefecture_id"
     t.string "postal_code"
     t.string "tel"
+    t.string "postal_code"
     t.index ["user_id"], name: "index_addresses_on_user_id"
-  end
-
-  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "area", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -89,13 +84,11 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
     t.string "delivery_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "area_id"
     t.bigint "brand_id"
-    t.integer "saler_id", null: false
-    t.integer "buyer_id"
+    t.bigint "prefecture_id"
     t.string "size"
-    t.index ["area_id"], name: "index_items_on_area_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -158,7 +151,6 @@ ActiveRecord::Schema.define(version: 2019_10_13_030428) do
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
   add_foreign_key "images", "items"
-  add_foreign_key "items", "areas"
   add_foreign_key "items", "brands"
   add_foreign_key "messages", "items"
   add_foreign_key "messages", "users"
