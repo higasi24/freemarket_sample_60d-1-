@@ -6,7 +6,6 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
     if @address.save
       redirect_to root_path
-      # cardのurl指定
     else
       render :new
     end
