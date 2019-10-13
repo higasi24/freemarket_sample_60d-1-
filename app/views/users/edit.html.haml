@@ -25,7 +25,7 @@
             %p.font #{@user.family_name_kana} #{@user.first_name_kana}
           .form-group
             = f.label :生年月日, class:"form-group__label"
-            %p.font #{@user.birth_year}/#{@user.birth_month}/#{@user.birth_day}
+            %p.font #{@user.birth_date}
           .form-group
             = f.label :郵便番号, class:"form-group__label"
             %span.form-group__span 任意

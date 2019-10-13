@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_12_034356) do
+ActiveRecord::Schema.define(version: 2019_10_13_053258) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "city", null: false
@@ -20,7 +20,9 @@ ActiveRecord::Schema.define(version: 2019_10_12_034356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_id"
+    t.string "tel"
     t.string "postal_code"
+    t.string "tel"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
@@ -29,6 +31,13 @@ ActiveRecord::Schema.define(version: 2019_10_12_034356) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -80,12 +89,16 @@ ActiveRecord::Schema.define(version: 2019_10_12_034356) do
     t.integer "price", null: false
     t.string "delivery_method", null: false
     t.string "delivery_date", null: false
+    t.integer "buyer_id"
+    t.integer "saler_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "brand_id"
     t.integer "saler_id", null: false
     t.integer "buyer_id"
     t.integer "favorites_count"
+    t.string "size"
+    t.index ["area_id"], name: "index_items_on_area_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
   end
 
@@ -137,16 +150,13 @@ ActiveRecord::Schema.define(version: 2019_10_12_034356) do
     t.string "family_name", null: false
     t.string "first_name_kana", null: false
     t.string "family_name_kana", null: false
-    t.integer "birth_year", null: false
-    t.integer "birth_month", null: false
-    t.integer "birth_day", null: false
-    t.string "tel", null: false
-    t.string "credit"
+    t.date "birth_date"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "cards", "users"
   add_foreign_key "category_items", "categories"
   add_foreign_key "category_items", "items"
   add_foreign_key "comments", "items"
