@@ -1,0 +1,43 @@
+.all
+  .header-registration
+    .header-registration__contents
+      .merucari-icon
+        = link_to(root_path, class:"logo-link") do
+          %img{src:"https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class:"logo-link__image"}
+      = render 'progressbar'
+
+  .registry-box
+    .registry-box__title
+      支払い方法
+    .registry-box__content
+      .registry-box__content__box
+        -# = form_for(@user, url: done_signup_index_path, method: :get) do |f|
+          -# .field
+          -#   .string
+          -#     = f.label :nickname, "カード番号", class: "text"
+          -#     .required
+          -#       必須
+          -#   = f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "textfield", placeholder: "半角数字のみ"
+          -#   .card-mark
+          -#     ここにカードのマークを入力
+          -# .field
+          -#   .string
+          -#     %label{ class: "text" }
+          -#       有効期限
+          -#     .required
+          -#       必須
+          -#   %input{ type: "date" , class: "textfield", placeholder: "カード背面4桁もしくは3桁の番号" }
+          -# .field
+          -#   .string
+          -#     %label{ class: "text" }
+          -#       セキュリティーコード
+          -#     .required
+          -#       必須
+          -#   %input{ type: "text", class: "textfield", placeholder: "カード背面4桁もしくは3桁の番号" }
+          -# = f.submit "次へ進む", class: "next"
+          %p.link
+            = link_to(root_path, class: "confirmation-identification", id: "telconfim") do
+              = fa_icon 'question-circle', class:"icon__question"
+              カード裏面の番号とは？
+
+              -# 有効期限とセキュリティーコードは保存?
