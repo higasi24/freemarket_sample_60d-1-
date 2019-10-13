@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :smsConfirmation
       get :logout
       get :profile
+      get :credit
     end
   end
   

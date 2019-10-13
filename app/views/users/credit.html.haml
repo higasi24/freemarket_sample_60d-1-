@@ -1,7 +1,7 @@
 .credit-japan
   = render partial: "layouts/header"
   .credit-wrapper
-    .hhhh
+    = render partial: "side_bar"
     .credit
       %h2.credit__header
         支払い方法
@@ -95,3 +95,6 @@
             %span#credit-span
               支払い方法について
             %i.fa.fa-chevron-right
+= render partial: 'layouts/button' 
+= render partial: 'layouts/aside'
+= render partial: 'layouts/footer'
