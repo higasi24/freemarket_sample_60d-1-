@@ -1,9 +1,11 @@
--# = render partial: "layouts/header"
+= render partial: "layouts/header"
 .show-wrapper
   .show-box
     .show-box__head
-      .show-box__head__name 商品名
-      .show-box__head__text 『♪♪ ZARA 長袖ブラウス』は、300回の取引実績を持つギリシアンさんから出品されました。ザラベーシック（チュニック/レディース）の商品で、茨城県から~3日で発送されます。
+      .show-box__head__name
+        出品者
+      .show-box__head__text
+        -# 『#{@item.name}』は、300回の取引実績を持つ#{@order.nickname}さんから出品されました。ザラベーシック（チュニック/レディース）の商品で、#{@address.city}から~3日で発送されます。
     .show-box__main
       .show-box__main__image-box
         .show-box__main__image-box__main-image
@@ -60,6 +62,16 @@
         = link_to root_path do
           = fa_icon 'lock'
           あんしん・あんぜんへの取り組み
+  .selection-box
+    .selection-box__edit
+      = link_to edit_item_path do
+        商品の編集
+    .selection-box__text-center
+      or
+    .selection-box__button
+      出品を一旦停止する
+    .selection-box__button
+      この商品を削除する
   .message-box
     %ul.message-box__message-list
       %li.message-box__message-list__list
@@ -95,6 +107,12 @@
                 .message-box__message-list__list__detail__message-body__icons__right__form
                 = fa_icon 'flag-o'
             .message-box__message-list__list__detail__message-body__balloon
+  .message-submit
+    .message-submit__attention
+      相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+    %textarea.message-submit__textform
+    .message-submit__button
+      コメントする
   .nav
     .nav__prev
       %a.nav__prev__btn
@@ -152,5 +170,5 @@
             = fa_icon 'heart-o', class: 'num-icon'
             %span 0
   .pre-bottom
--# = render partial: 'layouts/aside'
--# = render partial: 'layouts/footer'
+= render partial: 'layouts/aside'
+= render partial: 'layouts/footer'
