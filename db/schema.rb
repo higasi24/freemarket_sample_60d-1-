@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_053258) do
+ActiveRecord::Schema.define(version: 2019_10_13_075041) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "city", null: false
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_053258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_id"
-    t.string "postal_code"
     t.string "tel"
+    t.string "postal_code"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 2019_10_13_053258) do
     t.integer "price", null: false
     t.string "delivery_method", null: false
     t.string "delivery_date", null: false
+    t.integer "buyer_id"
+    t.integer "saler_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "area_id"
@@ -101,9 +103,10 @@ ActiveRecord::Schema.define(version: 2019_10_13_053258) do
     t.integer "saler_id", null: false
     t.integer "buyer_id"
     t.string "size"
+    t.integer "prefecture_id", null: false
     t.integer "favorites_count"
-    t.index ["area_id"], name: "index_items_on_area_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
