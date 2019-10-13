@@ -74,9 +74,6 @@
           &__icons {
             display: inline-block;
             margin:  8px 10px 0 0;
-            i {
-              font-size: 17px;
-            }
             .good {
               color: rgb(226, 21, 147);
             }
@@ -365,7 +362,7 @@
       justify-content: center;
       margin: 0 auto;
       width: 200px;
-      .sns-icon {
+      i {
         color: #fff;
       }
       &__facebook {
@@ -381,6 +378,17 @@
       }
       &__twitter {
         background: #5d9dc9;
+        border-radius: 4px;
+        display: block;
+        font-size: 30px;
+        height: 44px;
+        line-height: 44px;
+        margin-right: 8px;
+        width: 44px;
+        text-align: center;
+      }
+      &__line {
+        background: #82c91e;
         border-radius: 4px;
         display: block;
         font-size: 30px;

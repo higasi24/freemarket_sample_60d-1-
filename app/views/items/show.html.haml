@@ -1,5 +1,6 @@
--# %head
--#   %link{:href => "https://use.fontawesome.com/releases/v5.6.3/css/all.css", :rel => "stylesheet"}/
+-# 顔文字を表示させるために導入
+%script{:crossorigin => "anonymous", :src => "https://kit.fontawesome.com/8da05e3b5a.js"}
+
 = render partial: "layouts/header"
 .show-wrapper
   .show-box
@@ -77,21 +78,17 @@
       %p #{@comment.comment}
     .show-box__action-box
       .show-box__action-box__left
-        -# = fa_icon 'heart-o'
-        -# %span いいね!
-        -# %span 0
-        = render partial: 'favorites/favorite', collection: @items, as: :item
+        -# = render partial: 'favorites/favorite', collection: @items, as: :item
 
-.like-link{id: "like-link-#{@item.id}"}
-  - if Favorite.find_by(item_id: @item.id)
-    = link_to unlike_path(@item.id), method: :delete, remote: true do
-      .iine__button
-        ❤️ #{@item.favorites.count}
-  - else
-    = link_to like_path(@item.id), method: :post, remote: true do
-      .iine__button
-        ♡️ #{@item.favorites.count}
-
+          -# .like-link{id: "like-link-#{@item.id}"}
+          -#   - if Favorite.find_by(item_id: @item.id)
+          -#     = link_to unlike_path(@item.id), method: :delete, remote: true do
+          -#       .iine__button
+          -#         ❤️ #{@item.favorites.count}
+          -#   - else
+          -#     = link_to like_path(@item.id), method: :post, remote: true do
+          -#       .iine__button
+          -#         ♡️ #{@item.favorites.count}
 
       .show-box__action-box__center
         = link_to root_path do
@@ -169,13 +166,16 @@
     .sns__sns-box
       .sns__sns-box__facebook
         = link_to root_path do
-          = fa_icon 'facebook-square', class: 'sns-icon'
+          %i.fab.fa-facebook-square
       .sns__sns-box__twitter
         = link_to root_path do
-          = fa_icon 'twitter', class: 'sns-icon'
+          %i.fab.fa-twitter
+      .sns__sns-box__line
+        = link_to root_path do
+          %i.fab.fa-line
       .sns__sns-box__pinterest
         = link_to root_path do
-          = fa_icon 'pinterest', class: 'sns-icon'
+          %i.fab.fa-pinterest
   .user-item
     .user-item__head
       = link_to root_path do

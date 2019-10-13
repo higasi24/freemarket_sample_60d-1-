@@ -12,12 +12,12 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
 @import 'reset';
 @import 'color';
 @import 'mixin';
-@import 'all';
 @import 'font-awesome';
 @import 'header';
 @import 'footer';
