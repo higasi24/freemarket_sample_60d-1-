@@ -25,12 +25,6 @@ ActiveRecord::Schema.define(version: 2019_10_13_075041) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "area", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand", null: false
     t.integer "parent_id"
@@ -94,16 +88,14 @@ ActiveRecord::Schema.define(version: 2019_10_13_075041) do
     t.integer "price", null: false
     t.string "delivery_method", null: false
     t.string "delivery_date", null: false
+    t.integer "buyer_id"
+    t.integer "saler_id", null: false
+    t.bigint "brand_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "area_id"
-    t.bigint "brand_id"
-    t.integer "saler_id", null: false
-    t.integer "buyer_id"
     t.string "size"
     t.integer "favorites_count"
     t.integer "prefecture_id", null: false
-    t.index ["area_id"], name: "index_items_on_area_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
   end
 
@@ -145,16 +137,17 @@ ActiveRecord::Schema.define(version: 2019_10_13_075041) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "first_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "family_name_kana", null: false
+    t.integer "integer", null: false
+    t.integer "string", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "nickname", null: false
-    t.string "first_name", null: false
-    t.string "family_name", null: false
-    t.string "first_name_kana", null: false
-    t.string "family_name_kana", null: false
     t.date "birth_date"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -168,7 +161,6 @@ ActiveRecord::Schema.define(version: 2019_10_13_075041) do
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
   add_foreign_key "images", "items"
-  add_foreign_key "items", "areas"
   add_foreign_key "items", "brands"
   add_foreign_key "messages", "items"
   add_foreign_key "messages", "users"
