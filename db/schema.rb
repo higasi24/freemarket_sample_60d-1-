@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2019_10_11_135440) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "postal_code"
     t.integer "prefecture_id"
+    t.string "postal_code"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
