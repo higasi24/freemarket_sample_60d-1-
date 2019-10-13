@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2019_10_13_053258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_id"
-    t.string "tel"
     t.string "postal_code"
     t.string "tel"
     t.index ["user_id"], name: "index_addresses_on_user_id"
@@ -95,8 +94,6 @@ ActiveRecord::Schema.define(version: 2019_10_13_053258) do
     t.integer "price", null: false
     t.string "delivery_method", null: false
     t.string "delivery_date", null: false
-    t.integer "buyer_id"
-    t.integer "saler_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "area_id"
