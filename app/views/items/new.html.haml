@@ -94,7 +94,7 @@
               %span#mark
                 必須
               .send__main__content__form__box4__content__group2__select
-                = f.collection_select(:area_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: "send__main__content__form__box4__content__group2__select__show"} )
+                = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: "send__main__content__form__box4__content__group2__select__show"} )
             .send__main__content__form__box4__content__group3
               = f.label :発送までの日数, id:"title"
               %span#mark

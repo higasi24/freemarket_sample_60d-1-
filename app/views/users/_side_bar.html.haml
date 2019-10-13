@@ -1,9 +1,9 @@
 .left
   .left__mypage
-    .left__mypage__li
+    .left__mypage__li#mypage
       = link_to user_path(current_user.id) do
         マイページ
-        = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
+        = fa_icon 'chevron-right', class: 'left__mypage__li__fa', id: 'fafa'
     .left__mypage__li
       お知らせ
       = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
@@ -71,7 +71,7 @@
         本人情報
         = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
-      電話番号
+      電話番号の確認
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       = link_to logout_users_path do
