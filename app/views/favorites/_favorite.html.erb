@@ -1,0 +1,13 @@
+<%= render 'favorites/like', story: story %>
+
+
+
+<%# -# .like-link{id: "like-link-#{@item.id}"}
+-#   - if Favorite.find_by(item_id: @item.id)
+-#     = link_to unlike_path(@item.id), method: :delete, remote: true do
+-#       .iine__button
+-#         ❤️ #{@item.favorites.count}
+-#   - else
+-#     = link_to like_path(@item.id), method: :post, remote: true do
+-#       .iine__button
+-#         ♡️ #{@item.favorites.count} %>
