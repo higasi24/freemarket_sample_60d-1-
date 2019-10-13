@@ -91,3 +91,4 @@ gem 'pry-rails'
 gem 'active_hash'
 gem 'jquery-rails'
 gem 'gretel'
+gem "omniauth-rails_csrf_protection"
