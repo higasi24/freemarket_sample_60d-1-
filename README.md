@@ -33,6 +33,7 @@ Things you may want to cover:
 - has_many :comments
 - has_many :messages
 - has_many :addresses, dependent: :destroy
+- has_one  :card
 
 
 ## itemsテーブル
@@ -181,7 +182,7 @@ Things you may want to cover:
 |delivery_date|string|null: false|
 |buyer_id|integer|null: false, foreign_key: true|
 |saler_id|integer|null: false, foreign_key: true|
-|item_id|integereger|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -189,7 +190,12 @@ Things you may want to cover:
 ## cardsテーブル
 |column|Type|Option|
 |-------|----|-----|
-||||
+|card_id|string|null: false|
+|customer_id|string|null: false|
+|user_id|integer|null: false|
+
+### Association
+- belongs_to :user
 
 * Database initialization
 
