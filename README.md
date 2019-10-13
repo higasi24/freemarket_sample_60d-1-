@@ -23,10 +23,7 @@ Things you may want to cover:
 |first_name_kana|string|null: false|
 |family_name|string|null: false|
 |family_name_kana|string|null: false|
-|birth_year|integer|null: false|
-|birth_month|integer|null: false|
-|birth_day|integer|null: false|
-|tel|integer|null: false, unique: true|
+|birth_date|date|null: false|
 |credit|string|unique: true|
 
 ### Association
@@ -72,6 +69,7 @@ Things you may want to cover:
 |city|string|null: false|
 |block|string|null: false|
 |building|string||
+|tel|string||
 |user_id|integer|null: false, foreign_key: true|
 |prefecture_id|integer|null: false, foreign_key: true|
 
