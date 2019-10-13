@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
   resources :addresses
-  resources :card
+  resources :cards
 
   scope(path_names: { new: 'buy/:item_id'}) do
     resources :orders, path: 'order'
