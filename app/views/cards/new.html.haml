@@ -12,7 +12,11 @@
     .registry-box__content
       .registry-box__content__box
         %h2 クレジットカード情報入力
+
         = form_tag("/users/purchase", method: "PATCH", id: "charge-form") do
+          %script{type: "text/javascript", src: "https://checkout.pay.jp", class: "payjp-button", data_key: "公開キー"}
+          %input{type: "submit",name: "send"}
+          -# data-kay
           %label カード番号
           %input{maxlength: "16", type: "text", class: "number", id: "payment_card_no", name: "number", placeholder: "カード番号"}
           %label CVC
@@ -20,6 +24,7 @@
           %label 有効期限
           %input{type: "text", class: "exp_month", id: "payment_card_expire_mm",  name: "exp_month", maxlength: "2", placeholder: "月"}
           %input{type: "text", class: "exp_year", name: "exp_year", maxlength: "4",  placeholder: "年"}
+
 
 
 
