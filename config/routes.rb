@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
   resources :addresses
-end
   resources :users, only: [:show, :edit] do
     get :logout, on: :collection
     get :profile, on: :collection
