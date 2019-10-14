@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       get :credit
     end
   end
+
+  # scope(path_names: { : 'buy/:item_id'}) do
+  #   resources :orders, path: 'order'
+  # end
   
   resources :items do
     get :search, on: :collection
