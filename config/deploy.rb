@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.2"
 
-set :application, "freemarket_sample_60d-1-"
+set :application, "freemarket_sample_60d"
 set :repo_url, "git@github.com:higasi24/freemarket_sample_60d-1-.git"
 
 append :linked_files, 'config/master.key'
