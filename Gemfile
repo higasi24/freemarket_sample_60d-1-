@@ -92,4 +92,3 @@ gem 'active_hash'
 gem 'jquery-rails'
 gem 'gretel'
 gem 'payjp'
-# gem "omniauth-rails_csrf_protection"
