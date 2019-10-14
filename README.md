@@ -16,9 +16,9 @@ Things you may want to cover:
 ## usersテーブル
 |column|Type|Option|
 |-------|----|-----|
+|nickname|string|null: false|
 |email|string|null: false|
 |password|string|null: false|
-|nickname|string|null: false|
 |first_name|string|null: false|
 |first_name_kana|string|null: false|
 |family_name|string|null: false|
