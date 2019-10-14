@@ -52,13 +52,7 @@
                   必須
                 .send__main__content__form__box3__content__group1__div
                   .send__main__content__form__box3__content__group1__div__select
-                    = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
-                .send__main__content__form__box3__content__group1__div
-                  .send__main__content__form__box3__content__group1__div__select
-                    = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
-                    .send__main__content__form__box3__content__group1__div
-                  .send__main__content__form__box3__content__group1__div__select
-                    = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"})
+                    = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show")
             .send__main__content__form__box3__content__group2
               = f.label :サイズ, id:"title"
               %span#mark

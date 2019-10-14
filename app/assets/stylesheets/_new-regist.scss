@@ -108,6 +108,7 @@
       width: 30px;
       height: 20px;
       line-height: 20px;
+      text-align: center;
       // margin-top: 15px;
     }
     .non-required{
@@ -120,6 +121,7 @@
       height: 20px;
       line-height: 20px;
       // margin-top: 15px;
+      text-align: center;
     }
   }
   .textfi{
@@ -191,7 +193,6 @@
 @mixin date-select {
   height: 50px;
   background-color: #ffffff;
-  width: 76px;
   padding-left: 10px;
   -webkit-appearance: none;
   background-image: url(arrow.png);
@@ -199,19 +200,21 @@
 	background-size: 15px 12px;
 	background-position: right 10px center;
 }
-.date-boxes{
-  float: left;
-}
+
 #user_birth_date_1i{
   @include date-select;
+  width: 76px;
+
 }
 
 #user_birth_date_2i{
   @include date-select;
+  width: 76px;
 }
 
 #user_birth_date_3i{
   @include date-select;
+  width: 76px;
 }
 
 .robot{
@@ -251,3 +254,24 @@
   font-size: 16px;
   padding-left: 10px;
 }
+
+
+
+//card
+
+#exp_month{
+  @include date-select;
+  width: 110px;
+}
+
+#exp_year{
+  @include date-select;
+  width: 110px;
+  margin-top: 10px;
+}
+
+.card-mark{
+  display: flex;
+  padding-top: 10px;
+}
+

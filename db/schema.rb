@@ -10,35 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_14_023414) do
+ActiveRecord::Schema.define(version: 2019_10_14_054003) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "city", null: false
-    t.string "block", null: false
+    t.string "postal_code"
+    t.string "city"
+    t.string "block"
     t.string "building"
+    t.integer "tel"
+    t.integer "prefecture_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "prefecture_id"
-    t.string "postal_code"
-    t.string "tel"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-  create_table "areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "area", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "brand", null: false
+    t.string "brand"
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -46,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_10_14_023414) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "category", null: false
+    t.string "category"
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -87,35 +83,26 @@ ActiveRecord::Schema.define(version: 2019_10_14_023414) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.text "detail"
-    t.string "state", null: false
-    t.string "delivery_fee", null: false
-    t.integer "price", null: false
-    t.string "delivery_method", null: false
-    t.string "delivery_date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "area_id"
-    t.bigint "brand_id"
-    t.integer "saler_id", null: false
-    t.integer "buyer_id"
+    t.string "state"
+    t.string "delivery_fee"
+    t.integer "price"
+    t.string "delivery_method"
+    t.string "delivery_date"
     t.string "size"
     t.integer "favorites_count"
-    t.integer "prefecture_id", null: false
-    t.index ["area_id"], name: "index_items_on_area_id"
+    t.integer "prefecture_id"
+    t.integer "buyer_id"
+    t.integer "saler_id"
+    t.bigint "brand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_items_on_brand_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "message", null: false
-    t.string "name", null: false
-    t.text "detail"
-    t.string "state", null: false
-    t.string "delivery_fee", null: false
-    t.integer "price", null: false
-    t.string "delivery_method", null: false
-    t.string "delivery_date", null: false
+    t.text "message"
     t.bigint "item_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -125,8 +112,15 @@ ActiveRecord::Schema.define(version: 2019_10_14_023414) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "buyer_id", null: false
-    t.integer "saler_id", null: false
+    t.string "name"
+    t.text "detail"
+    t.string "state"
+    t.string "delivery_fee"
+    t.integer "price"
+    t.string "delivery_method"
+    t.string "delivery_date"
+    t.integer "buyer_id"
+    t.integer "saler_id"
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -134,7 +128,7 @@ ActiveRecord::Schema.define(version: 2019_10_14_023414) do
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "review", null: false
+    t.integer "review"
     t.text "text"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -143,21 +137,21 @@ ActiveRecord::Schema.define(version: 2019_10_14_023414) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "first_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "family_name_kana", null: false
+    t.string "birth_date", null: false
+    t.string "provider"
+    t.string "uid"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "nickname", null: false
-    t.string "first_name", null: false
-    t.string "family_name", null: false
-    t.string "first_name_kana", null: false
-    t.string "family_name_kana", null: false
-    t.date "birth_date"
-    t.string "provider"
-    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -170,7 +164,6 @@ ActiveRecord::Schema.define(version: 2019_10_14_023414) do
   add_foreign_key "favorites", "items"
   add_foreign_key "favorites", "users"
   add_foreign_key "images", "items"
-  add_foreign_key "items", "areas"
   add_foreign_key "items", "brands"
   add_foreign_key "messages", "items"
   add_foreign_key "messages", "users"
