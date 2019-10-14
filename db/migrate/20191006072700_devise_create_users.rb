@@ -15,6 +15,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :birth_day, :integer, null: false ###誕生日 日
       t.integer :tel, :integer, null: false, unique: true  ###携帯電話番号
       t.integer :credit, :string, null: false, unique: true ###クレジットカード
+      t.string :nickname, :string, null: false
 
       ## Recoverable
       t.string   :reset_password_token
