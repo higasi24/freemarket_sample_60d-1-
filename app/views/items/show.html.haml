@@ -11,9 +11,9 @@
         『#{@item.name}』は、300回の取引実績を持つ
         = link_to("#{@user.nickname}", root_path)
         さんから出品されました。
-        = link_to("#{@brand.brand}", root_path)
+        = link_to("#{@item.brand}", root_path)
         （
-        = link_to("#{@category.category}/#{@category.category}", root_path)
+        = link_to("#{@item.categories}/", root_path)
         ）の商品で、#{@address.city}から~3日で発送されます。
     .show-box__main
       .show-box__main__image-box
@@ -47,11 +47,11 @@
         %tr
           %td.th1 カテゴリー
           %td.th2 
-            = link_to("#{@category.category}", root_path)
+            -# = link_to("#{@category.category}", root_path)
         %tr
           %td.th1 ブランド
           %td.th2
-            = link_to("#{@brand.brand}", root_path)
+            -# = link_to("#{@brand.brand}", root_path)
         %tr
           %td.th1 商品の状態
           %td.th2 やや傷や汚れあり
@@ -75,7 +75,7 @@
       %span.show-box__item-price-box__fee 送料込み
     = link_to("購入画面に進む", new_order_path(@item), class: "show-box__btn")
     .show-box__comment
-      %p #{@comment.comment}
+      %p #{@item.detail}
     .show-box__action-box
       .show-box__action-box__left
         -# = render partial: 'favorites/favorite', collection: @items, as: :item
@@ -208,7 +208,7 @@
   .similar-item
     .similar-item__head
       = link_to root_path do
-        #{@category.category}その他の出品
+        -# #{@category.category}その他の出品
     .similar-item__box__card
       = link_to root_path do
         .similar-item__box__card__photo
