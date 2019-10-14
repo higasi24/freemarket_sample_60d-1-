@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_075041) do
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand", null: false
     t.integer "parent_id"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -90,9 +91,9 @@ ActiveRecord::Schema.define(version: 2019_10_13_075041) do
     t.string "delivery_date", null: false
     t.integer "buyer_id"
     t.integer "saler_id", null: false
-    t.bigint "brand_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "brand_id"
     t.string "size"
     t.integer "favorites_count"
     t.integer "prefecture_id", null: false
