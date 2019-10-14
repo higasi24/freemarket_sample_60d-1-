@@ -9,9 +9,9 @@
         = link_to(new_user_registration_path, class: 'registry-box__content__box__mail') do
           = fa_icon 'envelope-o', class:"icon__mail"
           メールアドレスで登録する
-        = link_to("https://www.facebook.com/mercarijp", class: 'registry-box__content__box__facebook') do
+        = link_to(user_facebook_omniauth_authorize_path, class: 'registry-box__content__box__facebook', method: :get) do
           = fa_icon 'facebook-square', class:"icon__facebook"
           Facebookで登録する
-        = link_to('https://www.google.com/?hl=ja', class: 'registry-box__content__box__google') do
+        = link_to(user_google_oauth2_omniauth_authorize_path, class: 'registry-box__content__box__google', method: :get) do
           = image_tag '/assets/google.png', height: '25', width: '25', class: 'icon__google'
           Googleで登録する

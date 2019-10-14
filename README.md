@@ -46,9 +46,11 @@ Things you may want to cover:
 |price|integer|null: false|
 |delivery_method|string|null: false|
 |delivery_date|string|null: false|
+|size|string||
+|favorites_count|integer|
 |buyer_id|integer|foreign_key: true|
 |saler_id|integer|null: false, foreign_key: true|
-|area_id|references|null: false, foreign_key: true|
+|prefecture_id|integer|foreign_key: true|
 |brand_id|references|foreign_key: true|
 
 ### Association
@@ -66,6 +68,7 @@ Things you may want to cover:
 ## addressesテーブル
 |column|Type|Option|
 |-------|----|-----|
+|postal_code|string||
 |city|string|null: false|
 |block|string|null: false|
 |building|string||
@@ -103,7 +106,7 @@ Things you may want to cover:
 ## brandsテーブル
 |column|Type|Option|
 |-------|----|-----|
-|brand|string|null: false, unique: true|
+|brand|string||
 |parent_id|integer||
 
 ### Association
