@@ -6,10 +6,9 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @address = Address.find(params[:id])
-    @brand = Brand.find(params[:id])
-    @category = Category.find(params[:id])
-    @user = User.find(params[:id])
-    @comment = Comment.find(params[:id])
+    # @brand = Brand.find(@item.brand_id)
+    # @category = Category.find(params[:id])
+    @user = User.find(@item.saler_id)
   end
 
   def new
