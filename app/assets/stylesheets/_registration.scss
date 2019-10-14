@@ -2,6 +2,7 @@
   // border-radius: 4px;
   display: block;
   position: relative;
+  text-align: center;
 }
 @mixin box-mailFacebook {
   height: 50px;
@@ -35,7 +36,7 @@
     &__box{
       max-width: 343px;
       margin: 0 auto;
-      text-align: center;
+      // text-align: center;
       line-height: 50px;
       font-size: 13px;
       &__mail{
