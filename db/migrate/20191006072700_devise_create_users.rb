@@ -5,7 +5,17 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false, default: "" ###パスワードを暗号化するもの
+      t.string :first_name, null: false   ###太郎
+      t.string :family_name, null: false   ###山田
+      t.string :first_name_kana, null: false   ###タロウ
+      t.string :family_name_kana, null: false   ###ヤマダ
+      t.integer :birth_year, :integer, null: false ###誕生日 年
+      t.integer :birth_month, :integer, null: false ###誕生日 月
+      t.integer :birth_day, :integer, null: false ###誕生日 日
+      t.integer :tel, :integer, null: false, unique: true  ###携帯電話番号
+      t.integer :credit, :string, null: false, unique: true ###クレジットカード
+      t.string :nickname, :string, null: false
 
       ## Recoverable
       t.string   :reset_password_token

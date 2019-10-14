@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   has_many :categories, through: :category_items
   accepts_nested_attributes_for :category_items, allow_destroy: true
   has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
   has_many :comments, dependent: :destroy
   has_many :messages, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
