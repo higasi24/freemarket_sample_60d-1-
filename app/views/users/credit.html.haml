@@ -2,7 +2,7 @@
   = render partial: "layouts/header"
   .credit-wrapper
     = render partial: "side_bar"
-    .credit
+    .credit#first
       %h2.credit__header
         支払い方法
       .credit__content
@@ -20,7 +20,7 @@
             %span#credit-span
               支払い方法について
             %i.fa.fa-chevron-right
-    .credit
+    .credit#second
       %h2.credit__header
         支払い方法
       .credit__content
