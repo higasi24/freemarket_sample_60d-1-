@@ -6,9 +6,15 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
         def self.from_omniauth(auth)
-          where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-            user.email = auth.info.email
-            user.password = Devise.friendly_token[0,20]
+          credential = SnsCredential.where(provider: auth.provider, uid: auth.uid).first
+          if credential
+            user = User.find(credential.user_id)
+          else
+            user = User.where(email: auth.info.email).first_or_create do |u|
+              u.password = Devise.friendly_token[0,20]
+            end
+            SnsCredential.create(provider: auth.provider, uid: auth.uid, user_id: user.id)
+            user
           end
         end
         
@@ -22,6 +28,7 @@ class User < ApplicationRecord
         has_many :messages
         has_many :addresses, dependent: :destroy
         has_one  :card
+        has_many :sns_credentials, dependent: :destroy
         # validates of password
         validates_format_of :password, :with => /([0-9].*[a-zA-Z]|[a-zA-Z].*[0-9])/
         validates :password, length: {minimum: 7}
