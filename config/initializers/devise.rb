@@ -298,6 +298,6 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: 'email', info_fields: 'email'
-  config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_APP_SECRET'], scope: %w(email) 
+  config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_APP_SECRET'], scope: 'email' 
   OmniAuth.config.logger = Rails.logger if Rails.env.development? # debug用
 end
