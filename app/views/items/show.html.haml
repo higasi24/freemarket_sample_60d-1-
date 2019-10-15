@@ -13,7 +13,7 @@
         さんから出品されました。
         = link_to("#{@item.brand.brand}", root_path)
         (
-        = link_to("#{@item.categories[0].category}", root_path)
+        = link_to("#{@category}", root_path)
         )の商品で、#{@address.city}から~#{@item.delivery_date}日で発送されます。
     .show-box__main
       .show-box__main__image-box
@@ -41,15 +41,15 @@
         %tr
           %td.th1 カテゴリー
           %td.th2 
-            = link_to("#{@item.categories[0].category}", root_path)
+            = link_to("#{@category}", root_path)
             %br
             = link_to root_path do
               = fa_icon 'chevron-right'
-              = "#{@item.categories[0].category}"
+              = "#{@category}"
             %br
             = link_to root_path do
               = fa_icon 'chevron-right'
-              = "#{@item.categories[0].category}"
+              = "#{@category}"
         %tr
           %td.th1 ブランド
           %td.th2
@@ -190,7 +190,7 @@
   .similar-item
     .similar-item__head
       = link_to root_path do
-        #{@item.categories[0].category}その他の出品
+        #{@category}その他の出品
     .similar-item__box__card
       = link_to root_path do
         .similar-item__box__card__photo

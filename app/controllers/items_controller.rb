@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @image = Image.where(item_id: params[:id])
     @saler = User.find(@item.saler_id)
+    @category = @item.categories[0].category
     @address = Address.find_by(user_id: @saler.id)
     @salers_item = Item.where(saler_id: @saler.id)
     @order_count = @salers_item.where.not(buyer_id: nil).count
