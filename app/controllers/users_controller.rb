@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def credit
-    @user = User.find(user_id == current_user.id)
+    @user = User.find(current_user.id)
     @card = @user.card
   end
 
