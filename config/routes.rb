@@ -13,14 +13,13 @@ Rails.application.routes.draw do
       get :smsConfirmation
       get :logout
       get :profile
+    end
+    member do
       get :credit
+      get :save
     end
   end
 
-  # scope(path_names: { : 'buy/:item_id'}) do
-  #   resources :orders, path: 'order'
-  # end
-  
   resources :items do
     get :search, on: :collection
   end
