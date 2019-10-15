@@ -10,9 +10,12 @@ class CardsController < ApplicationController
  # indexアクションはここでは省略
 
   def create #PayjpとCardのデータベースを作成
+    @url = request.referer
     Payjp.api_key = 'sk_test_773242704ce0f9c879739f72'
 
-    if params['payjp-token'].blank?
+    if params['payjp-token'].blank? && params['credit2__content2__box__group4__button'].blank?
+      redirect_to save_user_path
+    elsif
       redirect_to action: "new"
     else
       # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録します。
@@ -23,8 +26,12 @@ class CardsController < ApplicationController
         metadata: {user_id: current_user.id} # 無くてもOK。
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      if @card.save
+      if @card.save && @url.match(/\/users\/\d+\/save/)
+        redirect_to credit_user_path
+      elsif
         redirect_to action: "index"
+      elsif @url.match(/\/users\/\d+\/save/)
+        redirect_to save_user_path
       else
         redirect_to action: "create"
       end
