@@ -14,4 +14,13 @@ class Item < ApplicationRecord
   has_many :messages, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+  mount_uploader :image, ImageUploader
+
+  def previous
+    Item.order('created_at desc, id desc').where('created_at <= ? and id < ?', created_at, id).first
+  end
+
+  def next
+    Item.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
+  end
 end

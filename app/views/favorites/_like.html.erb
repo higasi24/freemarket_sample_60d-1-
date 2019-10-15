@@ -1,26 +1,12 @@
 <div class="like-link" id="like-link-<%= @item.id %>">
-  <% if current_user.likes.find_by(story_id: @item.id) %>
-    <%= link_to unlike_path(story.id), method: :delete, remote: true do %>
-        <div class = "iine__button">❤️<%= story.likes.count %></div>
+  <% if current_user.favorites.find_by(item_id: @item.id) %>
+    <%= link_to unlike_path(item.id), method: :delete, remote: true do %>
+        <div class = "iine__button">❤️ いいね！<%= item.favorites.count %></div>
     <% end %>
   <% else %>
-    <%= link_to like_path(story.id), method: :post, remote: true do %>
-        <div class = "iine__button">♡️<%= story.likes.count %></div>
+    <%= link_to like_path(item.id), method: :post, remote: true do %>
+        <div class = "iine__button">♡ いいね！<%= item.favorites.count %></div>
     <% end %>
   <% end %>
 </div>
 
-
-
-
-
-
-.like-link{id: "like-link-#{@item.id}"}
-  - if Favorite.find_by(item_id: @item.id)
-    = link_to unlike_path(@item.id), method: :delete, remote: true do
-      .iine__button
-        ❤️ #{@item.favorites.count}
-  - else
-    = link_to like_path(@item.id), method: :post, remote: true do
-      .iine__button
-        ♡️ #{@item.favorites.count}
