@@ -5,10 +5,11 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @address = Address.find(params[:id])
-    # @brand = Brand.find(@item.brand_id)
-    # @category = Category.find(params[:id])
-    @user = User.find(@item.saler_id)
+    @image = Image.where(item_id: params[:id])
+    @saler = User.find(@item.saler_id)
+    @address = Address.find_by(user_id: @saler.id)
+    @salers_item = Item.where(saler_id: @saler.id)
+    @order_count = @salers_item.where.not(buyer_id: nil).count
   end
 
   def new
@@ -29,6 +30,9 @@ class ItemsController < ApplicationController
   end
 
   def update
+  end
+
+  def edit
   end
   
   private

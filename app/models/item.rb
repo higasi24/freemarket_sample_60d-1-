@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   belongs_to :brand, optional: true
   belongs_to :saler, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
@@ -14,4 +14,13 @@ class Item < ApplicationRecord
   has_many :messages, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+  mount_uploader :image, ImageUploader
+
+  def previous
+    Item.order('created_at desc, id desc').where('created_at <= ? and id < ?', created_at, id).first
+  end
+
+  def next
+    Item.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
+  end
 end
