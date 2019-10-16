@@ -19,4 +19,8 @@ class UsersController < ApplicationController
 
   def save
   end
+
+  def myitem
+    @salers_item = Item.where(saler_id: params[:id])
+  end
 end
