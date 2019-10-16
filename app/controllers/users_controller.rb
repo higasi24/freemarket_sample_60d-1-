@@ -13,5 +13,10 @@ class UsersController < ApplicationController
   end
 
   def credit
+    @user = User.find(current_user.id)
+    @card = @user.card
+  end
+
+  def save
   end
 end

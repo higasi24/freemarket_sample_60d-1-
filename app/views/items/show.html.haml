@@ -8,66 +8,68 @@
       .show-box__head__name
         = link_to("#{@item.name}", root_path)
       .show-box__head__text
-        『#{@item.name}』は、300回の取引実績を持つ
-        = link_to("#{@user.nickname}", root_path)
+        『#{@item.name}』は、#{@order_count}回の取引実績を持つ
+        = link_to("#{@saler.nickname}", root_path)
         さんから出品されました。
-        = link_to("#{@item.brand}", root_path)
-        （
-        = link_to("#{@item.categories}/", root_path)
-        ）の商品で、#{@address.city}から~3日で発送されます。
+        = link_to("#{@item.brand.brand}", root_path)
+        (
+        = link_to("#{@category}", root_path)
+        )の商品で、#{@address.city}から~#{@item.delivery_date}日で発送されます。
     .show-box__main
       .show-box__main__image-box
         .show-box__main__image-box__main-image
         .show-box__main__image-box__sub-image
-          .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
+          - @image.each do |img|
+            - if img.image?
+              = image_tag img.image.url, size:'60x60'
         .show-box__main__image-box__sub-image
-          .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
-          .show-box__main__image-box__sub-image__small
       %table.show-box__main__detail-box
         %tr
           %td.th1 出品者
           %td.th2
-            = link_to("#{@user.nickname}", root_path)
+            = link_to("#{@saler.nickname}", root_path)
             .show-box__main__detail-box__icon-box
               .show-box__main__detail-box__icon-box__icons
                 = fa_icon 'laugh', class: "good"
-                %span 10
+                %span 2
               .show-box__main__detail-box__icon-box__icons
                 = fa_icon 'meh', class: "normal"
-                %span 10
+                %span 1
               .show-box__main__detail-box__icon-box__icons
                 = fa_icon 'frown-open', class: "bad"
-                %span 10
+                %span 2
         %tr
           %td.th1 カテゴリー
           %td.th2 
-            -# = link_to("#{@category.category}", root_path)
+            = link_to("#{@category}", root_path)
+            %br
+            = link_to root_path do
+              = fa_icon 'chevron-right'
+              = "#{@category}"
+            %br
+            = link_to root_path do
+              = fa_icon 'chevron-right'
+              = "#{@category}"
         %tr
           %td.th1 ブランド
           %td.th2
-            -# = link_to("#{@brand.brand}", root_path)
+            = link_to("#{@item.brand.brand}", root_path)
         %tr
           %td.th1 商品の状態
-          %td.th2 やや傷や汚れあり
+          %td.th2 #{@item.state}
         %tr
           %td.th1 配送料の負担
-          %td.th2 送料込み(出品者負担)
+          %td.th2 #{@item.delivery_fee}
         %tr
           %td.th1 配送の方法
-          %td.th2 らくらくメルカリ便
+          %td.th2 #{@item.delivery_method}
         %tr
           %td.th1 発送元地域
           %td.th2 
             = link_to("#{@address.city}", root_path)
         %tr
           %td.th1 発送日の目安
-          %td.th2 ~日で発送
+          %td.th2 ~#{@item.delivery_date}日で発送
     .show-box__item-price-box
       %span.show-box__item-price-box__price 
         = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
@@ -78,18 +80,7 @@
       %p #{@item.detail}
     .show-box__action-box
       .show-box__action-box__left
-        -# = render partial: 'favorites/favorite', collection: @items, as: :item
-
-          -# .like-link{id: "like-link-#{@item.id}"}
-          -#   - if Favorite.find_by(item_id: @item.id)
-          -#     = link_to unlike_path(@item.id), method: :delete, remote: true do
-          -#       .iine__button
-          -#         ❤️ #{@item.favorites.count}
-          -#   - else
-          -#     = link_to like_path(@item.id), method: :post, remote: true do
-          -#       .iine__button
-          -#         ♡️ #{@item.favorites.count}
-
+        = render partial: 'favorites/favorite'
       .show-box__action-box__center
         = link_to root_path do
           = fa_icon 'flag-o'
@@ -154,14 +145,16 @@
   .item-nav
     .item-nav__prev
       .item-nav__prev__btn
-        = link_to root_path do
-          = fa_icon 'chevron-left'
-          後ろ
+        - if @item.previous.present?
+          = link_to item_path(@item.previous) do
+            = @item.previous.name
+            = fa_icon 'chevron-left'
     .item-nav__next
       .item-nav__next__btn
-        = link_to root_path do
-          前
-          = fa_icon 'chevron-right'
+        - if @item.next.present?
+          = link_to item_path(@item.next) do
+            = @item.next.name
+            = fa_icon 'chevron-right'
   .sns
     .sns__sns-box
       .sns__sns-box__facebook
@@ -179,36 +172,25 @@
   .user-item
     .user-item__head
       = link_to root_path do
-        #{@user.nickname}さんのその他の出品
+        #{@saler.nickname}さんのその他の出品
     .user-item__box
+    - @salers_item.each do |item|
       .user-item__box__card
         = link_to root_path do
           .user-item__box__card__photo
             = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"user-item__box__card__photo__image"
           .user-item__box__card__body
-            .user-item__box__card__body__text NIKE スニーカー
+            .user-item__box__card__body__text #{item.name}
             .user-item__box__card__body__num
-              .user-item__box__card__body__num__price ¥1,000
+              .user-item__box__card__body__num__price 
+                = number_to_currency("#{item.price}", unit: "¥", precision: 0)
               .user-item__box__card__body__num__icon
                 = fa_icon 'heart-o', class: 'num-icon'
-                %span 0
-      .user-item__box__card
-        = link_to root_path do
-          .user-item__box__card__photo
-            %img.user-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
-            .user-item__box__card__photo__text SOLD
-            .user-item__box__card__photo__soldout
-          .user-item__box__card__body
-            .user-item__box__card__body__text NIKE スニーカー
-            .user-item__box__card__body__num
-              .user-item__box__card__body__num__price ¥1,000
-              .user-item__box__card__body__num__icon
-                = fa_icon 'heart-o', class: 'num-icon'
-                %span 0
+                #{item.favorites_count}
   .similar-item
     .similar-item__head
       = link_to root_path do
-        -# #{@category.category}その他の出品
+        #{@category}その他の出品
     .similar-item__box__card
       = link_to root_path do
         .similar-item__box__card__photo

@@ -61,7 +61,8 @@
       発送元・お届け先住所変更
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
-      支払い方法
+      = link_to credit_user_path(current_user.id) do
+        支払い方法
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       メール/パスワード
