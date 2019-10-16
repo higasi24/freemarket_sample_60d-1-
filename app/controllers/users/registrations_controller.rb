@@ -15,6 +15,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   def create
     super
+    # if session["devise.#{provider}_data"]
+    #   SnsCredential.create(
+    #     user_id: @user.id, 
+    #     provider: session["devise.#{provider}_data"]["provider"], 
+    #     uid: session["devise.#{provider}_data"]["uid"]
+    #   )
+    # end
   end
 
   # GET /resource/edit
