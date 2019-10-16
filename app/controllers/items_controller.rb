@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @address = Address.find_by(user_id: @saler.id)
     @salers_item = Item.where(saler_id: @saler.id)
     @order_count = @salers_item.where.not(buyer_id: nil).count
+    # binding.pry
   end
 
   def new

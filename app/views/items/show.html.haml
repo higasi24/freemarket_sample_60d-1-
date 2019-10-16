@@ -20,7 +20,7 @@
         .show-box__main__image-box__main-image
         .show-box__main__image-box__sub-image
           - @image.each do |img|
-            - if img.image?
+            - if img.image
               = image_tag img.image.url, size:'60x60'
         .show-box__main__image-box__sub-image
       %table.show-box__main__detail-box
