@@ -22,12 +22,13 @@
       .oreder-new__body__address-box
         .oreder-new__body__address-box__inner
           %h3.oreder-new__body__address-box__inner__title 配送先
-          .oreder-new__body__address-box__inner__address            
-            〒536-0013
+          .oreder-new__body__address-box__inner__address
+            〒#{current_user.addresses[0].postal_code}
             %br
-            大阪府 大阪市
+            #{current_user.addresses[0].prefecture.name}
+            #{current_user.addresses[0].city}
             %br
-            まこなり
+            #{current_user.nickname}
           .oreder-new__body__address-box__inner__edit
             変更する
             = fa_icon 'chevron-right'

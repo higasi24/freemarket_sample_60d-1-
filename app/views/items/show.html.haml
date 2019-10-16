@@ -13,8 +13,8 @@
         さんから出品されました。
         = link_to("#{@item.brand.brand}", root_path)
         (
-        = link_to("#{@category}", root_path)
-        )の商品で、#{@address.city}から~#{@item.delivery_date}日で発送されます。
+        = link_to("#{@category.category}", root_path)
+        )の商品で、#{@address.prefecture.name}から~#{@item.delivery_date}日で発送されます。
     .show-box__main
       .show-box__main__image-box
         .show-box__main__image-box__main-image
@@ -41,15 +41,15 @@
         %tr
           %td.th1 カテゴリー
           %td.th2 
-            = link_to("#{@category}", root_path)
+            = link_to("#{@item.categories[0].root.category}", root_path)
             %br
             = link_to root_path do
               = fa_icon 'chevron-right'
-              = "#{@category}"
+              = "#{@item.categories[0].parent.category}"
             %br
             = link_to root_path do
               = fa_icon 'chevron-right'
-              = "#{@category}"
+              = "#{@item.categories[0].category}"
         %tr
           %td.th1 ブランド
           %td.th2
@@ -66,7 +66,7 @@
         %tr
           %td.th1 発送元地域
           %td.th2 
-            = link_to("#{@address.city}", root_path)
+            = link_to("#{@address.prefecture.name}", root_path)
         %tr
           %td.th1 発送日の目安
           %td.th2 ~#{@item.delivery_date}日で発送
@@ -102,7 +102,6 @@
             .message-box__message-list__list__link__user__image-box
               = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"message-box__message-list__list__link__user__image-box__image"
             %figcaption.message-box__message-list__list__link__user__name 山田
-          .message-box__message-list__list__link__seller 出品者
         .message-box__message-list__list__detail
           .message-box__message-list__list__detail__message-body
             .message-box__message-list__list__detail__message-body__text こんばんは 購入希望です
@@ -121,11 +120,11 @@
           .message-box__message-list__list__link__user
             .message-box__message-list__list__link__user__image-box
               = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"message-box__message-list__list__link__user__image-box__image"
-            %figcaption.message-box__message-list__list__link__user__name 山田
+            %figcaption.message-box__message-list__list__link__user__name #{@saler.nickname}
           .message-box__message-list__list__link__seller 出品者
         .message-box__message-list__list__detail
           .message-box__message-list__list__detail__message-body
-            .message-box__message-list__list__detail__message-body__text こんばんは 購入希望です
+            .message-box__message-list__list__detail__message-body__text 了解
             .message-box__message-list__list__detail__message-body__icons
               .message-box__message-list__list__detail__message-body__icons__left
                 = fa_icon 'clock-o'
@@ -174,35 +173,44 @@
       = link_to root_path do
         #{@saler.nickname}さんのその他の出品
     .user-item__box
-    - @salers_item.each do |item|
-      .user-item__box__card
-        = link_to root_path do
-          .user-item__box__card__photo
-            = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"user-item__box__card__photo__image"
-          .user-item__box__card__body
-            .user-item__box__card__body__text #{item.name}
-            .user-item__box__card__body__num
-              .user-item__box__card__body__num__price 
-                = number_to_currency("#{item.price}", unit: "¥", precision: 0)
-              .user-item__box__card__body__num__icon
-                = fa_icon 'heart-o', class: 'num-icon'
-                #{item.favorites_count}
+      - @salers_item.each do |item|
+        .user-item__box__card
+          = link_to root_path do
+            .user-item__box__card__photo
+              .user-item__box__card__photo__image
+                = image_tag item.images[0].image.url
+              - if item.buyer_id.present?
+                .similar-item__box__card__photo__text SOLD
+                .similar-item__box__card__photo__soldout
+            .user-item__box__card__body
+              .user-item__box__card__body__text #{item.name}
+              .user-item__box__card__body__num
+                .user-item__box__card__body__num__price 
+                  = number_to_currency("#{item.price}", unit: "¥", precision: 0)
+                .user-item__box__card__body__num__icon
+                  = fa_icon 'heart-o', class: 'num-icon'
+                  #{item.favorites_count}
   .similar-item
     .similar-item__head
       = link_to root_path do
-        #{@category}その他の出品
-    .similar-item__box__card
-      = link_to root_path do
-        .similar-item__box__card__photo
-          %img.similar-item__box__card__photo__image{src: "https://storage.tenki.jp/storage/static-images/suppl/article/image/2/27/277/27740/1/large.jpg"}
-          .similar-item__box__card__photo__text SOLD
-          .similar-item__box__card__photo__soldout
-        .similar-item__box__card__body
-          .similar-item__box__card__body__text NIKE スニーカー
-          .similar-item__box__card__body__num
-            .similar-item__box__card__body__num__price ¥1,000
-            .similar-item__box__card__body__num__icon
-              = fa_icon 'heart-o', class: 'num-icon'
-              %span 0
+        #{@category.category}その他の出品
+    .similar-item__box
+      - @category_item.each do |item|
+        .similar-item__box__card
+          = link_to root_path do
+            .similar-item__box__card__photo
+              .similar-item__box__card__photo__image
+                = image_tag item.images[0].image.url
+              - if item.buyer_id.present?
+                .similar-item__box__card__photo__text SOLD
+                .similar-item__box__card__photo__soldout
+            .similar-item__box__card__body
+              .similar-item__box__card__body__text #{item.name}
+              .similar-item__box__card__body__num
+                .similar-item__box__card__body__num__price
+                  = number_to_currency("#{item.price}", unit: "¥", precision: 0)
+                .similar-item__box__card__body__num__icon
+                  = fa_icon 'heart-o', class: 'num-icon'
+                  #{item.favorites_count}
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'

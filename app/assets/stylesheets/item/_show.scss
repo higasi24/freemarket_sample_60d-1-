@@ -409,7 +409,7 @@
   .user-item{
     margin: 0 auto;
     padding-top: 20px;
-    width: 700px;
+    width: 720px;
     &__head {
       color: #0099e8;
       font-size: 22px;
@@ -418,6 +418,7 @@
     }
     &__box {
       display: flex;
+      flex-wrap: wrap;
       &__card {
         display: block;
         margin: 0 20px 20px 0;
@@ -481,7 +482,7 @@
   .similar-item{
     margin: 0 auto;
     padding-top: 20px;
-    width: 700px;
+    width: 720px;
     &__head {
       color: #0099e8;
       font-size: 22px;
@@ -490,6 +491,7 @@
     }
     &__box {
       display: flex;
+      flex-wrap: wrap;
       &__card {
         display: block;
         margin: 0 20px 20px 0;
