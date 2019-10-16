@@ -51,7 +51,8 @@
                 = link_to(root_path, class: "confirmation-identification", id: "telconfim") do
                   = fa_icon 'question-circle', class:"icon__question"
                   カード裏面の番号とは？
-              = f.submit '追加する', class: 'next', id: 'token_submit'
+              #card_token
+                = f.submit '追加する', class: 'next', id: 'token_submit'
 
               -# = form_with url: purchase_item_path do
               -#   :plain
@@ -61,7 +62,7 @@
 :javascript
   document.addEventListener(
   "DOMContentLoaded", (e) => {
-    Payjp.setPublicKey("pk_test_216ba725e842c4463703a5a7");
+    Payjp.setPublicKey("pk_test_051cb92c91fa25532f6d5eef");
     const btn = document.getElementById('token_submit'); //IDがtoken_submitの場合に取得されます
     btn.addEventListener("click", (e) => { //ボタンが押されたときに作動します
       e.preventDefault(); //ボタンを一旦無効化します

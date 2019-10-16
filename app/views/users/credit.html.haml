@@ -12,11 +12,11 @@
               クレジットカード一覧
         .credit__content__add
           .credit__content__add__box
-            = link_to save_user_path(current_user.id), class: "credit__content__add__box__buttun" do
+            = link_to  edit_card_path(current_user.id), class: "credit__content__add__box__buttun" do
               %i.fa.fa-credit-card
               クレジットカードを追加する
         .credit__content__down
-          = link_to save_user_path(current_user.id) do
+          = link_to edit_card_path(current_user.id) do
             %span#credit-span
               支払い方法について
             %i.fa.fa-chevron-right
