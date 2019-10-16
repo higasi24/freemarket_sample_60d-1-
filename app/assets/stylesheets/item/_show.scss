@@ -166,8 +166,7 @@
     width: 700px;
     background-color: white;
     box-sizing: border-box;
-    margin: 0 auto;
-    margin-top: 10px;
+    margin: 10px auto;
     padding: 8px 16px;
     &__edit {
       display: block;
@@ -200,12 +199,12 @@
   .message-box {
     background-color: white;
     box-sizing: border-box;
-    height: 300px;
     margin: 0 auto;
     margin-top: 10px;
     padding: 20px;
     width: 700px;
     &__message-list{
+      height: 300px;
       &__list {
         display: flex;
         margin: 10px 0 40px 0;

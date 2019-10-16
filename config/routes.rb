@@ -13,18 +13,19 @@ Rails.application.routes.draw do
       get :smsConfirmation
       get :logout
       get :profile
-      
     end
     member do
       get :credit
       get :save
       get :myitem
     end
-    
   end
 
   resources :items do
     get :search, on: :collection
+    member do
+      get :pre_edit
+    end
   end
 
   resources :addresses

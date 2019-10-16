@@ -21,7 +21,7 @@
               売却済み
           - if @salers_item.present?
             - @salers_item.each do |item|
-              = link_to root_path, class: "right__myitem-profile__lower__li" do
+              = link_to pre_edit_item_path(item.id), class: "right__myitem-profile__lower__li" do
                 .right__myitem-profile__lower__li__icon
                   = image_tag item.images[0].image.url, size: "48x48"
                 .right__myitem-profile__lower__li__center

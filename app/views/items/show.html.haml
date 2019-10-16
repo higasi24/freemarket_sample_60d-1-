@@ -4,80 +4,7 @@
 = render partial: "layouts/header"
 .show-wrapper
   .show-box
-    .show-box__head
-      .show-box__head__name
-        = link_to("#{@item.name}", root_path)
-      .show-box__head__text
-        『#{@item.name}』は、#{@order_count}回の取引実績を持つ
-        = link_to("#{@saler.nickname}", root_path)
-        さんから出品されました。
-        = link_to("#{@item.brand.brand}", root_path)
-        (
-        = link_to("#{@category.category}", root_path)
-        )の商品で、#{@address.prefecture.name}から~#{@item.delivery_date}日で発送されます。
-    .show-box__main
-      .show-box__main__image-box
-        .show-box__main__image-box__main-image
-        .show-box__main__image-box__sub-image
-          - @image.each do |img|
-            - if img.image?
-              = image_tag img.image.url, size:'60x60'
-        .show-box__main__image-box__sub-image
-      %table.show-box__main__detail-box
-        %tr
-          %td.th1 出品者
-          %td.th2
-            = link_to("#{@saler.nickname}", root_path)
-            .show-box__main__detail-box__icon-box
-              .show-box__main__detail-box__icon-box__icons
-                = fa_icon 'laugh', class: "good"
-                %span 2
-              .show-box__main__detail-box__icon-box__icons
-                = fa_icon 'meh', class: "normal"
-                %span 1
-              .show-box__main__detail-box__icon-box__icons
-                = fa_icon 'frown-open', class: "bad"
-                %span 2
-        %tr
-          %td.th1 カテゴリー
-          %td.th2 
-            = link_to("#{@item.categories[0].root.category}", root_path)
-            %br
-            = link_to root_path do
-              = fa_icon 'chevron-right'
-              = "#{@item.categories[0].parent.category}"
-            %br
-            = link_to root_path do
-              = fa_icon 'chevron-right'
-              = "#{@item.categories[0].category}"
-        %tr
-          %td.th1 ブランド
-          %td.th2
-            = link_to("#{@item.brand.brand}", root_path)
-        %tr
-          %td.th1 商品の状態
-          %td.th2 #{@item.state}
-        %tr
-          %td.th1 配送料の負担
-          %td.th2 #{@item.delivery_fee}
-        %tr
-          %td.th1 配送の方法
-          %td.th2 #{@item.delivery_method}
-        %tr
-          %td.th1 発送元地域
-          %td.th2 
-            = link_to("#{@address.prefecture.name}", root_path)
-        %tr
-          %td.th1 発送日の目安
-          %td.th2 ~#{@item.delivery_date}日で発送
-    .show-box__item-price-box
-      %span.show-box__item-price-box__price 
-        = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
-      %span.show-box__item-price-box__tax (税込)
-      %span.show-box__item-price-box__fee 送料込み
-    = link_to("購入画面に進む", new_order_path(@item), class: "show-box__btn")
-    .show-box__comment
-      %p #{@item.detail}
+    = render partial: "layouts/show-box"
     .show-box__action-box
       .show-box__action-box__left
         = render partial: 'favorites/favorite'
@@ -89,11 +16,6 @@
         = link_to root_path do
           = fa_icon 'lock'
           あんしん・あんぜんへの取り組み
-  .selection-box
-    = link_to("商品の編集", edit_item_path, class: "selection-box__edit")
-    .selection-box__text-center or
-    = link_to("出品を一旦停止する", root_path, class: "selection-box__button")
-    = link_to("この商品を削除する", root_path, class: "selection-box__button")
   .message-box
     %ul.message-box__message-list
       %li.message-box__message-list__list
@@ -135,12 +57,7 @@
                 = link_to root_path do
                   = fa_icon 'flag-o'
             .message-box__message-list__list__detail__message-body__balloon
-  .message-submit
-    .message-submit__attention
-      相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-    %textarea.message-submit__textform
-    .message-submit__button
-      コメントする
+  = render partial: "layouts/message-submit"
   .item-nav
     .item-nav__prev
       .item-nav__prev__btn
