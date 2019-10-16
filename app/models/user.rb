@@ -5,19 +5,23 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
-        def self.from_omniauth(auth)
+        def self.find_omniauth(auth)
           credential = SnsCredential.where(provider: auth.provider, uid: auth.uid).first
-          if credential
-            user = User.find(credential.user_id)
+          if credential.present?
+            user = User.where
           else
-            user = User.where(email: auth.info.email).first_or_create do |u|
-              u.password = Devise.friendly_token[0,20]
+            if user.present?
+            else
+              user = User.new(
+                nickname: auth.info.name,
+                email: auth.info.email,
+                password: Devise.friendly_token[0,20],
+                password_confirmation: Devise.friendly_token[0,20]
+              )
             end
-            SnsCredential.create(provider: auth.provider, uid: auth.uid, user_id: user.id)
-            user
           end
         end
-        
+
         has_many :items, dependent: :destroy
         has_many :favorites, dependent: :destroy
         has_many :favorite_items, through: :favorites, source: :item
