@@ -16,7 +16,7 @@
     .left__mypage__li
       出品する
       = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
-    = link_to myitem_user_path do
+    = link_to myitem_user_path(current_user.id) do
       .left__mypage__li
         出品した商品-出品中
         = fa_icon 'chevron-right', class: 'left__mypage__li__fa'
