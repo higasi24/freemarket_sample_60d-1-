@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
 
   def pre_edit
   end
-  
+
   private
   def item_params
     params.require(:item).permit(:name, :detail, :state, :size, :delivery_fee, :delivery_method, :price, :delivery_date, :prefecture_id, category_items_attributes: [:id, :category_id], images_attributes: [:id, :image]).merge(saler_id: current_user.id)

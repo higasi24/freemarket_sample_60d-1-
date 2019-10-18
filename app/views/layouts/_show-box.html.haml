@@ -41,15 +41,15 @@
     %tr
       %td.th1 カテゴリー
       %td.th2 
-        = link_to("#{@item.categories[0].root.category}", root_path)
+        = link_to("#{@category.root.category}", root_path)
         %br
           = link_to root_path do
             = fa_icon 'chevron-right'
-            = "#{@item.categories[0].parent.category}"
+            = "#{@category.parent.category}"
         %br
           = link_to root_path do
             = fa_icon 'chevron-right'
-            = "#{@item.categories[0].category}"
+            = "#{@category.category}"
     %tr
       %td.th1 ブランド
       %td.th2
