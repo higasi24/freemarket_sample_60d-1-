@@ -11,12 +11,18 @@
     )の商品で、#{@address.prefecture.name}から~#{@item.delivery_date}日で発送されます。
 .show-box__main
   .show-box__main__image-box
-    .show-box__main__image-box__main-image
-    .show-box__main__image-box__sub-image
-      - @image.each do |img|
-        - if img.image?
-          = image_tag img.image.url, size:'60x60'
-    .show-box__main__image-box__sub-image
+    .show-box__main__image-box__main-image#slider_main
+      %ul
+        - @image.each do |img|
+          - if img.image?
+            %li
+              = image_tag img.image.url, size:'300x300'
+    .show-box__main__image-box__sub-image#slider_thumb
+      %ul
+        - @image.each do |img|
+          - if img.image?
+            %li>
+              = image_tag img.image.url, size:'60x60'
   %table.show-box__main__detail-box
     %tr
       %td.th1 出品者
