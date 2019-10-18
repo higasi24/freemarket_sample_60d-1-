@@ -34,6 +34,8 @@
               .required
                 必須
             = f.password_field :password, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
+            = f.hidden_field :uid, {value: @sns_id.uid} 
+            = f.hidden_field :provider, {value: @sns_id.provider}
           .field
             .string
               = f.label :password_confirmation, "パスワード(確認)", class: "text"
@@ -61,8 +63,6 @@
             .textfi
               = f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "textfield halffield", placeholder: "例）ヤマダ"
               = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "textfield halffield", placeholder: "例）シンタロウ"
-
-
           .field
             .string
               = f.label :birth_date, "生年月日", class: "text"
@@ -83,8 +83,3 @@
           %p.link
             = link_to(root_path, class: "confirmation-identification") do
               本人確認の登録について＞
-
-
-        -# = form_for(@user, url: sms_signup_index_path, method: :get) do |f|
-        ///ffff
-

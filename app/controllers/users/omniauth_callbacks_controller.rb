@@ -52,7 +52,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #   provider: session["devise.#{provider}_data"][:provider]
       # )
       @sns_id = user_info[:sns_id]
-      # binding.pry
       render template: "devise/registrations/new"
     end
   end
