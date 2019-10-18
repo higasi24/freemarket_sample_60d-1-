@@ -34,8 +34,9 @@
               .required
                 必須
             = f.password_field :password, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
-            = f.hidden_field :uid, {value: @sns_id.uid} 
-            = f.hidden_field :provider, {value: @sns_id.provider}
+            = f.fields_for :sns_credentials do |s|
+              = s.hidden_field :uid, {value: @credential.uid}
+              = s.hidden_field :provider, {value: @credential.provider}
           .field
             .string
               = f.label :password_confirmation, "パスワード(確認)", class: "text"
