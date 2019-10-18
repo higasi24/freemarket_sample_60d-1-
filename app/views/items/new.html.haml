@@ -23,11 +23,11 @@
                         編集
                       =link_to items_path, id: "destroy" do
                         削除
-              = i.file_field :image, class:"send__main__content__form__box1__box__content" do
-                .send__main__content__form__box1__box__content__item
+              .send__main__content__form__box1__box__content
+                = i.file_field :image, class:"send__main__content__form__box1__box__content__item"
                 %pre.send__main__content__form__box1__box__content__item__pc
-                ドラッグアンドドロップ
-                またはクリックしてファイルをアップロード
+                  ドラッグアンドドロップ
+                  またはクリックしてファイルをアップロード
                 = fa_icon 'camera', class:"send__main__content__form__box1__box__content__item__icon"
         .send__main__content__form__box2
           .send__main__content__form__box2__group1
