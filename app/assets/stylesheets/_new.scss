@@ -10,7 +10,7 @@
 
 .send {
   &__main {
-    height: 2016px;
+    height: 100%;
     background: #f5f5f5;
     font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
     &__content {
@@ -49,7 +49,6 @@
           &__box{
             display: block;
             width: 620px;
-            height: 162px;
             margin: 16px auto 0;
             &__image {
               display: inline;
@@ -106,32 +105,19 @@
             }
 
             &__content {
-              cursor: pointer;
+              width: 100%;
               padding: 40px;
-              border: 1px solid black;
-              height: 80px;
-              float: right;
-              width: 538px;
-              min-width: 409px;
               position: relative;
-              background: #f5f5f5;
-              border: 1px dashed #ccc;
-              font-size: 0;
+              min-height: 162px;
+              border: 1px dashed rgb(204,204,204);
+              background-color: rgb(245,245,245);
+              font-size: 0px;
               text-align: center;
+              box-sizing: border-box;
               &__item {
-                touch-action: manipulation;
                 &__pc {
-                  text-align: center;
-                  font-size: 14px;
-                  margin-top: 20px;
                 }
                 &__icon{
-                  display: none;
-                  position: absolute;
-                  top: 50%;
-                  left: 50%;
-                  transform: translate(-50%, -50%);
-                  font-size: 14px;
                 }
               }
             }
