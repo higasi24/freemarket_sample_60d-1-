@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.category_items.build
-    @item.images.build
+    @image = @item.images.build
   end
 
   def create

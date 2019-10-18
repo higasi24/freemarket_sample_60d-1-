@@ -15,7 +15,7 @@ class CardsController < ApplicationController
       # binding.pry
 
       # 《＋α》 登録しているカード会社のブランドアイコンを表示するためのコードです。---------
-      @card_brand = @card_information.brand      
+      @card_brand = @card_information.brand
       case @card_brand
       when "Visa"
         @card_src = "visa.png"
