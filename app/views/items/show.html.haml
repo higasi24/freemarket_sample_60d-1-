@@ -112,7 +112,7 @@
       = link_to root_path do
         #{@category.category}その他の出品
     .similar-item__box
-      - @category_item.each do |item|
+      - @category.items.each do |item|
         .similar-item__box__card
           = link_to root_path do
             .similar-item__box__card__photo
