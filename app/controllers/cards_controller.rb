@@ -8,6 +8,41 @@ class CardsController < ApplicationController
   end
 
   def edit
+    if @card.present?
+      Payjp.api_key = "sk_test_cfbdb30c289d9e6dfcd07fde"
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @card_information = customer.cards.retrieve(@card.card_id)
+      # binding.pry
+
+      # 《＋α》 登録しているカード会社のブランドアイコンを表示するためのコードです。---------
+      @card_brand = @card_information.brand      
+      case @card_brand
+      when "Visa"
+        @card_src = "visa.png"
+      when "JCB"
+        @card_src = "jcbcard.png"
+      when "MasterCard"
+        @card_src = "mastercard.png"
+      when "American Express"
+        @card_src = "americanexpress.png"
+      when "Diners Club"
+        @card_src = "dinersclub.png"
+      when "Discover"
+        @card_src = "discover.png"
+      end
+      # ---------------------------------------------------------------
+    end
+  end
+
+  def destroy #PayjpとCardのデータベースを削除
+    Payjp.api_key = "sk_test_cfbdb30c289d9e6dfcd07fde"
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    customer.delete
+    if @card.destroy #削除に成功した時にポップアップを表示します。
+      redirect_to credit_user_path(current_user.id), notice: "削除しました"
+    else #削除に失敗した時にアラートを表示します。
+      redirect_to action: "edit", alert: "削除できませんでした"
+    end
   end
 
  # indexアクションはここでは省略
@@ -37,7 +72,6 @@ class CardsController < ApplicationController
   def create #PayjpとCardのデータベースを作成
     @url = request.referer
     Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
-
     if params['payjp-token'].blank? && @url.match(/\/users\/\d+\/save/)
       redirect_to save_user_path(current_user.id)
     elsif params['payjp-token'].blank?
@@ -47,7 +81,7 @@ class CardsController < ApplicationController
       customer = Payjp::Customer.create(card: params["payjp-token"])
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save && @url.match(/\/users\/\d+\/save/)
-        redirect_to credit_user_path(current_user.id)
+        redirect_to edit_card_path(current_user.id)
       elsif @card.save
         redirect_to action: "index"
       elsif @url.match(/\/users\/\d+\/save/)

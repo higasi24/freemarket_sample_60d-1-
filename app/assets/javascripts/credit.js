@@ -1,7 +1,6 @@
 $(document).on('turbolinks:load', function() {
   $(function(){
-    var a = document.referrer;
-    if (a.match(/\/users\/\d+\/save/))
+    if ()
       $('#first').hide();
     else
       $('#second').hide();
