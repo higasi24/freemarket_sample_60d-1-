@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :set_sns_id, only: :create
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -13,8 +14,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
+
   def create
     super
+    SnsCredential.create(
+      user_id: @user.id,
+      uid: sns_id.uid,
+      provider: sns_id.provider
+    )
+  end
+
+    # @user = current_user
     # if session["devise.#{provider}_data"]
     #   SnsCredential.create(
     #     user_id: @user.id, 
@@ -22,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #     uid: session["devise.#{provider}_data"]["uid"]
     #   )
     # end
-  end
+
 
   # GET /resource/edit
   # def edit
@@ -53,6 +63,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # protected
+
+  private
+
+  def set_sns_id
+    sns_id = @sns_id
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

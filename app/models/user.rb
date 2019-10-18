@@ -6,23 +6,25 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
         def self.find_omniauth(auth)
+          # credential = SnsCredential.new(provider: auth.provider, uid: auth.uid)
           credential = SnsCredential.where(provider: auth.provider, uid: auth.uid).first
           if credential.present?
             user = User.where
           else
             if user.present?
             else
-              pass = Devise.friendly_token[0, 20]
+              # pass = Devise.friendly_token[0, 20]
               user = User.new(
                 nickname: auth.info.name,
                 email: auth.info.email,
-                password: pass,
-                password_confirmation: pass
+                # password: pass,
+                # password_confirmation: pass
               )
+              credential = SnsCredential.new(provider: auth.provider, uid: auth.uid)
             end
           end
           # user.SnsCredential.build(provider: auth.provider, uid: auth.uid)
-          return user
+          return {user: user, sns_id: credential }
         end
 
         has_many :items, dependent: :destroy
