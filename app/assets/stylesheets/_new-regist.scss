@@ -258,13 +258,12 @@
 
 
 //card
-
-#exp_month{
+.input-expire {
   @include date-select;
   width: 110px;
 }
 
-#exp_year{
+.input-expire2{
   @include date-select;
   width: 110px;
   margin-top: 10px;
