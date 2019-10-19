@@ -24,24 +24,25 @@
                     = exp_month + " / " + exp_year
                   %input{type: "hidden", name: "card_id", value: ""}
                   = f.submit "削除する", {class: "credit__content__up__list__box__post__figure__buttun"}
-        .credit__content__add
-          .credit__content__add__box
-            = link_to  save_user_path(current_user.id), class: "credit__content__add__box__buttun" do
-              %i.fa.fa-credit-card
-              クレジットカードを追加する
-        .credit__content__down
-          = link_to save_user_path(current_user.id) do
-            %span#credit-span
-              支払い方法について
-            %i.fa.fa-chevron-right
-    .credit#second
-      %h2.credit__header
-        支払い方法
-      .credit__content
-        .credit__content__up
-          .credit__content__up__show
-            %h3.credit__content__up__show__bar
-              クレジットカード一覧
+        - else
+          .credit__content__add
+            .credit__content__add__box
+              = link_to  save_user_path(current_user.id), class: "credit__content__add__box__buttun" do
+                %i.fa.fa-credit-card
+                クレジットカードを追加する
+          .credit__content__down
+            = link_to save_user_path(current_user.id) do
+              %span#credit-span
+                支払い方法について
+              %i.fa.fa-chevron-right
+    -# .credit#second
+    -#   %h2.credit__header
+    -#     支払い方法
+    -#   .credit__content
+    -#     .credit__content__up
+    -#       .credit__content__up__show
+    -#         %h3.credit__content__up__show__bar
+    -#           クレジットカード一覧
           -# - if @card.present?
           -#   %ul.credit__content__up__list
           -#     %li.credit__content__up__list__box
