@@ -88,6 +88,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   def sns_credential_params
-    params[0].permit(:uid, :provider)
+    params.permit(:uid, :provider)
   end
 end
