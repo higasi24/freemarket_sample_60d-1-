@@ -6,7 +6,6 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
         def self.find_omniauth(auth)
-          # credential = SnsCredential.new(provider: auth.provider, uid: auth.uid)
           credential = SnsCredential.where(provider: auth.provider, uid: auth.uid).first
           if credential.present?
             user = User.where
@@ -23,7 +22,6 @@ class User < ApplicationRecord
               credential = SnsCredential.new(provider: auth.provider, uid: auth.uid)
             end
           end
-          # user.SnsCredential.build(provider: auth.provider, uid: auth.uid)
           return {user: user, sns_id: credential }
         end
 
