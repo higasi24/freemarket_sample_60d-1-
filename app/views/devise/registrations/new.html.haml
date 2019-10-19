@@ -28,21 +28,23 @@
               .required
                 必須
             = f.email_field :email, autofocus: true, autocomplete: "email", class: "textfield", placeholder: "PC・携帯どちらでも可"
-          .field
-            .string
-              = f.label :password, "パスワード", class: "text"
-              .required
-                必須
-            = f.password_field :password, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
-            = f.fields_for :sns_credentials do |s|
-              = s.hidden_field :uid, {value: @credential.uid}
-              = s.hidden_field :provider, {value: @credential.provider}
-          .field
-            .string
-              = f.label :password_confirmation, "パスワード(確認)", class: "text"
-              .required
-                必須
-            = f.password_field :password_confirmation, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
+          -if @credential.present?
+          -else
+            .field
+              .string
+                = f.label :password, "パスワード", class: "text"
+                .required
+                  必須
+              = f.password_field :password, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
+              = f.fields_for :sns_credentials do |s|
+                = s.hidden_field :uid, {value: @credential.uid}
+                = s.hidden_field :provider, {value: @credential.provider}
+            .field
+              .string
+                = f.label :password_confirmation, "パスワード(確認)", class: "text"
+                .required
+                  必須
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
           .identification
             .identification__title
               本人確認
