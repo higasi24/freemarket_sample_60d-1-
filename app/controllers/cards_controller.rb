@@ -77,7 +77,7 @@ class CardsController < ApplicationController
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     # Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
     if params['payjp-token'].blank? && @url.match(/\/cards\/\d+\/edit/)
-      redirect_to save_user_path(current_user.id)
+      redirect_to edit_card_path(current_user.id)
     elsif params['payjp-token'].blank?
       redirect_to action: "new"
     else
@@ -89,7 +89,7 @@ class CardsController < ApplicationController
       elsif @card.save
         redirect_to action: "index"
       elsif @url.match(/\/cards\/\d+\/edit/)
-        redirect_to save_user_path(current_user.id)
+        redirect_to edit_card_path(current_user.id)
       else
         redirect_to action: "create"
       end
