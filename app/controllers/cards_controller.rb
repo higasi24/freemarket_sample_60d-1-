@@ -7,7 +7,7 @@ class CardsController < ApplicationController
     redirect_to action: "index" if card.present?
   end
 
-  def edit
+  def show
     if @card.present?
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -34,12 +34,15 @@ class CardsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def destroy #PayjpとCardのデータベースを削除
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     if @card.destroy #削除に成功した時にポップアップを表示します。
-      redirect_to credit_user_path(current_user.id), notice: "削除しました"
+      redirect_to card_path(current_user.id), notice: "削除しました"
     else #削除に失敗した時にアラートを表示します。
       redirect_to action: "edit", alert: "削除できませんでした"
     end
@@ -73,7 +76,7 @@ class CardsController < ApplicationController
     @url = request.referer
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     # Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
-    if params['payjp-token'].blank? && @url.match(/\/users\/\d+\/save/)
+    if params['payjp-token'].blank? && @url.match(/\/cards\/\d+\/edit/)
       redirect_to save_user_path(current_user.id)
     elsif params['payjp-token'].blank?
       redirect_to action: "new"
@@ -81,11 +84,11 @@ class CardsController < ApplicationController
       # トークンが正常に発行されていたら、顧客情報をPAY.JPに登録します。
       customer = Payjp::Customer.create(card: params["payjp-token"])
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      if @card.save && @url.match(/\/users\/\d+\/save/)
-        redirect_to edit_card_path(current_user.id)
+      if @card.save && @url.match(/\/cards\/\d+\/edit/)
+        redirect_to card_path(current_user.id)
       elsif @card.save
         redirect_to action: "index"
-      elsif @url.match(/\/users\/\d+\/save/)
+      elsif @url.match(/\/cards\/\d+\/edit/)
         redirect_to save_user_path(current_user.id)
       else
         redirect_to action: "create"

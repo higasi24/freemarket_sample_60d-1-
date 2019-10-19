@@ -15,8 +15,6 @@ Rails.application.routes.draw do
       get :profile
     end
     member do
-      get :credit
-      get :save
       get :myitem
     end
   end
