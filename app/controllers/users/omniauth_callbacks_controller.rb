@@ -51,7 +51,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #   uid: session["devise.#{provider}_data"][:uid],
       #   provider: session["devise.#{provider}_data"][:provider]
       # )
-      @sns_id = user_info[:sns_id]
+      sns_id = user_info[:sns_id]
+      @credential = @user.sns_credentials.build(uid: sns_id.uid, provider: sns_id.provider)
       render template: "devise/registrations/new"
     end
   end

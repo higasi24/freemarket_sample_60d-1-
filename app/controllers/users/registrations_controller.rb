@@ -17,11 +17,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    SnsCredential.create(
-      user_id: @user.id,
-      uid: params[:uid],
-      provider: params[:provider]
-    )
+    SnsCredential.create(sns_credential_params)
+    # SnsCredential.create(
+    #   uid: params[0].permit[:uid],
+    #   provider: params[0].permit[:provider]
+    # )
   end
 
     # @user = current_user
@@ -85,4 +85,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def sns_credential_params
+    params[0].permit(:uid, :provider)
+  end
 end
