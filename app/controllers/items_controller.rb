@@ -2,9 +2,9 @@ class ItemsController < ApplicationController
 
   before_action :set_category, only: [:new, :create]
   before_action :set_value, only: [:show, :pre_edit]
+  # before_action :move_to_index, except: [:index]
 
-  def index
-  end
+
 
   def show
   end
@@ -52,5 +52,13 @@ class ItemsController < ApplicationController
     @order_count = @salers_item.where.not(buyer_id: nil).count
   end
 
+  # def move_to_index
+  #   unless user_signed_in?
+  #     redirect_to root_path
+  #   end
+  # end
+
 
 end
+
+
