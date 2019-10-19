@@ -29,6 +29,11 @@
                 必須
             = f.email_field :email, autofocus: true, autocomplete: "email", class: "textfield", placeholder: "PC・携帯どちらでも可"
           -if @credential.present?
+            = f.hidden_field :password, {value: @user.password}
+            = f.hidden_field :password_confirmation, {value: @user.password_confirmation}
+            = f.fields_for :sns_credentials do |s|
+              = s.hidden_field :uid, {value: @credential.uid}
+              = s.hidden_field :provider, {value: @credential.provider}
           -else
             .field
               .string
@@ -36,9 +41,6 @@
                 .required
                   必須
               = f.password_field :password, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
-              = f.fields_for :sns_credentials do |s|
-                = s.hidden_field :uid, {value: @credential.uid}
-                = s.hidden_field :provider, {value: @credential.provider}
             .field
               .string
                 = f.label :password_confirmation, "パスワード(確認)", class: "text"

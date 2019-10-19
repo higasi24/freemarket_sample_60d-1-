@@ -12,12 +12,12 @@ class User < ApplicationRecord
           else
             if user.present?
             else
-              # pass = Devise.friendly_token[0, 20]
+              pass = Devise.friendly_token[0, 20]
               user = User.new(
                 nickname: auth.info.name,
                 email: auth.info.email,
-                # password: pass,
-                # password_confirmation: pass
+                password: pass,
+                password_confirmation: pass
               )
               credential = SnsCredential.new(provider: auth.provider, uid: auth.uid)
             end
