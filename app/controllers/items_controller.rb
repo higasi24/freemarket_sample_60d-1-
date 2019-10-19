@@ -2,9 +2,7 @@ class ItemsController < ApplicationController
 
   before_action :set_category, only: [:new, :create]
   before_action :set_value, only: [:show, :pre_edit]
-
-  def index
-  end
+  # before_action :move_to_index, except: [:index]
 
   def show
   end
@@ -52,5 +50,39 @@ class ItemsController < ApplicationController
     @order_count = @salers_item.where.not(buyer_id: nil).count
   end
 
+  # def move_to_index
+  #   unless user_signed_in?
+  #     redirect_to root_path
+  #   end
+  # end
+
 
 end
+
+
+# def index
+  # # 人気カテゴリの category_id 4つ取得(親要素内)
+  # @category_ids = Items.group(:category_id).order("count_category_id DESC").count(:category_id).limit(4).keys
+  # # 人気ブランドの brand_id 4つ取得(注意:親要素はカテゴリーのため子要素取得)
+  # @brand_ids = Items.group(:bland_id).order("count_brand_id DESC").count(:bland_id).limit(4).keys
+
+  # # 配列を入れる配列
+  # # 40個ずつitem入ってる
+  # @all_category_items = []
+  # @all_brand_items = []
+
+  # @category_ids.each do |category_id|
+  #   # 取得したcategory_id4つそれぞれの中から最新のitem 10こを並べる
+  #   @category_items = Items.where(category_id: category_id).order(:created_at "DESC").limit(10) 
+  #   @all_category_items << @category_items
+  # end
+
+  # @brand_ids.each do |brand_id|
+  #   # 取得したbrand_id4つの中から最新のitem 10こを並べる
+  #   @brand_items = Items.where(bland_id: brand_id).order(:created_at "DESC").limit(10)
+  #   @all_brand_items << @brand_items
+  # end
+
+  # # おそらく@all_category_items,@all_brand_itemsをeachでビューで表示すれば出力可能
+  
+# end
