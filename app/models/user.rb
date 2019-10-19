@@ -8,9 +8,14 @@ class User < ApplicationRecord
         def self.find_omniauth(auth)
           credential = SnsCredential.where(provider: auth.provider, uid: auth.uid).first
           if credential.present?
-            user = User.where
+            user = User.where(id: credential.user_id).first
           else
             if user.present?
+              Credential.create(
+                provider: auth.provider,
+                uid: auth.uid,
+                user_id: user.id
+              )
             else
               pass = Devise.friendly_token[0, 20]
               user = User.new(
