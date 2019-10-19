@@ -73,7 +73,7 @@ class CardsController < ApplicationController
     @url = request.referer
     Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
     if params['payjp-token'].blank? && @url.match(/\/users\/\d+\/save/)
-      redirect_to save_user_path(current_user.id)
+      redirect_to edit_user_path(current_user.id)
     elsif params['payjp-token'].blank?
       redirect_to action: "new"
     else
