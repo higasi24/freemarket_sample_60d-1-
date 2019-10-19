@@ -50,6 +50,7 @@
             display: block;
             width: 620px;
             margin: 16px auto 0;
+            position: relative;
             &__image {
               display: inline;
               display: none;
@@ -114,10 +115,48 @@
               font-size: 0px;
               text-align: center;
               box-sizing: border-box;
+              cursor: pointer;
+              float: right;
               &__item {
+                display: none;
+                touch-action: manipulation;
                 &__pc {
+                  position: absolute;
+                  top: 35%;
+                  left: 16px;
+                  right: 16px;
+                  text-align: center;
+                  font-size: 14px;
+                  line-height: 1.5rem;
                 }
                 &__icon{
+                }
+              }
+            }
+            &__content2{
+              width: 100%;
+              padding: 40px;
+              position: relative;
+              min-height: 162px;
+              border: 1px dashed rgb(204,204,204);
+              background-color: rgb(245,245,245);
+              font-size: 0px;
+              text-align: center;
+              box-sizing: border-box;
+              cursor: pointer;
+              float: right;
+              display: none;
+              &__item {
+                display: none;
+                touch-action: manipulation;
+                &__pc {
+                  position: absolute;
+                  top: 35%;
+                  left: 16px;
+                  right: 16px;
+                  text-align: center;
+                  font-size: 14px;
+                  line-height: 1.5rem;
                 }
               }
             }
