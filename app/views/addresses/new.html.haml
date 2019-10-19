@@ -4,7 +4,8 @@
       .merucari-icon
         = link_to(root_path, class:"logo-link") do
           %img{src:"https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class:"logo-link__image"}
-      = render 'layouts/progressbar'
+      .sms-bar.registration-bar.address-bar
+        = render 'layouts/progressbar'
 
   .registry-box
     .registry-box__title

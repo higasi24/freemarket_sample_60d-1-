@@ -5,7 +5,8 @@
       .merucari-icon
         = link_to(root_path, class:"logo-link") do
           %img{src:"https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class:"logo-link__image"}
-      = render 'layouts/progressbar'
+      .registration-bar
+        = render 'layouts/progressbar'
 
 
   .registry-box
@@ -58,16 +59,16 @@
               .required
                 必須
             .textfi
-              = f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "textfield halffield", placeholder: "例）山田"
-              = f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "textfield halffield", placeholder: "例）進太郎"          
+              = f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "textfield", id: "half", placeholder: "例）山田"
+              = f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "textfield", id: "half", placeholder: "例）進太郎"          
           .field
             .string
               = f.label :family_first_name__kana, "お名前カナ(全角)", class: "text"
               .required
                 必須
             .textfi
-              = f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "textfield halffield", placeholder: "例）ヤマダ"
-              = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "textfield halffield", placeholder: "例）シンタロウ"
+              = f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "textfield",id: "half", placeholder: "例）ヤマダ"
+              = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "textfield",id: "half", placeholder: "例）シンタロウ"
           .field
             .string
               = f.label :birth_date, "生年月日", class: "text"
