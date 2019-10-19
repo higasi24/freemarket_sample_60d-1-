@@ -55,7 +55,6 @@ $(document).on('turbolinks:load', function() {
           $("#card_token").append(
             $('<input type="hidden" name="payjp-token">').val(response.id)
           ); //トークンを送信できるように隠しタグを生成
-          console.log(response.id);
           document.inputForm.submit();
         } else {
           alert("カード情報が正しくありません。"); //確認用
