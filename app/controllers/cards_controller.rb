@@ -9,7 +9,7 @@ class CardsController < ApplicationController
 
   def edit
     if @card.present?
-      Payjp.api_key = "sk_test_cfbdb30c289d9e6dfcd07fde"
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @card_information = customer.cards.retrieve(@card.card_id)
       # binding.pry
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
   end
 
   def destroy #PayjpとCardのデータベースを削除
-    Payjp.api_key = "sk_test_cfbdb30c289d9e6dfcd07fde"
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
     customer = Payjp::Customer.retrieve(@card.customer_id)
     customer.delete
     if @card.destroy #削除に成功した時にポップアップを表示します。
@@ -71,7 +71,8 @@ class CardsController < ApplicationController
 # end
   def create #PayjpとCardのデータベースを作成
     @url = request.referer
-    Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    # Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
     if params['payjp-token'].blank? && @url.match(/\/users\/\d+\/save/)
       redirect_to save_user_path(current_user.id)
     elsif params['payjp-token'].blank?
