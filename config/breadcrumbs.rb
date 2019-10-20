@@ -2,14 +2,29 @@ crumb :root do
   link "メルカリ", root_path
 end
 
-crumb :users do
+crumb :user do
   link "マイページ", user_path
   parent :root
 end
 
 crumb :profile do
-  link "プロフィール", profile_users_path
-  parent :users
+  link "プロフィール", profile_users_path(current_user)
+  parent
+end
+
+crumb :card do
+  link "支払い方法", card_path
+  parent :user
+end
+
+crumb :edit do
+  link "本人情報の登録", edit_user_path
+  parent :user
+end
+
+crumb :logout do
+  link "ログアウト", logout_users_path(current_user)
+  parent
 end
 
 # crumb :projects do
