@@ -1,5 +1,7 @@
 .show-japan
   = render partial: "layouts/header"
+  - breadcrumb :profile
+  = render partial: 'layouts/navbar'
   .show
     = render partial: "side_bar"
     .right
