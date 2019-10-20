@@ -11,11 +11,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :new, :edit] do
     collection do
       get :smsConfirmation
-      get :logout
-      get :profile
     end
     member do
       get :myitem
+      get :profile
+      get :logout
     end
   end
 

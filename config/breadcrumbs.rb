@@ -13,8 +13,8 @@ crumb :myitem do
 end
 
 crumb :profile do
-  link "プロフィール", profile_users_path
-  parent
+  link "プロフィール", profile_user_path
+  parent :user
 end
 
 crumb :card do
@@ -28,8 +28,8 @@ crumb :edit do
 end
 
 crumb :logout do
-  link "ログアウト", logout_users_path
-  parent
+  link "ログアウト", logout_user_path
+  parent :user
 end
 
 # crumb :projects do
