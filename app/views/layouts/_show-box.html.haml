@@ -8,7 +8,7 @@
     -# = link_to("#{@item.brand.brand}", root_path)
     (
     = link_to("#{@category.category}", root_path)
-    )の商品で、#{@address.prefecture.name}から~#{@item.delivery_date}日で発送されます。
+    )の商品で、#{@item.prefecture.name}から~#{@item.delivery_date}日で発送されます。
 .show-box__main
   .show-box__main__image-box
     .show-box__main__image-box__main-image#slider_main
@@ -72,7 +72,7 @@
     %tr
       %td.th1 発送元地域
       %td.th2 
-        = link_to("#{@address.prefecture.name}", root_path)
+        = link_to("#{@item.prefecture.name}", root_path)
     %tr
       %td.th1 発送日の目安
       %td.th2 ~#{@item.delivery_date}日で発送
