@@ -17,13 +17,14 @@ RSpec.describe Image, type: :model do
         image = build(:image, item_id: item.id)
         expect(image).to be_valid
       end
-      # it 'is valid without image' do  ##imageがなくても保存されてるー
-      #   user = FactoryBot.create(:user)
-      #   item = FactoryBot.create(:item, saler_id: user.id)
-      #   image = build(:image, id: 1, image: "", item_id: item.id)
-      #   image.valid?
-      #   expect(image.errors[:image]).to include("can’t be blank")
-      # end
+      it 'is valid without image' do  ##imageがなくても保存されてるー
+        user = FactoryBot.create(:user)
+        item = FactoryBot.create(:item, saler_id: user.id)
+        image = build(:image, id: 1, image: nil, item_id: item.id)
+        image.valid?
+        expect(image.errors[:image]).to include("画像がありません")
+      end
     end
   end
 end
+

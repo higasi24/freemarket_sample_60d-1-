@@ -6,7 +6,7 @@ FactoryBot.define do
     size { "参加条件" }
     delivery_fee { "参加条件" }
     delivery_method { "参加条件" }
-    price { 300 }
+    price { 1000 }
     delivery_date { "参加条件" }
     prefecture_id { 1 }
     saler_id { 1 }
