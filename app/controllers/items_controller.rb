@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :set_category, only: [:new, :create]
-  before_action :set_value, only: [:show, :pre_edit]
+  before_action :set_value, only: [:show, :pre_edit] 
 
   def index
 
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
 
   def pre_edit
   end
-  
+
   private
   def item_params
     params.require(:item).permit(:name, :detail, :state, :size, :delivery_fee, :delivery_method, :price, :delivery_date, :prefecture_id, category_items_attributes: [:id, :category_id], images_attributes: [:id, :image]).merge(saler_id: current_user.id)
