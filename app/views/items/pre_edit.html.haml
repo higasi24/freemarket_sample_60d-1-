@@ -9,7 +9,7 @@
     = link_to("商品の編集", edit_item_path, class: "selection-box__edit")
     .selection-box__text-center or
     = link_to("出品を一旦停止する", root_path, class: "selection-box__button")
-    = link_to("この商品を削除する", "/items/#{@item.id}", method: :delete, class: "selection-box__button")
+    = link_to("この商品を削除する", item_path, method: :delete, class: "selection-box__button")
   = render partial: "layouts/message-submit"
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'
