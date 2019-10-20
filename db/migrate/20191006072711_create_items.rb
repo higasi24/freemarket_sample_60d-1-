@@ -10,11 +10,11 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string      :delivery_date
       t.string      :size,              default: nil
       t.integer     :favorites_count
+      t.string      :brand
 
       t.integer     :prefecture_id
       t.integer  :buyer_id,          foreign_key: true
       t.integer  :saler_id,          foreign_key: true
-      t.references  :brand,             foreign_key: true
       t.timestamps
     end
   end

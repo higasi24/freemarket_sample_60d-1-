@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_060631) do
+ActiveRecord::Schema.define(version: 2019_10_15_055303) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postal_code"
@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(version: 2019_10_20_060631) do
     t.string "delivery_date"
     t.string "size"
     t.integer "favorites_count"
+    t.string "brand"
     t.integer "prefecture_id"
     t.integer "buyer_id"
     t.integer "saler_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "brand"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -153,6 +153,8 @@ ActiveRecord::Schema.define(version: 2019_10_20_060631) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "addresses", "users"
