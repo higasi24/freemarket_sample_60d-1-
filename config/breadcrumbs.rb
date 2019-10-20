@@ -12,6 +12,11 @@ crumb :myitem do
   parent :user
 end
 
+crumb :pre_edit do
+  link "出品商品画面", pre_edit_item_path
+  parent :myitem
+end
+
 crumb :profile do
   link "プロフィール", profile_user_path
   parent :user
@@ -30,6 +35,12 @@ end
 crumb :logout do
   link "ログアウト", logout_user_path
   parent :user
+end
+
+crumb :item do
+  @item = Item.find(params[:id])
+  link "#{@item.name}", item_path
+  parent :root
 end
 
 # crumb :projects do
