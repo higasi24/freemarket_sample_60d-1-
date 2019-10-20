@@ -13,9 +13,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def create
   #   super
   # end
+
+
   def create
     super
+    SnsCredential.create(sns_credential_params)
   end
+
+    # @user = current_user
+
+    # if session["devise.#{provider}_data"]
+    #   SnsCredential.create(
+    #     user_id: @user.id, 
+    #     provider: session["devise.#{provider}_data"]["provider"], 
+    #     uid: session["devise.#{provider}_data"]["uid"]
+    #   )
+    # end
+
 
   # GET /resource/edit
   # def edit
@@ -67,4 +81,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def sns_credential_params
+    params.permit(:uid, :provider)
+  end
 end

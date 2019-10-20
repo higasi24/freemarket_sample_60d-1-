@@ -5,19 +5,31 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
-        def self.from_omniauth(auth)
+        def self.find_omniauth(auth)
           credential = SnsCredential.where(provider: auth.provider, uid: auth.uid).first
-          if credential
-            user = User.find(credential.user_id)
+          if credential.present?
+            user = User.find_by(id: credential.user_id)
           else
-            user = User.where(email: auth.info.email).first_or_create do |u|
-              u.password = Devise.friendly_token[0,20]
+            if user.present?
+              Credential.create(
+                provider: auth.provider,
+                uid: auth.uid,
+                user_id: user.id
+              )
+            else
+              pass = Devise.friendly_token[0, 20]
+              user = User.new(
+                nickname: auth.info.name,
+                email: auth.info.email,
+                password: pass,
+                password_confirmation: pass
+              )
+              credential = SnsCredential.new(provider: auth.provider, uid: auth.uid)
             end
-            SnsCredential.create(provider: auth.provider, uid: auth.uid, user_id: user.id)
-            user
           end
+          return {user: user, sns_id: credential }
         end
-        
+
         has_many :items, dependent: :destroy
         has_many :favorites, dependent: :destroy
         has_many :favorite_items, through: :favorites, source: :item
@@ -29,6 +41,7 @@ class User < ApplicationRecord
         has_many :addresses, dependent: :destroy
         has_one  :card
         has_many :sns_credentials, dependent: :destroy
+        accepts_nested_attributes_for :sns_credentials, allow_destroy: true
         # validates of password
         validates_format_of :password, :with => /([0-9].*[a-zA-Z]|[a-zA-Z].*[0-9])/
         validates :password, length: {minimum: 7}
