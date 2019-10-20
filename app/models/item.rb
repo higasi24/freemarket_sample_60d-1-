@@ -22,4 +22,5 @@ class Item < ApplicationRecord
   def next
     Item.order('created_at desc, id desc').where('created_at >= ? and id > ?', created_at, id).reverse.first
   end
+  
 end
