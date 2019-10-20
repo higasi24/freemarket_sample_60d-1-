@@ -10,5 +10,6 @@ FactoryBot.define do
     delivery_date { "参加条件" }
     prefecture_id { 1 }
     saler_id { 1 }
+    
   end
 end
