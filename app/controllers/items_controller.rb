@@ -4,24 +4,26 @@ class ItemsController < ApplicationController
   before_action :set_value, only: [:show, :pre_edit] 
 
   def index
-    @category_ids = CategoryItem.group(:category_id).order(count_category_id: :desc).count(:category_id).keys
-    # .limit(4)
-    
-    # @category_ids.each do |category_id|
-    #   item_id = CategoryItem.group(:item_id)
-    # end
-
-
-    
-    # @all_category_items = []
-    # @category_ids.each do |category_id|
-    #   # 取得したcategory_id4つそれぞれの中から最新のitem 10こを並べる
-    #   @category_items = Item.where(category_id: category_id).order(created_at: :desc)
-    #   # .limit(10) 
-    #   @all_category_items << @category_items
-    # end
-
-    # おそらく@all_category_itemsをeachでビューで表示すれば出力可能
+    #4件category_id取得
+    category_ids = CategoryItem.group(:category_id).order(count_category_id: :desc).limit(4).count(:category_id).keys
+    #全てのitem(40個)
+    @all_items = []
+    @categories = []
+    category_ids.each do |category_id|
+      #各カテゴリのitem(10個ずつ)
+      items = []
+      #各カテゴリに対し、最新の10件をcategory_itemモデルから取得
+      categoryItem = CategoryItem.where(category_id: category_id).order(created_at: :desc).limit(10)
+        categoryItem.each do |cItem|
+          #取得したレコードからitem_idを取得
+          itemId = cItem.item_id
+          item = Item.find(itemId)
+          items << item
+        end
+        @all_items << items
+        category = Category.find(category_id)
+        @categories << category
+    end
   end
 
   def show
