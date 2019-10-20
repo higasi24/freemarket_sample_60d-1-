@@ -5,10 +5,10 @@
     『#{@item.name}』は、#{@order_count}回の取引実績を持つ
     = link_to("#{@saler.nickname}", root_path)
     さんから出品されました。
-    = link_to("#{@item.brand.brand}", root_path)
+    -# = link_to("#{@item.brand.brand}", root_path)
     (
     = link_to("#{@category.category}", root_path)
-    )の商品で、#{@address.prefecture.name}から~#{@item.delivery_date}日で発送されます。
+    )の商品で、#{@item.prefecture.name}から~#{@item.delivery_date}日で発送されます。
 .show-box__main
   .show-box__main__image-box
     .show-box__main__image-box__main-image#slider_main
@@ -16,13 +16,19 @@
         - @image.each do |img|
           - if img.image?
             %li
-              = image_tag img.image.url, size:'300x300'
+              - if Rails.env.development?
+                = image_tag "/uploads/image/image/#{img.id}/"+img[:image], size:'300x300'
+              - if Rails.env.production?
+                = image_tag img.image.url, size:'300x300'
     .show-box__main__image-box__sub-image#slider_thumb
       %ul
         - @image.each do |img|
           - if img.image?
-            %li>
-              = image_tag img.image.url, size:'60x60'
+            %li
+              - if Rails.env.development?
+                = image_tag "/uploads/image/image/#{img.id}/"+img[:image], size:'60x60'
+              - if Rails.env.production?
+                = image_tag img.image.url, size:'60x60'
   %table.show-box__main__detail-box
     %tr
       %td.th1 出品者
@@ -41,19 +47,19 @@
     %tr
       %td.th1 カテゴリー
       %td.th2 
-        = link_to("#{@item.categories[0].root.category}", root_path)
+        = link_to("#{@category.root.category}", root_path)
         %br
           = link_to root_path do
             = fa_icon 'chevron-right'
-            = "#{@item.categories[0].parent.category}"
+            = "#{@category.parent.category}"
         %br
           = link_to root_path do
             = fa_icon 'chevron-right'
-            = "#{@item.categories[0].category}"
+            = "#{@category.category}"
     %tr
       %td.th1 ブランド
       %td.th2
-        = link_to("#{@item.brand.brand}", root_path)
+        -# = link_to("#{@item.brand.brand}", root_path)
     %tr
       %td.th1 商品の状態
       %td.th2 #{@item.state}
@@ -66,7 +72,7 @@
     %tr
       %td.th1 発送元地域
       %td.th2 
-        = link_to("#{@address.prefecture.name}", root_path)
+        = link_to("#{@item.prefecture.name}", root_path)
     %tr
       %td.th1 発送日の目安
       %td.th2 ~#{@item.delivery_date}日で発送
