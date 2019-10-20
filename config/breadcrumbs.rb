@@ -7,8 +7,13 @@ crumb :user do
   parent :root
 end
 
+crumb :myitem do
+  link "出品した商品 - 出品中", myitem_user_path
+  parent :user
+end
+
 crumb :profile do
-  link "プロフィール", profile_users_path(current_user)
+  link "プロフィール", profile_users_path
   parent
 end
 
@@ -23,7 +28,7 @@ crumb :edit do
 end
 
 crumb :logout do
-  link "ログアウト", logout_users_path(current_user)
+  link "ログアウト", logout_users_path
   parent
 end
 
