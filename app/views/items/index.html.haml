@@ -19,12 +19,6 @@
         - @categories.each do |category|
           .category__top__contents__rank1
             = category.category
-          -# .category__top__contents__rank2
-          -#   メンズ
-          -# .category__top__contents__rank3
-          -#   家電・スマホ・カメラ
-          -# .category__top__contents__rank4
-          -#   おもちゃ・ホビー・グッズ
       .category__new-items
         .category__new-items__upper
           .category__new-items__upper__text
@@ -36,6 +30,10 @@
           - @all_items[0].each do |item|
             .category__new-items__lower__up__item1
               .category__new-items__lower__up__item1__picture
+              - if Rails.env.development?
+                = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], size:'220x220'
+              - if Rails.env.production?
+                = image_tag item.images[0].image.url, size:'220x220'
                 -# = image_tag asset_path("#{item.images[0].image}"), height: '40', width: '40'
                 .category__new-items__lower__up__item1__picture__price
                   = item.price
@@ -51,6 +49,8 @@
           -#   .category__new-items__lower__down__item8
           -#   .category__new-items__lower__down__item9
           -#   .category__new-items__lower__down__item10
+
+
 
 
 

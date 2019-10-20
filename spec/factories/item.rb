@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 FactoryBot.define do
   factory :item do
     name { "名前" }
@@ -13,13 +11,5 @@ FactoryBot.define do
     prefecture_id { 1 }
     saler_id { 1 }
     
-    # image {File.open("#{Rails.root}/public/images/test_image.jpg")}
-    # category_items_attributes
-    # images_attributes
-
-
-    # name, :detail, :state, :size, :delivery_fee, :delivery_method, :price, :delivery_date, :prefecture_id, category_items_attributes: [:id, :category_id], images_attributes: [:id, :image]).merge(saler_id)
-    
   end
 end
->>>>>>> parent of 0e55904... 商品出品

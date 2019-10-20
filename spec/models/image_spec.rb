@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 require 'rails_helper'
 
 RSpec.describe Image, type: :model do
@@ -29,4 +27,3 @@ RSpec.describe Image, type: :model do
     end
   end
 end
->>>>>>> parent of 0e55904... 商品出品
