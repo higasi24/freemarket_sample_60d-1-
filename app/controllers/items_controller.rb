@@ -4,16 +4,20 @@ class ItemsController < ApplicationController
   before_action :set_value, only: [:show, :pre_edit]
 
   def index
-    # 人気カテゴリの category_id 4つ取得(親要素内)
-    # @category_ids = Item.group(:category_id).order(count_category_id: :desc).count(:category_id).limit(4).keys
+    @category_ids = CategoryItem.group(:category_id).order(count_category_id: :desc).count(:category_id).keys
+    # .limit(4)
+    
+    # @category_ids.each do |category_id|
+    #   item_id = CategoryItem.group(:item_id)
+    # end
 
-    # 配列を入れる配列
-    # 40個ずつitem入ってる
+
+    
     # @all_category_items = []
-
     # @category_ids.each do |category_id|
     #   # 取得したcategory_id4つそれぞれの中から最新のitem 10こを並べる
-    #   @category_items = Item.where(category_id: category_id).order(created_at: :desc).limit(10) 
+    #   @category_items = Item.where(category_id: category_id).order(created_at: :desc)
+    #   # .limit(10) 
     #   @all_category_items << @category_items
     # end
 
