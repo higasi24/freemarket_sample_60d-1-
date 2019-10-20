@@ -17,7 +17,7 @@
           - if img.image?
             %li
               - if Rails.env.development?
-                %img{src: "/uploads/image/image/#{img.id}/"+img[:image], size:'300x300'}
+                = image_tag "/uploads/image/image/#{img.id}/"+img[:image], size:'300x300'
               - if Rails.env.production?
                 = image_tag img.image.url, size:'300x300'
     .show-box__main__image-box__sub-image#slider_thumb
@@ -26,7 +26,7 @@
           - if img.image?
             %li
               - if Rails.env.development?
-                %img{src: "/uploads/image/image/#{img.id}/"+img[:image], size:'60x60'}
+                = image_tag "/uploads/image/image/#{img.id}/"+img[:image], size:'60x60'
               - if Rails.env.production?
                 = image_tag img.image.url, size:'60x60'
   %table.show-box__main__detail-box
