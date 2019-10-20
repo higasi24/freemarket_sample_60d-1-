@@ -1,14 +1,14 @@
 class ItemsController < ApplicationController
 
   before_action :set_category, only: [:new, :create]
-    before_action :set_value, only: [:show, :pre_edit] 
+  before_action :set_value, only: [:show, :pre_edit] 
 
   def index
 
   end
 
-    def show
-    end
+  def show
+  end
 
   def new
     @item = Item.new
@@ -31,8 +31,8 @@ class ItemsController < ApplicationController
   def edit
   end
 
-    def pre_edit
-    end
+  def pre_edit
+  end
 
   private
   def item_params
@@ -43,15 +43,15 @@ class ItemsController < ApplicationController
     @category = Category.where(ancestry: nil)
   end
 
-    def set_value
-      @item = Item.find(params[:id])
-      @image = Image.where(item_id: params[:id])
-      @saler = User.find(@item.saler_id)
-      @category = @item.categories[0]
-      @address = Address.find_by(user_id: @saler.id)
-      @salers_item = Item.where(saler_id: @saler.id)
-      @order_count = @salers_item.where.not(buyer_id: nil).count
-    end
+  def set_value
+    @item = Item.find(params[:id])
+    @image = Image.where(item_id: params[:id])
+    @saler = User.find(@item.saler_id)
+    @category = @item.categories[0]
+    @address = Address.find_by(user_id: @saler.id)
+    @salers_item = Item.where(saler_id: @saler.id)
+    @order_count = @salers_item.where.not(buyer_id: nil).count
+  end
 
 end
 

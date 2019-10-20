@@ -1,47 +1,47 @@
-  .cover
-    = render partial: "layouts/simpleheader"
-    .oreder-new
-      .oreder-new__body
-        .oreder-new__body__header 購入内容の確認
-        .oreder-new__body__main
-          .oreder-new__body__main__inner
-            = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"oreder-new__body__main__inner__image"
-            .oreder-new__body__main__inner__item-name #{@item.name}
-            .oreder-new__body__main__inner__form
-              .oreder-new__body__main__inner__form__price-box
-                .oreder-new__body__main__inner__form__price-box__price
-                  = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
-                .oreder-new__body__main__inner__form__price-box__fee 送料込み
-              .oreder-new__body__main__inner__form__point-box
-                .oreder-new__body__main__inner__form__point-box__point ポイントはありません
-              .oreder-new__body__main__inner__form__price-table
-                .oreder-new__body__main__inner__form__price-table__text 支払い金額
-                .oreder-new__body__main__inner__form__price-table__pay-price
-                  = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
-              %button.oreder-new__body__main__inner__form__pay-btn{type:"submit"} 購入する
-        .oreder-new__body__address-box
-          .oreder-new__body__address-box__inner
-            %h3.oreder-new__body__address-box__inner__title 配送先
-            .oreder-new__body__address-box__inner__address
-              〒#{current_user.addresses[0].postal_code}
-              %br
-              #{current_user.addresses[0].prefecture.name}
-              #{current_user.addresses[0].city}
-              %br
-              #{current_user.nickname}
-            .oreder-new__body__address-box__inner__edit
-              変更する
-              = fa_icon 'chevron-right'
-        .oreder-new__body__payment-box
-          .oreder-new__body__payment-box__inner
-            %h3.oreder-new__body__payment-box__inner__title 支払い方法
-            .oreder-new__body__payment-box__inner__card
-              123456789
-              %br
-              01/25
-              %br
-            %img.oreder-new__body__payment-box__inner__image{src:"//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2296184308"}
-            .oreder-new__body__payment-box__inner__edit
-              変更する
-              = fa_icon 'chevron-right'
-    = render partial: "layouts/simplefooter"
+.cover
+  = render partial: "layouts/simpleheader"
+  .oreder-new
+    .oreder-new__body
+      .oreder-new__body__header 購入内容の確認
+      .oreder-new__body__main
+        .oreder-new__body__main__inner
+          = image_tag src="https://static.mercdn.net/thumb/photos/m67395797689_1.jpg?1570195723", class:"oreder-new__body__main__inner__image"
+          .oreder-new__body__main__inner__item-name #{@item.name}
+          .oreder-new__body__main__inner__form
+            .oreder-new__body__main__inner__form__price-box
+              .oreder-new__body__main__inner__form__price-box__price
+                = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
+              .oreder-new__body__main__inner__form__price-box__fee 送料込み
+            .oreder-new__body__main__inner__form__point-box
+              .oreder-new__body__main__inner__form__point-box__point ポイントはありません
+            .oreder-new__body__main__inner__form__price-table
+              .oreder-new__body__main__inner__form__price-table__text 支払い金額
+              .oreder-new__body__main__inner__form__price-table__pay-price
+                = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
+            %button.oreder-new__body__main__inner__form__pay-btn{type:"submit"} 購入する
+      .oreder-new__body__address-box
+        .oreder-new__body__address-box__inner
+          %h3.oreder-new__body__address-box__inner__title 配送先
+          .oreder-new__body__address-box__inner__address
+            〒#{current_user.addresses[0].postal_code}
+            %br
+            #{current_user.addresses[0].prefecture.name}
+            #{current_user.addresses[0].city}
+            %br
+            #{current_user.nickname}
+          .oreder-new__body__address-box__inner__edit
+            変更する
+            = fa_icon 'chevron-right'
+      .oreder-new__body__payment-box
+        .oreder-new__body__payment-box__inner
+          %h3.oreder-new__body__payment-box__inner__title 支払い方法
+          .oreder-new__body__payment-box__inner__card
+            123456789
+            %br
+            01/25
+            %br
+          %img.oreder-new__body__payment-box__inner__image{src:"//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2296184308"}
+          .oreder-new__body__payment-box__inner__edit
+            変更する
+            = fa_icon 'chevron-right'
+  = render partial: "layouts/simplefooter"

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     member do
       get :credit
       get :save
-        get :myitem
+      get :myitem
     end
   end
 
@@ -31,10 +31,10 @@ Rails.application.routes.draw do
   resources :addresses
   resources :cards
 
-    scope(path_names: { new: 'buy/:item_id'}) do
-      resources :orders, path: 'order'
-    end
+  scope(path_names: { new: 'buy/:item_id'}) do
+    resources :orders, path: 'order'
+  end
   
-    post   '/favorite/:item_id' => 'favorites#like',   as: 'like'
-    delete '/favorite/:item_id' => 'favorites#unlike', as: 'unlike'
+  post   '/favorite/:item_id' => 'favorites#like',   as: 'like'
+  delete '/favorite/:item_id' => 'favorites#unlike', as: 'unlike'
 end
