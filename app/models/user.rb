@@ -8,7 +8,7 @@ class User < ApplicationRecord
         def self.find_omniauth(auth)
           credential = SnsCredential.where(provider: auth.provider, uid: auth.uid).first
           if credential.present?
-            user = User.where(id: credential.user_id).first
+            user = User.find_by(id: credential.user_id)
           else
             if user.present?
               Credential.create(
