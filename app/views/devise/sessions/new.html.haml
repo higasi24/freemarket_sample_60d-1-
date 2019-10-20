@@ -14,7 +14,7 @@
           = fa_icon 'facebook-square', class:"icon__facebook"
           Facebookでログイン
         = link_to(user_google_oauth2_omniauth_authorize_path, class: 'registry-box__content__box__google') do
-          = image_tag '/assets/google.png', height: '25', width: '25', class: 'icon__google'
+          = image_tag asset_path('google.png'), height: '25', width: '25', class: 'icon__google'
           Googleでログイン
         %br/
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

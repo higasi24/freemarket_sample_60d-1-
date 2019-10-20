@@ -1,13 +1,11 @@
--# hidden_field_tag :sns_auth, true ←@sns_idが存在する場合、存在しない場合はパスワード入力欄
 .all
   .header-registration
     .header-registration__contents
       .merucari-icon
         = link_to(root_path, class:"logo-link") do
-          %img{src:"https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class:"logo-link__image"}
+          = image_tag 'https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg', class: 'logo-link__image'
       .registration-bar
         = render 'layouts/progressbar'
-
 
   .registry-box
     .registry-box__title
