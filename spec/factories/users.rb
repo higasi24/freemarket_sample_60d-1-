@@ -10,7 +10,5 @@ FactoryBot.define do
     last_name             {Faker::Name.last_name }
     last_name_kana        {"シンタロウ"}
     birth_date            {{1=>1990, 2=>1, 3=>1}}
-    family_name {"fff"}
-    family_name_kana {"カナ"}
   end
 end
