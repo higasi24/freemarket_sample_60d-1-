@@ -1,11 +1,12 @@
-= render partial: "layouts/header"
-.show
-  = render partial: "side_bar"
-  .right
-    .right__logout
-      .right__logout__button
-        = link_to(destroy_user_session_path, method: :delete) do
-          ログアウト
-= render partial: "layouts/button"
-= render partial: "layouts/aside"
-= render partial: "layouts/footer"
+.show-japan 
+  = render partial: "layouts/header"
+  .show
+    = render partial: "side_bar"
+    .right
+      .right__logout
+        .right__logout__button
+          = link_to(destroy_user_session_path, method: :delete) do
+            ログアウト
+  = render partial: "layouts/button"
+  = render partial: "layouts/aside"
+  = render partial: "layouts/footer"
