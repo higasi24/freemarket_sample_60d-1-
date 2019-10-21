@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :new, :edit] do
     collection do
       get :smsConfirmation
+      get :done
     end
     member do
-      get :credit
-      get :save
       get :myitem
       get :profile
       get :logout
@@ -35,6 +34,11 @@ Rails.application.routes.draw do
 
   resources :addresses
   resources :cards
+  resources :orders, except: [:new] do
+    collection do
+      post :pay, to: 'cards#pay'
+    end
+  end
 
   scope(path_names: { new: 'buy/:item_id'}) do
     resources :orders, path: 'order'
