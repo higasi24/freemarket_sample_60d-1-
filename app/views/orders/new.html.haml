@@ -11,7 +11,7 @@
             - if Rails.env.development?
               = image_tag "/uploads/image/image/#{img.id}/"+img[:image], height: "85.19", class:"oreder-new__body__main__inner__image"
             - if Rails.env.production?
-              = image_tag img[:image], class:"oreder-new__body__main__inner__image"
+              = image_tag img.image.url, class:"oreder-new__body__main__inner__image"
             .oreder-new__body__main__inner__item-name #{@item.name}
             .oreder-new__body__main__inner__form
               .oreder-new__body__main__inner__form__price-box
