@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def new
     @item = Item.find(params[:item_id])
-    @image = @item.images
+    @image = @item.images[0]
     @order = Order.new
     if @card.present?
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
