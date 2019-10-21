@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
       if item.saler_id == current_user.id && item.update(item_params)
-        redirect_to myitem_user_path(current_user.id)
+        redirect_to pre_edit_item_path(current_user.id)
       else
         redirect_to root_path
       end

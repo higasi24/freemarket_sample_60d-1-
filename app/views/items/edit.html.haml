@@ -4,7 +4,7 @@
     .send__main__content
       %h2.send__main__content__input
         商品の情報を入力
-      = form_with( model: @item, url: {action: "create"}, data: {remote: false}, class:"send__main__content__form" ) do |f|
+      = form_with( model: @item, url: {action: "update"}, data: {remote: false}, class:"send__main__content__form" ) do |f|
         .send__main__content__form__box1
           %h3.send__main__content__form__box1__title
             = f.label :出品画像
@@ -129,8 +129,7 @@
         .send__main__content__form__box6
         .send__main__content__form__box7
           .send__main__content__form__box7__notice
-          = f.submit '変更する', id:"post" do
-            link_to item_path(@item.id), method: :patch
+          = f.submit '変更する', id:"post"
           = link_to items_path, class: "send__main__content__form__box7__return" do
             キャンセル
 = render partial: "layouts/simplefooter"
