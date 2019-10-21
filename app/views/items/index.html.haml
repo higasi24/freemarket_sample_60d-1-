@@ -8,44 +8,59 @@
     .slick_bar__right
       .slick_bar__right__button
         > 
+          
+          
   .content
     .category
       .category__top
         .category__top__title
           人気のカテゴリー
         .category__top__contents
+        - @categories.each do |category|
           .category__top__contents__rank1
-            レディース
-          .category__top__contents__rank2
-            メンズ
-          .category__top__contents__rank3
-            家電・スマホ・カメラ
-          .category__top__contents__rank4
-            おもちゃ・ホビー・グッズ
+            = category.category
       .category__new-items
         .category__new-items__upper
           .category__new-items__upper__text
-            レディース新着アイテム
+            = "#{@categories[0].category}新着アイテム"
           .category__new-items__upper__more
             もっと見る >
         .category__new-items__lower
           .category__new-items__lower__up
-            .category__new-items__lower__up__item1
+          - @all_items[0].each do |item|
+            = link_to(item_path(item.id), method: :get, class: "category__new-items__lower__up__item1") do
               .category__new-items__lower__up__item1__picture
+              - if Rails.env.development?
+                = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], size:'220x220'
+              - if Rails.env.production?
+                = image_tag item.images[0].image.url, size:'220x220'
+                -# = image_tag asset_path("#{item.images[0].image}"), height: '40', width: '40'
                 .category__new-items__lower__up__item1__picture__price
-                  ¥9,999
+                  = item.price
               .category__new-items__lower__up__item1__name
-                ああああああああああああああ
-            .category__new-items__lower__up__item2
-            .category__new-items__lower__up__item3
-            .category__new-items__lower__up__item4
-            .category__new-items__lower__up__item5
-          .category__new-items__lower__down
-            .category__new-items__lower__down__item6
-            .category__new-items__lower__down__item7
-            .category__new-items__lower__down__item8
-            .category__new-items__lower__down__item9
-            .category__new-items__lower__down__item10
+                = item.name
+          -#   .category__new-items__lower__up__item2
+          -#   .category__new-items__lower__up__item3
+          -#   .category__new-items__lower__up__item4
+          -#   .category__new-items__lower__up__item5
+          -# .category__new-items__lower__down
+          -#   .category__new-items__lower__down__item6
+          -#   .category__new-items__lower__down__item7
+          -#   .category__new-items__lower__down__item8
+          -#   .category__new-items__lower__down__item9
+          -#   .category__new-items__lower__down__item10
+
+
+
+
+
+
+
+
+
+
+
+
     .brand
       .brand__top
         .brand__top__title

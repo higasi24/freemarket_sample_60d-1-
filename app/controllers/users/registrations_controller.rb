@@ -18,10 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     SnsCredential.create(sns_credential_params)
-    # SnsCredential.create(
-    #   uid: params[0].permit[:uid],
-    #   provider: params[0].permit[:provider]
-    # )
   end
 
     # @user = current_user
@@ -88,6 +84,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   def sns_credential_params
-    params[0].permit(:uid, :provider)
+    params.permit(:uid, :provider)
   end
 end

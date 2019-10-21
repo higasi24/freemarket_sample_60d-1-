@@ -1,9 +1,29 @@
 class ItemsController < ApplicationController
 
   before_action :set_category, only: [:new, :create]
-  before_action :set_value, only: [:show, :pre_edit]
+  before_action :set_value, only: [:show, :pre_edit] 
 
   def index
+    #4件category_id取得
+    category_ids = CategoryItem.group(:category_id).order(count_category_id: :desc).limit(4).count(:category_id).keys
+    #全てのitem(40個)
+    @all_items = []
+    @categories = []
+    category_ids.each do |category_id|
+      #各カテゴリのitem(10個ずつ)
+      items = []
+      #各カテゴリに対し、最新の10件をcategory_itemモデルから取得
+      categoryItem = CategoryItem.where(category_id: category_id).order(created_at: :desc).limit(10)
+        categoryItem.each do |cItem|
+          #取得したレコードからitem_idを取得
+          itemId = cItem.item_id
+          item = Item.find(itemId)
+          items << item
+        end
+        @all_items << items
+        category = Category.find(category_id)
+        @categories << category
+    end
   end
 
   def show
@@ -40,7 +60,16 @@ class ItemsController < ApplicationController
 
   def pre_edit
   end
-  
+
+  def destroy
+    item = Item.find(params[:id])
+    if item.saler_id == current_user.id && item.destroy
+      redirect_to myitem_user_path(current_user.id)
+    else
+      redirect_to root_path
+    end
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :detail, :state, :size, :brand, :delivery_fee, :delivery_method, :price, :delivery_date, :prefecture_id, category_items_attributes: [:id, :category_id], images_attributes: [:id, :image]).merge(saler_id: current_user.id)
@@ -59,6 +88,5 @@ class ItemsController < ApplicationController
     @salers_item = Item.where(saler_id: @saler.id)
     @order_count = @salers_item.where.not(buyer_id: nil).count
   end
-
 
 end

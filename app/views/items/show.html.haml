@@ -90,19 +90,22 @@
       = link_to root_path do
         #{@saler.nickname}さんのその他の出品
     .user-item__box
-      - @salers_item.each do |item|
+      - @salers_item.first(6).each do |item|
         .user-item__box__card
           = link_to root_path do
             .user-item__box__card__photo
               .user-item__box__card__photo__image
-                = image_tag item.images[0].image.url
+                - if Rails.env.development?
+                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], size:'220x220'
+                - if Rails.env.production?
+                  = image_tag item.images[0].image.url, size:'220x220'
               - if item.buyer_id.present?
                 .similar-item__box__card__photo__text SOLD
                 .similar-item__box__card__photo__soldout
             .user-item__box__card__body
               .user-item__box__card__body__text #{item.name}
               .user-item__box__card__body__num
-                .user-item__box__card__body__num__price 
+                .user-item__box__card__body__num__price
                   = number_to_currency("#{item.price}", unit: "¥", precision: 0)
                 .user-item__box__card__body__num__icon
                   = fa_icon 'heart-o', class: 'num-icon'
@@ -112,12 +115,15 @@
       = link_to root_path do
         #{@category.category}その他の出品
     .similar-item__box
-      - @category.items.each do |item|
+      - @category.items.first(6).each do |item|
         .similar-item__box__card
           = link_to root_path do
             .similar-item__box__card__photo
               .similar-item__box__card__photo__image
-                = image_tag item.images[0].image.url
+                - if Rails.env.development?
+                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], size:'220x220'
+                - if Rails.env.production?
+                  = image_tag item.images[0].image.url, size:'220x220'
               - if item.buyer_id.present?
                 .similar-item__box__card__photo__text SOLD
                 .similar-item__box__card__photo__soldout
@@ -129,5 +135,8 @@
                 .similar-item__box__card__body__num__icon
                   = fa_icon 'heart-o', class: 'num-icon'
                   #{item.favorites_count}
+.bread-box
+  - breadcrumb :item
+  = breadcrumbs pretext: "", separator: " &rsaquo; "
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'

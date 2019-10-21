@@ -1,12 +1,11 @@
--# hidden_field_tag :sns_auth, true ←@sns_idが存在する場合、存在しない場合はパスワード入力欄
 .all
   .header-registration
     .header-registration__contents
       .merucari-icon
         = link_to(root_path, class:"logo-link") do
-          %img{src:"https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class:"logo-link__image"}
-      = render 'layouts/progressbar'
-
+          = image_tag 'https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg', class: 'logo-link__image'
+      .registration-bar
+        = render 'layouts/progressbar'
 
   .registry-box
     .registry-box__title
@@ -28,21 +27,25 @@
               .required
                 必須
             = f.email_field :email, autofocus: true, autocomplete: "email", class: "textfield", placeholder: "PC・携帯どちらでも可"
-          .field
-            .string
-              = f.label :password, "パスワード", class: "text"
-              .required
-                必須
-            = f.password_field :password, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
+          -if @credential.present?
+            = f.hidden_field :password, {value: @user.password}
+            = f.hidden_field :password_confirmation, {value: @user.password_confirmation}
             = f.fields_for :sns_credentials do |s|
               = s.hidden_field :uid, {value: @credential.uid}
               = s.hidden_field :provider, {value: @credential.provider}
-          .field
-            .string
-              = f.label :password_confirmation, "パスワード(確認)", class: "text"
-              .required
-                必須
-            = f.password_field :password_confirmation, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
+          -else
+            .field
+              .string
+                = f.label :password, "パスワード", class: "text"
+                .required
+                  必須
+              = f.password_field :password, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
+            .field
+              .string
+                = f.label :password_confirmation, "パスワード(確認)", class: "text"
+                .required
+                  必須
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "textfield", placeholder: "7文字以上"
           .identification
             .identification__title
               本人確認
@@ -54,16 +57,16 @@
               .required
                 必須
             .textfi
-              = f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "textfield halffield", placeholder: "例）山田"
-              = f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "textfield halffield", placeholder: "例）進太郎"          
+              = f.text_field :family_name, autofocus: true, autocomplete: "family_name", class: "textfield", id: "half", placeholder: "例）山田"
+              = f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "textfield", id: "half", placeholder: "例）進太郎"          
           .field
             .string
               = f.label :family_first_name__kana, "お名前カナ(全角)", class: "text"
               .required
                 必須
             .textfi
-              = f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "textfield halffield", placeholder: "例）ヤマダ"
-              = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "textfield halffield", placeholder: "例）シンタロウ"
+              = f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana", class: "textfield",id: "half", placeholder: "例）ヤマダ"
+              = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "textfield",id: "half", placeholder: "例）シンタロウ"
           .field
             .string
               = f.label :birth_date, "生年月日", class: "text"

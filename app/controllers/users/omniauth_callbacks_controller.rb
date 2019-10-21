@@ -46,11 +46,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
     else
-      # session["devise.#{provider}_data"] = request.env["omniauth.auth"].except("extra")
-      # @user.sns_credentials.build(
-      #   uid: session["devise.#{provider}_data"][:uid],
-      #   provider: session["devise.#{provider}_data"][:provider]
-      # )
       sns_id = user_info[:sns_id]
       @credential = @user.sns_credentials.build(uid: sns_id.uid, provider: sns_id.provider)
       render template: "devise/registrations/new"
