@@ -38,6 +38,9 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      # params[:images_attributes][:images.length][:image].each do |image|
+      #   @item.images.create(image: image, item_id: @item.id)
+      # end
       redirect_to root_path
     else
       render :new

@@ -31,7 +31,7 @@
             = link_to(item_path(item.id), method: :get, class: "category__new-items__lower__up__item1") do
               .category__new-items__lower__up__item1__picture
               - if Rails.env.development?
-                = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], size:'220x220'
+                = image_tag "/uploads/image/#{item.images.ids[0]}/"+item.images[0][:image], size:'220x220'
               - if Rails.env.production?
                 = image_tag item.images[0].image.url, size:'220x220'
                 -# = image_tag asset_path("#{item.images[0].image}"), height: '40', width: '40'
