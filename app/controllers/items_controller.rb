@@ -4,8 +4,16 @@ class ItemsController < ApplicationController
   before_action :set_value, only: [:show, :pre_edit] 
 
   def index
-    #4件category_id取得
-    category_ids = CategoryItem.group(:category_id).order(count_category_id: :desc).limit(4).count(:category_id).keys
+    #category
+    #現在のカテゴリの総数を取得
+    categoryItems = CategoryItem.all
+    ids = []
+    categoryItems.each do |categoryItem|
+      id = categoryItem.category_id
+      ids << id
+    end
+    #人気カテゴリ4つを取得
+    category_ids = ids.map{ |id| Category.find(id).root.id }.group_by{|i| i}.map{|key,value| [key, value.count]}.sort_by{|a| a[1] }.reverse.map{|sss| sss[0] }.first(4)
     #全てのitem(40個)
     @all_items = []
     @categories = []
@@ -13,7 +21,8 @@ class ItemsController < ApplicationController
       #各カテゴリのitem(10個ずつ)
       items = []
       #各カテゴリに対し、最新の10件をcategory_itemモデルから取得
-      categoryItem = CategoryItem.where(category_id: category_id).order(created_at: :desc).limit(10)
+      category1 = Category.find(category_id)
+      categoryItem = CategoryItem.where(category_id: category1.subtree).order(created_at: :desc).limit(10)
         categoryItem.each do |cItem|
           #取得したレコードからitem_idを取得
           itemId = cItem.item_id
@@ -24,7 +33,7 @@ class ItemsController < ApplicationController
         category = Category.find(category_id)
         @categories << category
     end
-
+    #brand
     @all_brand_items = []
     @brands = Item.group(:brand).order(count_brand: :desc).limit(4).count(:brand).keys
     @brands.each do |brand|
@@ -35,18 +44,10 @@ class ItemsController < ApplicationController
       end
       @all_brand_items << brand_items
     end
-
-    #rootカテゴリ取得
-    # @rootCategories = []
-    # category = Category.all
-    # categories = category.where(ancestry: nil)
-    # categories.each do |c|
-    #   rootCategory = c.category
-    #   @rootCategories << rootCategory
-    # end
-    # @categoryItem = CategoryItem.all
-
   end
+
+
+
 
   def show
   end
