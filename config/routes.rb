@@ -21,12 +21,17 @@ Rails.application.routes.draw do
     end
   end
 
-    resources :items do
-      get :search, on: :collection
-      member do
-        get :pre_edit
-      end
+
+  resources :items do
+    collection do
+      get :search
+      get :get_children, defaults: {format: 'json'}
+      get :get_grandchildren, defaults: {format: 'json'}
     end
+    member do
+      get :pre_edit
+    end
+  end
 
   resources :addresses
   resources :cards

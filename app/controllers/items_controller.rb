@@ -44,6 +44,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def get_children
+    @children = Category.find(params[:parent_id]).children
+  end
+
+  def get_grandchildren
+    @grandchildren = Category.find(params[:child_id]).children
+  end
+
   def update
   end
 
@@ -64,7 +72,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :detail, :state, :size, :delivery_fee, :delivery_method, :price, :delivery_date, :prefecture_id, category_items_attributes: [:id, :category_id], images_attributes: [:id, :image]).merge(saler_id: current_user.id)
+    params.require(:item).permit(:name, :detail, :state, :size, :brand, :delivery_fee, :delivery_method, :price, :delivery_date, :prefecture_id, category_items_attributes: [:id, :category_id], images_attributes: [:id, :image]).merge(saler_id: current_user.id)
   end
 
   def set_category
