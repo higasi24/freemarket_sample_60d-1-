@@ -109,6 +109,7 @@ class CardsController < ApplicationController
         customer: card.customer_id, #顧客ID
         currency: 'jpy', #日本円
       )
+      redirect_to new_order_path(item.id), notice: "購入されました"
     else
       redirect_to new_order_path(item.id), notice: "既に購入されている方がいます"
     end
