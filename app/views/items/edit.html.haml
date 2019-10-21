@@ -52,7 +52,7 @@
                   必須
                 .send__main__content__form__box3__content__group1__div#category-form
                   .send__main__content__form__box3__content__group1__div__select
-                    -# = c.collection_select(:category_id, @category, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
+                    = c.collection_select(:category_id, @category, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
             .send__main__content__form__box3__content__group2#size_box
               = f.label :サイズ, id:"title"
               %span#mark
