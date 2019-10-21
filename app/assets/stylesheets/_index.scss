@@ -60,45 +60,20 @@
           width: 100%;
           font-weight: 600;
           color: rgb(51, 51, 51);
-          padding-left: calc(50vw - 287.54px);
-          &__rank1 {
-            float: left;
-            height: 30px;
-            width: 100.89px;
-            background-color: rgb(245, 245, 245);
-            font-size: 14px;
-            line-height: 30px;
-            border-radius: 15px;
-          }
-          &__rank2 {
-            float: left;
-            height: 30px;
-            width: 74px;
-            background-color: rgb(245, 245, 245);
-            font-size: 14px;
-            line-height: 30px;
-            margin-left: 10px;
-            border-radius: 15px;
-          }
-          &__rank3 {
-            float: left;
-            height: 30px;
-            width: 172px;
-            background-color: rgb(245, 245, 245);
-            font-size: 14px;
-            line-height: 30px;
-            margin-left: 10px;
-            border-radius: 15px;
-          }
-          &__rank4 {
-            float: left;
-            height: 30px;
-            width: 198.19px;
-            background-color: rgb(245, 245, 245);
-            font-size: 14px;
-            line-height: 30px;
-            margin-left: 10px;
-            border-radius: 15px;
+          &__box{
+            width: 700px;
+            display: flex;
+            margin: auto;
+            &__rank {
+              margin-right: 10px;
+              display: block;
+              height: 30px;
+              width: 100.89px;
+              background-color: rgb(245, 245, 245);
+              font-size: 14px;
+              line-height: 30px;
+              border-radius: 15px;
+            }
           }
         }
       }
@@ -113,137 +88,89 @@
         &__upper {
           height: 33px;
           width: 100%;
+          display: flex;
           &__text {
             font-size: 24px;
-            float: left;
             line-height: 33px;
             font-weight: 600;
           }
           &__more {
+            margin-left: auto;
             color: rgb(0,149,238);
-            text-align: right;
             line-height: 33px;
             font-size: 14px;
             font-weight: 600;
           }
         }
-        &__lower {
-          &__up {
-            padding-top: 16px;
-            height: 268px;
-            box-sizing: border-box;
-            &__item1 {
-              height: 252px;
+        &__itembox {
+          padding-top: 16px;
+          height: 268px;
+          box-sizing: border-box;
+          // padding-right: 20px;
+          &__item {
+            margin-right: 16px;
+            margin-bottom: 16px;
+            height: 252px;
+            width: 188px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,.18);
+            float: left;
+            &__image {
+              height: 188px;
               width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              &__picture {
-                height: 188px;
-                width: 188px;
-                background-color: yellow;
-                padding-top: 152px;
-                box-sizing: border-box;
-                &__price {
-                  height: 28px;
-                  width: 78.05px;
-                  line-height: 28px;
-                  font-size: 17px;
-                  text-align: center;
-                  color: white;
-                  background-color: rgba(0, 0, 0, 0.4);
-                  border-radius: 0 14px 14px 0;
-                }
+              background-color: yellow;
+              box-sizing: border-box;
+              position: relative;
+              &-url{
+                width: 100%;
+                height: 100%;
               }
-              &__name {
-                height: 64px;
-                width: 188px;
-                padding: 12.4px 14px;
-                font-size: 14px;
-                line-height: 19.6px;
-                box-sizing: border-box;
+              &__price {
+                position: absolute;
+                bottom: 10px;
+                height: 28px;
+                width: 80px;  //値段によって変わる
+                line-height: 28px;
+                font-size: 15px;
+                text-align: center;
+                color: white;
+                background-color: rgba(0, 0, 0, 0.4);
+                border-radius: 0 14px 14px 0;
               }
             }
-            &__item2 {
-              height: 252px;
+            &__name {
+              height: 64px;
               width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
-            }
-            &__item3 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
-            }
-            &__item4 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
-            }
-            &__item5 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
-            }
-          }
-          &__down {
-            padding-top: 16px;
-            height: 268px;
-            box-sizing: border-box;
-            &__item6 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-            }
-            &__item7 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
-            }
-            &__item8 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
-            }
-            &__item9 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
-            }
-            &__item10 {
-              height: 252px;
-              width: 188px;
-              background-color: white;
-              box-shadow: 0 2px 4px rgba(0,0,0,.18);
-              float: left;
-              margin-left: 20px;
+              padding: 12.4px 14px;
+              font-size: 14px;
+              line-height: 19.6px;
+              box-sizing: border-box;
             }
           }
         }
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     .brand {
       &__top {
         padding-top: 56px;
