@@ -87,7 +87,7 @@ class CardsController < ApplicationController
       if @card.save && @url.match(/\/cards\/\d+\/edit/)
         redirect_to card_path(current_user.id)
       elsif @card.save
-        redirect_to action: "index"
+        redirect_to done_users_path
       elsif @url.match(/\/cards\/\d+\/edit/)
         redirect_to edit_card_path(current_user.id)
       else
@@ -95,9 +95,33 @@ class CardsController < ApplicationController
       end
     end
   end
+
+  def pay
+    item = Item.find(params[:item])
+    if item.buyer_id.nil? && item.saler_id != current_user.id
+      item.update_attributes(buyer_id: current_user.id)
+      order = Order.new(order_params)
+      order.buyer_id = item.buyer_id
+      order.save
+      card = Card.where(user_id: current_user.id).first
+        Payjp::Charge.create(
+        amount: item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
+        customer: card.customer_id, #顧客ID
+        currency: 'jpy', #日本円
+      )
+    else
+      redirect_to new_order_path(item.id), notice: "既に購入されている方がいます"
+    end
+  end
+
   private
 
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
+
+  def order_params
+    params.require(:order).permit(:name, :detail, :state, :size, :delivery_fee, :delivery_method, :price, :delivery_date, :saler_id, :buyer_id, :item_id)
+  end
+
 end
