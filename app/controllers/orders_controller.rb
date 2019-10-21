@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-  end
+  end 
 
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?

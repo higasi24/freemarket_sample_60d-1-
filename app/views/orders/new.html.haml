@@ -7,11 +7,10 @@
       .oreder-new__body__header 購入内容の確認
       .oreder-new__body__main
         .oreder-new__body__main__inner
-          - @image.each do |img|
-            - if Rails.env.development?
-              = image_tag "/uploads/image/image/#{img.id}/"+img[:image], height: "85.19", class:"oreder-new__body__main__inner__image"
-            - if Rails.env.production?
-              = image_tag img.image.url, class:"oreder-new__body__main__inner__image"
+          - if Rails.env.development?
+            = image_tag "/uploads/image/image/#{@image.id}/"+@image[:image], height: "85.19", class:"oreder-new__body__main__inner__image"
+          - if Rails.env.production?
+            = image_tag @image.image.url, class:"oreder-new__body__main__inner__image"
             .oreder-new__body__main__inner__item-name #{@item.name}
             .oreder-new__body__main__inner__form
               .oreder-new__body__main__inner__form__price-box
