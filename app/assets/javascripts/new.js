@@ -129,7 +129,7 @@ $(document).on('turbolinks:load', function(){
 
   // カテゴリーボックス
   function appendOption(category) {
-    let html = `<option value="${ category.name }", data-category="${ category.id }">${ category.name }</option>`;
+    let html = `<option value="${ category.id }", data-category="${ category.id }">${ category.name }</option>`;
     return html;
   }
 
