@@ -8,7 +8,6 @@ class Order < ApplicationRecord
   validates :delivery_fee, presence: true
   validates :delivery_method, presence: true
   validates :delivery_date, presence: true
-  validates :size, presence: true
   validates :buyer_id, presence: true
   validates :saler_id, presence: true
   validates :item_id, presence: true

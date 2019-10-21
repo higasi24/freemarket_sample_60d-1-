@@ -1,6 +1,6 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# describe ItemsController do
+describe ItemsController do
 
   describe 'GET #show' do
     it "renders the :show template" do
@@ -11,4 +11,4 @@
     end
   end
 
-# end
+end
