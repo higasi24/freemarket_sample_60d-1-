@@ -9,8 +9,6 @@
       .slick_bar__right__button
         > 
           
-
-          
   .content
     .category
       .category__top
@@ -22,14 +20,15 @@
               = link_to(root_path, class: "category__top__contents__box__rank") do
                 = category.category
 
+    - @categories.each_with_index do |category, index|
       .category__new-items
         .category__new-items__upper
           .category__new-items__upper__text
-            = "#{@categories[0].category}新着アイテム"
+            = "#{category.category}新着アイテム"
           = link_to(root_path, class: "category__new-items__upper__more") do
             もっと見る >
         .category__new-items__itembox
-          - @all_items[0].each do |item|
+          - @all_items[index].each do |item|
             = link_to(item_path(item.id), method: :get, class: "category__new-items__itembox__item") do
               .category__new-items__itembox__item__image
                 - if Rails.env.development?
@@ -41,113 +40,36 @@
               .category__new-items__itembox__item__name
                 = item.name
 
-      .category__new-items
-        .category__new-items__upper
-          .category__new-items__upper__text
-            = "#{@categories[1].category}新着アイテム"
-          = link_to(root_path, class: "category__new-items__upper__more") do
-            もっと見る >
-        .category__new-items__itembox
-          - @all_items[1].each do |item|
-            = link_to(item_path(item.id), method: :get, class: "category__new-items__itembox__item") do
-              .category__new-items__itembox__item__image
-                - if Rails.env.development?
-                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], class: "category__new-items__itembox__item__image-url"
-                - if Rails.env.production?
-                  = image_tag item.images[0].image.url, class: "category__new-items__itembox__item__image-url"
-                .category__new-items__itembox__item__image__price
-                  = "¥#{item.price}"
-              .category__new-items__itembox__item__name
-                = item.name
-
-      .category__new-items
-        .category__new-items__upper
-          .category__new-items__upper__text
-            = "#{@categories[2].category}新着アイテム"
-          = link_to(root_path, class: "category__new-items__upper__more") do
-            もっと見る >
-        .category__new-items__itembox
-          - @all_items[2].each do |item|
-            = link_to(item_path(item.id), method: :get, class: "category__new-items__itembox__item") do
-              .category__new-items__itembox__item__image
-                - if Rails.env.development?
-                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], class: "category__new-items__itembox__item__image-url"
-                - if Rails.env.production?
-                  = image_tag item.images[0].image.url, class: "category__new-items__itembox__item__image-url"
-                .category__new-items__itembox__item__image__price
-                  = "¥#{item.price}"
-              .category__new-items__itembox__item__name
-                = item.name
-
-      .category__new-items
-        .category__new-items__upper
-          .category__new-items__upper__text
-            = "#{@categories[3].category}新着アイテム"
-          = link_to(root_path, class: "category__new-items__upper__more") do
-            もっと見る >
-        .category__new-items__itembox
-          - @all_items[3].each do |item|
-            = link_to(item_path(item.id), method: :get, class: "category__new-items__itembox__item") do
-              .category__new-items__itembox__item__image
-                - if Rails.env.development?
-                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], class: "category__new-items__itembox__item__image-url"
-                - if Rails.env.production?
-                  = image_tag item.images[0].image.url, class: "category__new-items__itembox__item__image-url"
-                .category__new-items__itembox__item__image__price
-                  = "¥#{item.price}"
-              .category__new-items__itembox__item__name
-                = item.name
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .brand
-      .brand__top
-        .brand__top__title
+    .category
+      .category__top
+        .category__top__title
           人気のブランド
-        .brand__top__contents
-          .brand__top__contents__rank1
-            シャネル
-          .brand__top__contents__rank2
-            ルイヴィトン
-          .brand__top__contents__rank3
-            シュプリーム
-          .brand__top__contents__rank4
-            ナイキ
-      .brand__new-items
-        .brand__new-items__upper
-          .brand__new-items__upper__text
-            シャネル新着アイテム
-          .brand__new-items__upper__more
+        .category__top__contents
+          .category__top__contents__box
+            - @brands.each do |brand|
+              = link_to(root_path, class: "category__top__contents__box__rank") do
+                = brand
+
+    - @brands.each_with_index do |brand, index|
+      .category__new-items
+        .category__new-items__upper
+          .category__new-items__upper__text
+            = "#{brand}新着アイテム"
+          = link_to(root_path, class: "category__new-items__upper__more") do
             もっと見る >
-        .brand__new-items__lower
-          .brand__new-items__up
-            .brand__new-items__up__item1
-            .brand__new-items__up__item2
-            .brand__new-items__up__item3
-            .brand__new-items__up__item4
-            .brand__new-items__up__item5
-          .brand__new-items__down
-            .brand__new-items__down__item6
-            .brand__new-items__down__item7
-            .brand__new-items__down__item8
-            .brand__new-items__down__item9
-            .brand__new-items__down__item10
+        .category__new-items__itembox
+          - @all_brand_items[index].each do |item|
+            = link_to(item_path(item.id), method: :get, class: "category__new-items__itembox__item") do
+              .category__new-items__itembox__item__image
+                - if Rails.env.development?
+                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], class: "category__new-items__itembox__item__image-url"
+                - if Rails.env.production?
+                  = image_tag item.images[0].image.url, class: "category__new-items__itembox__item__image-url"
+                .category__new-items__itembox__item__image__price
+                  = "¥#{item.price}"
+              .category__new-items__itembox__item__name
+                = item.name
+
 = render partial: 'layouts/button'            
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'

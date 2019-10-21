@@ -24,6 +24,28 @@ class ItemsController < ApplicationController
         category = Category.find(category_id)
         @categories << category
     end
+
+    @all_brand_items = []
+    @brands = Item.group(:brand).order(count_brand: :desc).limit(4).count(:brand).keys
+    @brands.each do |brand|
+      brand_items = []
+      brandItems = Item.where(brand: brand).order(created_at: :desc).limit(10)
+      brandItems.each do |item|
+        brand_items << item
+      end
+      @all_brand_items << brand_items
+    end
+
+    #rootカテゴリ取得
+    # @rootCategories = []
+    # category = Category.all
+    # categories = category.where(ancestry: nil)
+    # categories.each do |c|
+    #   rootCategory = c.category
+    #   @rootCategories << rootCategory
+    # end
+    # @categoryItem = CategoryItem.all
+
   end
 
   def show
