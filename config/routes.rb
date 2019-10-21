@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   end
 
   resources :items do
-    get :search, on: :collection
+    collection do
+      get :search
+      get :get_children, defaults: {format: 'json'}
+      get :get_grandchildren, defaults: {format: 'json'}
+    end
     member do
       get :pre_edit
     end

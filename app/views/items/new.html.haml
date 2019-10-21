@@ -13,22 +13,22 @@
           %p.send__main__content__form__box1__comment
             最大10枚までアップロードできます
           = f.fields_for :images do |i|
-            #preview
-            .send__main__content__form__box1__box
-              = i.label :iamge, for:"img-file" do
-                .send__main__content__form__box1__box__content#img-field
-                  = i.file_field :image, class:"send__main__content__form__box1__box__content__item", id:"img-file", 'data-image':0
-                  %pre.send__main__content__form__box1__box__content__item__pc
-                    ドラッグアンドドロップ
-                    またはクリックしてファイルをアップロード
-                  = fa_icon 'camera', class:"send__main__content__form__box1__box__content__item__icon"
-            #preview2
-            .send__main__content__form__box1__box
-              = i.label :iamge, for:"img-file" do
-                .send__main__content__form__box1__box__content2#img-field
-                  %pre.send__main__content__form__box1__box__content__item__pc
-                    ドラッグアンドドロップ
-                    またはクリックしてファイルをアップロード
+            #img-box
+              #preview
+              #img-content
+                = i.label :iamge, for:"img-file" do
+                  #img-field
+                    = i.file_field :image, class:"upload-image", id:"img-file", 'data-image':0
+                    %pre#guide
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+              #preview2
+              #img-content2
+                = i.label :iamge, for:"img-file" do
+                  #img-field2
+                    %pre#guide2
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
         .send__main__content__form__box2
           .send__main__content__form__box2__group1
             = f.label :商品名, id:"title"
@@ -50,15 +50,20 @@
                 = c.label :カテゴリー, id:"title"
                 %span#mark
                   必須
-                .send__main__content__form__box3__content__group1__div
+                .send__main__content__form__box3__content__group1__div#category-form
                   .send__main__content__form__box3__content__group1__div__select
-                    = c.collection_select(:category_id, @category, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show")
-            .send__main__content__form__box3__content__group2
+                    = c.collection_select(:category_id, @category, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
+            .send__main__content__form__box3__content__group2#size_box
               = f.label :サイズ, id:"title"
               %span#mark
                 必須
               .send__main__content__form__box3__content__group2__select
                 = f.select :size, [["XXS以下", "XXS以下"], ["XS(SS)", "XS(SS)"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL(LL)", "XL(LL)"],["2XL(3L)", "2XL(3L)"],["3XL(4L)", "3XL(4L)"],["4XL(5L)", "4XL(5L)"],["FREE SIZE", "FREE SIZE"]], {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"}
+            .send__main__content__form__box3__content__group2#brand_form
+              = f.label :ブランド, id:"title"
+              %span#mark.gray
+                任意
+              = f.text_field :brand, class:"send__main__content__form__box3__content__group2__text", placeholder:"例） シャネル"
             .send__main__content__form__box3__content__group2
               = f.label :商品の状態, id:"title"
               %span#mark
@@ -78,7 +83,7 @@
               .send__main__content__form__box4__content__group1__select
                 = f.select :delivery_fee, [["送料込み（出品者負担）", "送料込み（出品者負担）"],["着払い（購入者負担）", "着払い（購入者負担）"]], {prompt: "---"}, {class:"send__main__content__form__box4__content__group1__select__show"}
             .send__main__content__form__box4__content__group1
-              = f.label :配送料の負担, id:"title"
+              = f.label :配送の方法, id:"title"
               %span#mark
                 必須
               .send__main__content__form__box4__content__group1__select
@@ -144,4 +149,5 @@
           = f.submit "出品する", id:"post"
           =link_to items_path, class: "send__main__content__form__box7__return" do
             もどる
+
 = render partial: "layouts/simplefooter"
