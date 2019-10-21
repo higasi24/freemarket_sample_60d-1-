@@ -59,7 +59,7 @@ $(document).on('turbolinks:load', function(){
       })
       return;
     }
-    var new_image = $(`<input multiple= "multiple" name="images[image][]" class="upload-image" data-image= ${images.length} type="file" id="img-file">`);
+    var new_image = $(`<input multiple= "multiple" name="item[images_attributes][${images.length}][image]" class="upload-image" data-image= ${images.length} type="file" id="img-file">`);
     imagefield.prepend(new_image);
   });
   $(document).on('click', '#delete', function() {
@@ -136,7 +136,7 @@ $(document).on('turbolinks:load', function(){
   function appendChildrenSelectBox(insertHTML) {
     let childrenhtml = '';
     childrenhtml = `<div class="send__main__content__form__box3__content__group1__div__select", id="children_box">
-                      <select class="send__main__content__form__box3__content__group1__div__select__show", id="child-form", name="item[category_items_attributes][0][category_id]">
+                      <select class="send__main__content__form__box3__content__group1__div__select__show", id="child-form">
                         <option>---</option>
                         ${ insertHTML }
                       </select>
@@ -146,8 +146,8 @@ $(document).on('turbolinks:load', function(){
 
   function appendGrandchildrenSelectBox(insertHTML) {
     let grandchildrenhtml = '';
-    grandchildrenhtml = `<div class="send__main__content__form__box3__content__group1__div__select", id="grandchildren_box">
-                      <select class="send__main__content__form__box3__content__group1__div__select__show", id="grandchild-form", name="item[category_items_attributes][0][category_id]">
+    grandchildrenhtml = `<div class="send__main__content__form__box3__content__group1__div__select", id="grandchildren_box", name="item[category_items_attributes][0][category_id]" >
+                      <select class="send__main__content__form__box3__content__group1__div__select__show", id="grandchild-form", name="item[category_items_attributes][0][category_id]" >
                         <option value="---" data-category="---" >---</option>
                         ${ insertHTML }
                       </select>
@@ -216,5 +216,7 @@ $(document).on('turbolinks:load', function(){
       // $('#brand_form').remove();
     }
   });
+  // 配送方法
+  // $('').on("change", )
 });
 
