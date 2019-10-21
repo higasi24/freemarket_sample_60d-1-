@@ -129,8 +129,8 @@
         .send__main__content__form__box6
         .send__main__content__form__box7
           .send__main__content__form__box7__notice
-          = f.submit "変更する", id:"post"
-          =link_to pre_edit_item_path(@item.id), class: "send__main__content__form__box7__return" do
+          = f.submit '変更する', id:"post" do
+            link_to item_path(@item.id), method: :patch
+          = link_to items_path, class: "send__main__content__form__box7__return" do
             キャンセル
-
 = render partial: "layouts/simplefooter"
