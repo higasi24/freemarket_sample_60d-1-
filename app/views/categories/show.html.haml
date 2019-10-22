@@ -1,11 +1,18 @@
 = render partial: "layouts/header" 
--# - breadcrumb :category
+- breadcrumb :category
 = render partial: 'layouts/navbar'
 .body
   .content
     .category
 
       .category__new-items
+        - @category.children.each do |category|
+          = link_to(category_path(category.id), class: "category-links") do
+            = category.category
+        - if @category.children == []
+          - @category.parent.children.each do |category|
+            = link_to(category_path(category.id), class: "category-links") do
+              = category.category
         .category__new-items__upper
           .category__new-items__upper__text
             = "#{@category.category}商品一覧"
@@ -21,7 +28,6 @@
                   = "¥#{item.price}"
               .category__new-items__itembox__item__name
                 = item.name
-
 = render partial: 'layouts/button'
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'

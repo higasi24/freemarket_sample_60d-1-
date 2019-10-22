@@ -43,6 +43,44 @@ crumb :item do
   parent :root
 end
 
+crumb :categories do
+  link "カテゴリー一覧", categories_path
+  parent :root
+end
+
+crumb :category do
+  category = Category.find(params[:id])
+  if category.parent.present?
+    if category.parent.parent.present?
+      link "#{category.parent.parent.category}", category_path(category.parent.parent.id)
+      link "#{category.parent.category}", category_path(category.parent.id)
+      link "#{category.category}", category_path
+    else
+      link "#{category.parent.category}", category_path(category.parent.id)
+      link "#{category.category}", category_path
+    end
+  else
+    link "#{category.category}", category_path
+  end
+  parent :categories
+end
+
+# crumb :child_category do
+#   category = Category.find(params[:id])
+#   link "#{category.category}", category_path
+#   parent :category
+# end
+
+# crumb :grandchild_category do
+#   category = Category.find(params[:id])
+#   link "#{category.category}", category_path
+#   parent :parent_category
+# end
+
+
+
+
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
