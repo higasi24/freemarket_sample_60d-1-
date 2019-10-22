@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :family_name, null: false   ###山田
       t.string :first_name_kana, null: false   ###タロウ
       t.string :family_name_kana, null: false   ###ヤマダ
-      t.string :birth_date, null: false
+      t.date :birth_date, null: false
 
       ## Recoverable
       t.string   :reset_password_token

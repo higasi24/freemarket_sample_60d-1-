@@ -1,15 +1,27 @@
-= render partial: "layouts/header"
-.ladies
-  レディース
+= render partial: "layouts/header" 
+-# - breadcrumb :category
+= render partial: 'layouts/navbar'
+.body
+  .content
+    .category
 
+      .category__new-items
+        .category__new-items__upper
+          .category__new-items__upper__text
+            = "#{@category.category}商品一覧"
+        .category__new-items__itembox
+          - @items.each do |item|
+            = link_to(item_path(item.id), method: :get, class: "category__new-items__itembox__item") do
+              .category__new-items__itembox__item__image
+                - if Rails.env.development?
+                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], class: "category__new-items__itembox__item__image-url"
+                - if Rails.env.production?
+                  = image_tag item.images[0].image.url, class: "category__new-items__itembox__item__image-url"
+                .category__new-items__itembox__item__image__price
+                  = "¥#{item.price}"
+              .category__new-items__itembox__item__name
+                = item.name
 
-
-
-
-
-
-
-
-= render partial: 'layouts/button'            
+= render partial: 'layouts/button'
 = render partial: 'layouts/aside'
 = render partial: 'layouts/footer'
