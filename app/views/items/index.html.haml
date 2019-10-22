@@ -25,7 +25,7 @@
         .category__new-items__upper
           .category__new-items__upper__text
             = "#{category.category}新着アイテム"
-          = link_to(root_path, class: "category__new-items__upper__more") do
+          = link_to(category_path(category.id), class: "category__new-items__upper__more") do
             もっと見る >
         .category__new-items__itembox
           - @all_items[index].each do |item|

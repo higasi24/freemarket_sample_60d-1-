@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories, only: [:show, :index]
   resources :addresses
   resources :cards
   resources :orders, except: [:new] do
