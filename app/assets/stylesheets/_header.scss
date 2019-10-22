@@ -52,9 +52,6 @@ a {
   a:hover {
     color: rgb(0,149,238);
   }
-  i:hover {
-    color: rgb(0,149,238);
-  }
 }
 
 ul {
@@ -148,6 +145,12 @@ ul {
       &__list-user {
         display: flex;
         position: relative;
+        a:hover {
+          color: rgb(0,149,238);
+          i {
+            color: rgb(0,149,238);
+          }
+        }
         &__favorite{
           @include list-user;
         }

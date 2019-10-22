@@ -1,0 +1,14 @@
+= render partial: "layouts/header"
+
+.search_wrapper
+  .search_form
+  .search-container
+    %h2.result
+      #{}
+    .search-container__count
+    .search-container__results
+
+= paginate(@items)
+= render partial: "layouts/button"
+-# = render partial: "layouts/aside"
+-# = render partial: "layouts/footer"
