@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
-  before_action :set_category, only: [:new, :create]
+  before_action :set_category, only: [:new, :create, :edit]
   before_action :set_value, only: [:show, :pre_edit] 
+  before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
     #4件category_id取得
@@ -78,6 +79,11 @@ class ItemsController < ApplicationController
   end
 
   def update
+    if @item.saler_id == current_user.id && @item.update(item_params)
+      redirect_to pre_edit_item_path(@item.id)
+    else
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -87,8 +93,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    if item.saler_id == current_user.id && item.destroy
+    if @item.saler_id == current_user.id && @item.destroy
       redirect_to myitem_user_path(current_user.id)
     else
       redirect_to root_path
@@ -112,6 +117,10 @@ class ItemsController < ApplicationController
     @address = Address.find_by(user_id: @saler.id)
     @salers_item = Item.where(saler_id: @saler.id)
     @order_count = @salers_item.where.not(buyer_id: nil).count
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end
