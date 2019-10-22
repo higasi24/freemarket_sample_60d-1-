@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
 
   before_action :set_category, only: [:new, :create, :edit]
   before_action :set_value, only: [:show, :pre_edit] 
-  before_action :set_item, only: [:update, :destroy]
+  before_action :set_item, only: [:edit, :update, :destroy]
 
   def index
     #4件category_id取得
@@ -62,7 +62,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def pre_edit
