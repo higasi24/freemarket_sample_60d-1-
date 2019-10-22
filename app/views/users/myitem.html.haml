@@ -23,14 +23,20 @@
             - @salers_item.each do |item|
               = link_to pre_edit_item_path(item.id), class: "right__myitem-profile__lower__li" do
                 .right__myitem-profile__lower__li__icon
-                  -# = image_tag item.images[0].image.url, size: "48x48"
+                  - if Rails.env.development?
+                    = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], size:'48x48'
+                  - if Rails.env.production?
+                    = image_tag item.images[0].image.url, size:'48x48'
                 .right__myitem-profile__lower__li__center
                   .right__myitem-profile__lower__li__center__text
                     #{item.name}
                   .right__myitem-profile__lower__li__center__time
                     .right__myitem-profile__lower__li__center__time__count
                       = fa_icon 'heart-o'
-                      #{item.favorites_count}
+                      - if item.favorites_count.nil?
+                        0
+                      - else
+                        #{item.favorites_count}
                     .right__myitem-profile__lower__li__center__time__count
                       %i.far.fa-comment-alt
                       0
