@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     end
     #brand
     @all_brand_items = []
-    @brands = Item.group(:brand).order(count_brand: :desc).limit(4).count(:brand).keys
+    @brands = Item.where.not(brand: "").group(:brand).order(count_brand: :desc).limit(4).count(:brand).keys
     @brands.each do |brand|
       brand_items = []
       brandItems = Item.where(brand: brand).order(created_at: :desc).limit(10)
