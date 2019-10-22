@@ -70,6 +70,13 @@
           visibility: hidden;
           content: "";
         }
+        // #slider_main ul:after {
+        //   content: ".";
+        //   height: 0;
+        //   clear: both;
+        //   display: block;
+        //   visibility: hidden;
+        // }
         #slider_thumb img {
           width: 60px;
           height: 60px;
@@ -155,6 +162,7 @@
     }
     &__comment {
       padding-top: 32px;
+      word-wrap: break-word;
     }
     &__action-box {
       box-sizing: border-box;
@@ -578,7 +586,6 @@
       }
     }
   }
-
 }
 .bread-box {
   border-top: 1px solid #eee;
