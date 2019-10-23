@@ -40,6 +40,4 @@ class Item < ApplicationRecord
   validates :delivery_fee, presence: {message: '選択してください'}
   validates :delivery_method, presence: {message: '選択してください'}
   validates :delivery_date, presence: {message: '選択してください'}
-  validates :size, presence: {message: '選択してください'}
-
 end
