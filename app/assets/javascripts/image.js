@@ -1,7 +1,8 @@
 $(function(){
     var setMainId = "#slider_main";
     var setThumbId = '#slider_thumb';
-    var slideTime = 1000;
+    var slideTime = 250;
+    // var delayTime = 99999999999;
 
     $(setMainId).each(function(){
         var sliderWidth = $(this).width();
@@ -35,7 +36,7 @@ $(function(){
         timer();
 
         function timer() {
-            setTimer = setInterval(function(){
+            setTimer = function(){
                 $(setMainId + ' ul').each(function(){
                     var moveLeft = parseInt($(this).css('left'));
                     var listLengh = $(setThumbId + ' ul li').length;
@@ -57,7 +58,7 @@ $(function(){
                         });
                     }
                 });
-            });
+            };
         };
     });
 });

@@ -1,14 +1,16 @@
 = render partial: 'layouts/header'
 - breadcrumb :edit
 = render partial: 'layouts/navbar'
-
+- if flash[:notice]
+  .flash
+    = flash[:notice]
 .wrapper
   %main.container
     .container__box-edit
       %section.container__box-edit__section
         %h2.container__box-edit__section__title
           本人情報の登録
-        = form_with( model: @user, scope: :patch, class:"container__box-edit__section__user-edit") do |f|
+        = form_with( model: @address, scope: :patch, class:"container__box-edit__section__user-edit") do |f|
           %div
             %p.font
               お客様の本人情報をご登録ご登録ください。
@@ -26,7 +28,7 @@
             %p.font #{@user.family_name_kana} #{@user.first_name_kana}
           .form-group
             = f.label :生年月日, class:"form-group__label"
-            %p.font #{@user.birth_date}
+            %p.font #{@birth}
           .form-group
             = f.label :郵便番号, class:"form-group__label"
             %span.form-group__span 任意
@@ -34,7 +36,7 @@
           .form-group
             = f.label :都道府県, class:"form-group__label"
             %span.form-group__span 任意
-            = f.collection_select(:name, Prefecture.all, :id, :name, {prompt: ""}, {class: "form-group__form"} )
+            = f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {prompt: ""}, {class: "form-group__form"} )
           .form-group
             = f.label :市町村区, class:"form-group__label"
             %span.form-group__span 任意
@@ -47,13 +49,13 @@
             = f.label :建物名, class:"form-group__label"
             %span.form-group__span 任意
             = f.text_field :building, placeholder:"例）なんばスカイオ15階", class:"form-group__form"
-          = f.button "登録する", class:"container__box-edit__section__user-edit__btn"
+          = f.submit "登録する", class:"container__box-edit__section__user-edit__btn"
           .form-group
             %p.link
               = link_to root_path, class:"color" do
                 本人情報の登録について
                 %i.fa.fa-chevron-right
-    = render partial: "side_bar"
+    = render partial: "users/side_bar"
 
 = render partial: 'layouts/button'
 = render partial: 'layouts/aside'

@@ -1,7 +1,7 @@
 .left
   .left__mypage
-    .left__mypage__li#mypage
-      = link_to user_path(current_user.id) do
+    = link_to user_path(current_user.id) do
+      .left__mypage__li#mypage 
         マイページ
         = fa_icon 'chevron-right', class: 'left__mypage__li__fa', id: 'fafa'
     .left__mypage__li
@@ -54,29 +54,29 @@
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
   .left__title
     設定
-    .left__title__li
-      = link_to profile_user_path do      
+    = link_to profile_user_path do
+      .left__title__li
         プロフィール
         = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       発送元・お届け先住所変更
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
-    .left__title__li
-      = link_to card_path(current_user.id) do
+    = link_to card_path(current_user.id) do
+      .left__title__li
         支払い方法
-      = fa_icon 'chevron-right', class: 'left__title__li__fa'
+        = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       メール/パスワード
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
-      = link_to edit_user_path(current_user.id) do
+      = link_to edit_address_path(current_user.addresses.ids) do
         本人情報
         = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
       電話番号の確認
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
-    .left__title__li
-      = link_to logout_user_path do
+    = link_to logout_user_path do
+      .left__title__li
         ログアウト
         = fa_icon 'chevron-right', class: 'left__title__li__fa'
       

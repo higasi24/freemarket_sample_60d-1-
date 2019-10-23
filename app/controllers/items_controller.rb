@@ -85,6 +85,13 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    num = @item.category_ids.first
+    child = Category.find(num)
+    @children = child.siblings
+    @parent = child.parent
+    @parents = @parent.siblings
+    @grandparent = @parent.parent
+    @grandparents = @grandparent.siblings
   end
 
   def pre_edit

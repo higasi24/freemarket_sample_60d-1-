@@ -46,13 +46,20 @@
             %span 2
     %tr
       %td.th1 カテゴリー
-      %td.th2 
-        = link_to("#{@category.root.category}", root_path)
-        %br
+      %td.th2
+        - unless @category.parent.parent.nil?
+          = link_to("#{@category.parent.parent.category}", root_path)
+          %br
           = link_to root_path do
             = fa_icon 'chevron-right'
             = "#{@category.parent.category}"
-        %br
+          %br
+          = link_to root_path do
+            = fa_icon 'chevron-right'
+            = "#{@category.category}"
+        - else
+          = link_to("#{@category.parent.category}", root_path)
+          %br
           = link_to root_path do
             = fa_icon 'chevron-right'
             = "#{@category.category}"
@@ -75,12 +82,13 @@
         = link_to("#{@item.prefecture.name}", root_path)
     %tr
       %td.th1 発送日の目安
-      %td.th2 ~#{@item.delivery_date}日で発送
+      %td.th2 #{@item.delivery_date}日で発送
 .show-box__item-price-box
   %span.show-box__item-price-box__price 
     = number_to_currency("#{@item.price}", unit: "¥", precision: 0)
   %span.show-box__item-price-box__tax (税込)
   %span.show-box__item-price-box__fee 送料込み
-= link_to("購入画面に進む", new_order_path(@item), class: "show-box__btn")
+- unless current_page?(controller: "items", action: "pre_edit")
+  = link_to("購入画面に進む", new_order_path(@item), class: "show-box__btn")
 .show-box__comment
   %p #{@item.detail}
