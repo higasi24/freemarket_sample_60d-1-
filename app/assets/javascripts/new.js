@@ -187,7 +187,7 @@ $(document).on('turbolinks:load', function(){
   });
 // 子選択時のイベント
   $('#category-form').on("change", "#child-form", function() {
-    let child = $('#child-form option:selected').data('category');
+    let child = document.getElementById('child-form').value;
     if (child != "---"){
       $.ajax({
         url: '/items/get_grandchildren',
