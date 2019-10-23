@@ -130,14 +130,14 @@
           &__group2 {
             height: 164px;
             margin: 40px 0 0;
-          
+
             #title {
               @include font-weight;
               #mark {
                 @include mark;
               }
             }
-          
+
             &__form {
               min-height: 104px;
               margin: 8px 0 0;
@@ -157,7 +157,7 @@
           padding: 40px;
           min-height: 500px;
           border-top: 1px solid #eee;
-        
+
           &__title {
             color: #888;
             font-size: 14px;
@@ -169,7 +169,7 @@
             min-height: 186px;
             background-color: white;
             float: right;
-          
+
             &__group1 {
               height: 200px;
               #title {
@@ -178,9 +178,9 @@
                   @include mark;
                 }
               }
-            
+
               &__div {
-                
+
                 &__select {
                   margin: 8px 0 0;
                   background: #fff;
