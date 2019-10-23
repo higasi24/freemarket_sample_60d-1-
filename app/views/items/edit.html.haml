@@ -12,9 +12,20 @@
               必須
           %p.send__main__content__form__box1__comment
             最大10枚までアップロードできます
-          = f.fields_for :images do |i|
+          = f.fields_for :image do |i|
             #img-box
               #preview
+                - @item.images.each do |image|
+                  .img_view
+                    - if Rails.env.development?
+                      = image_tag "/uploads/image/image/#{image.id}/#{image[:image]}", class: 'image'
+                    - if Rails.env.production?
+                      = image_tag image.image.url, class: 'image'
+                    .btn_box
+                      .btn_box__edit#edit
+                        編集
+                      .btn_box__delete#delete
+                        削除
               #img-content
                 = i.label :iamge, for:"img-file" do
                   #img-field
