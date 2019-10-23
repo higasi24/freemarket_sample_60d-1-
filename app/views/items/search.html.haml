@@ -2,29 +2,31 @@
 
 .search
   .search__wrapper
-    .right__box
     .left__box
+    .right__box
       .search-sort
       %section.search-container
-        %h2.result
-          #{params[:search]} 
-          %span の検索結果
-        .search-container__count
-          = "1 - #{@items.length}件表示"
+        - if params[:search] != ""
+          %h2.result
+            #{params[:search]}
+            %span の検索結果
+          .search-container__count
+            = "1 - #{@items.length}件表示"
+        - else
+          %h2 新着商品
         .search-container__results
           - @items.each do |item|
-            = link_to(item_path(item.id), method: :get, class: "category__new-items__itembox__item") do
-              .search-container__results__itembox__item__image
+            = link_to(item_path(item.id), method: :get, class: "search-container__results__item") do
+              .search-container__results__item__image
                 - if Rails.env.development?
-                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], class: "search-container__results__itembox__item__image-url"
+                  = image_tag "/uploads/image/image/#{item.images.ids[0]}/"+item.images[0][:image], class: "search-container__results__item__image-url"
                 - if Rails.env.production?
-                  = image_tag item.images[0].image.url, class: "search-container__results__itembox__item__image-url"
-                .search-container__results__itembox__item__image__price
+                  = image_tag item.images[0].image.url, class: "search-container__results__item__image-url"
+                .search-container__results__item__image__price
                   = "¥#{item.price}"
-              .search-container__results__itembox__item__name
+              .search-container__results__item__name
                 = item.name
 
-= paginate(@items)
 = render partial: "layouts/button"
 = render partial: "layouts/aside"
 = render partial: "layouts/footer"
