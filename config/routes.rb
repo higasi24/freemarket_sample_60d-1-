@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show, :index]
   resources :addresses
   resources :cards
-  resources :orders, except: [:new] do
+  resources :orders, except: [:new, :show] do
     collection do
       post :pay, to: 'cards#pay'
     end

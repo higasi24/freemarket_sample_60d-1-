@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
   require "payjp"
   before_action :set_card
 
@@ -30,9 +31,6 @@ class OrdersController < ApplicationController
       # ---------------------------------------------------------------
     end
   end
-
-  def show
-  end 
 
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?

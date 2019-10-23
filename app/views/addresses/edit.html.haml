@@ -1,7 +1,7 @@
 = render partial: 'layouts/header'
 - breadcrumb :edit
 = render partial: 'layouts/navbar'
-- if flash[:notice]
+- if flash[:notice] == "編集しました"
   .flash
     = flash[:notice]
 .wrapper
@@ -10,7 +10,7 @@
       %section.container__box-edit__section
         %h2.container__box-edit__section__title
           本人情報の登録
-        = form_with( model: @address, scope: :patch, class:"container__box-edit__section__user-edit") do |f|
+        = form_with( model: @address, class:"container__box-edit__section__user-edit") do |f|
           %div
             %p.font
               お客様の本人情報をご登録ご登録ください。

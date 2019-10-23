@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  before_action :authenticate_user!, only: [:edit]
   def new
     @address = Address.new
   end
@@ -28,8 +29,9 @@ class AddressesController < ApplicationController
   end
 
   private
+
   def address_params
-    params.require(:patch).permit(:postal_code, :city, :block, :building, :tel, :prefecture_id).merge(user_id: current_user.id)
+    params.require(:address).permit(:postal_code, :city, :block, :building, :tel, :prefecture_id).merge(user_id: current_user.id)
   end
 end
 
