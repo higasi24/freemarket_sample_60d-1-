@@ -48,19 +48,19 @@
       %td.th1 カテゴリー
       %td.th2
         - unless @category.parent.parent.nil?
-          = link_to("#{@category.parent.parent.category}", root_path)
+          = link_to("#{@category.parent.parent.category}", category_path(@category.parent.parent.id))
           %br
-          = link_to root_path do
+          = link_to category_path(@category.parent.id) do
             = fa_icon 'chevron-right'
             = "#{@category.parent.category}"
           %br
-          = link_to root_path do
+          = link_to category_path(@category.id) do
             = fa_icon 'chevron-right'
             = "#{@category.category}"
         - else
-          = link_to("#{@category.parent.category}", root_path)
+          = link_to("#{@category.parent.category}", category_path(@category.parent.id))
           %br
-          = link_to root_path do
+          = link_to category_path(@category.id) do
             = fa_icon 'chevron-right'
             = "#{@category.category}"
     %tr
