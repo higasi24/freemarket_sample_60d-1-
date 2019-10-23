@@ -1,1 +1,25 @@
 = render partial: "layouts/header" 
+- breadcrumb :categories
+= render partial: 'layouts/navbar'
+.body#back
+  .content
+    .categories
+      .categories__box
+        .categories__box__header
+          カテゴリー一覧
+        .categories__box__root
+          - @root_categories.each do |category|
+            .categories__box__root__category
+              = category.category
+        - @root_categories.each_with_index do |rootCategory,index|
+          .categories__box__index
+            .categories__box__index__title
+              = rootCategory.category
+            .categories__box__index__text
+              - @categories[index].each do |category|
+                = link_to(category_path(category.id), class: "categories__box__index__text__link") do
+                  = category.category
+            
+= render partial: 'layouts/button'
+= render partial: 'layouts/aside'
+= render partial: 'layouts/footer'

@@ -65,19 +65,6 @@ crumb :category do
   parent :categories
 end
 
-# crumb :child_category do
-#   category = Category.find(params[:id])
-#   link "#{category.category}", category_path
-#   parent :category
-# end
-
-# crumb :grandchild_category do
-#   category = Category.find(params[:id])
-#   link "#{category.category}", category_path
-#   parent :parent_category
-# end
-
-
 
 
 
