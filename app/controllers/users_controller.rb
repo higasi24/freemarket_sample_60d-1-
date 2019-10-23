@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def show
   end
 
@@ -9,14 +10,6 @@ class UsersController < ApplicationController
   end
 
   def profile
-  end
-
-  def credit
-    @user = User.find(current_user.id)
-    @card = @user.card
-  end
-
-  def save
   end
 
   def myitem
