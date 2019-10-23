@@ -52,9 +52,9 @@
                   必須
                 .send__main__content__form__box3__content__group1__div#category-form
                   .send__main__content__form__box3__content__group1__div__select
-                    = c.collection_select(:category_id, @grandparents, :id, :category, {selected: @grandparent}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
+                    = c.collection_select(:category_id, @grandparents, :id, :category, {selected: @grandparent.id}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
                   .send__main__content__form__box3__content__group1__div__select#children_box
-                    = c.collection_select(:category_id, @parents, :id, :category, {selected: @parent}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"child-form")
+                    = c.collection_select(:category_id, @parents, :id, :category, {selected: @parent.id}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"child-form")
                   .send__main__content__form__box3__content__group1__div__select#grandchildren_box
                     = c.collection_select(:category_id, @children, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"grandchild-form")
             .send__main__content__form__box3__content__group2#size_box
