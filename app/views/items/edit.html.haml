@@ -26,7 +26,7 @@
                         編集
                       .btn_box__delete#delete
                         削除
-              #img-content
+              #img-content{style: "width: calc(100% - 130 * #{@item.images.length}px)"}
                 = i.label :iamge, for:"img-file" do
                   #img-field
                     = i.file_field :image, class:"upload-image", id:"img-file", 'data-image':0
