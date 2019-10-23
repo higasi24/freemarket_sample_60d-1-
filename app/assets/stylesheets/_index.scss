@@ -1,3 +1,53 @@
+//items#index
+
+//item箱mixin
+@mixin item-box{
+  margin-right: 16px;
+  margin-bottom: 16px;
+  height: 252px;
+  width: 188px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,.18);
+  float: left;
+  &__image {
+    height: 188px;
+    width: 188px;
+    background-color: white;
+    box-sizing: border-box;
+    position: relative;
+    &-url{
+      width: 100%;
+      height: 100%;
+    }
+    &__price {
+      position: absolute;
+      bottom: 10px;
+      height: 28px;
+      width: 80px;  //値段によって変わる
+      line-height: 28px;
+      font-size: 15px;
+      text-align: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 0 14px 14px 0;
+    }
+  }
+  &__name {
+    height: 64px;
+    width: 188px;
+    padding: 12.4px 14px;
+    font-size: 14px;
+    line-height: 19.6px;
+    box-sizing: border-box;
+    overflow: hidden;
+    &__favorites{
+      text-align: right;
+    }
+  }
+}
+
+
+
 .body {
   overflow: scroll;
   box-sizing: border-box;
@@ -108,64 +158,23 @@
           padding-top: 16px;
           height: 268px;
           box-sizing: border-box;
-          &__item {
-            margin-right: 16px;
-            margin-bottom: 16px;
-            height: 252px;
-            width: 188px;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,.18);
-            float: left;
-            &__image {
-              height: 188px;
-              width: 188px;
-              background-color: white;
-              box-sizing: border-box;
-              position: relative;
-              &-url{
-                width: 100%;
-                height: 100%;
-              }
-              &__price {
-                position: absolute;
-                bottom: 10px;
-                height: 28px;
-                width: 80px;  //値段によって変わる
-                line-height: 28px;
-                font-size: 15px;
-                text-align: center;
-                color: white;
-                background-color: rgba(0, 0, 0, 0.4);
-                border-radius: 0 14px 14px 0;
-              }
-            }
-            &__name {
-              height: 64px;
-              width: 188px;
-              padding: 12.4px 14px;
-              font-size: 14px;
-              line-height: 19.6px;
-              box-sizing: border-box;
-              overflow: hidden;
-              &__favorites{
-                text-align: right;
-              }
+          &__item{
+            .item{
+              width: 100%;
+              height: 100%;
+              @include item-box;
             }
           }
         }
         &__explain{
-          background-color: white;
-          width: 100%;
+          @include category;
           height: 180px;
           margin-top: 30px;
           border-radius: 10px;
           &__title{
-            background-color: #ea352d;
-            font: bold 22px "MS ゴシック";
-            color: white;
+            @include category-title;
             line-height: 60px;
             text-align: center;
-            border-radius: 10px 10px 0 0;
           }
           &__text{
             padding: 30px 20px;
