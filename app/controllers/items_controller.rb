@@ -62,9 +62,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      # params[:images_attributes][:images.length][:image].each do |image|
-      #   @item.images.create(image: image, item_id: @item.id)
-      # end
       redirect_to root_path
     else
       render :new
@@ -88,6 +85,13 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    num = @item.category_ids.first
+    child = Category.find(num)
+    @children = child.siblings
+    @parent = child.parent
+    @parents = @parent.siblings
+    @grandparent = @parent.parent
+    @grandparents = @grandparent.siblings
   end
 
   def pre_edit
@@ -99,6 +103,10 @@ class ItemsController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  def search
+    @items = Item.search(params[:search]).order("id DESC").page(params[:page]).per(5)
   end
 
   private

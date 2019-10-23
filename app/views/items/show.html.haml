@@ -90,9 +90,9 @@
       = link_to root_path do
         #{@saler.nickname}さんのその他の出品
     .user-item__box
-      - @salers_item.first(6).each do |item|
+      - @salers_item.where.not(id: @item.id).first(6).each do |item|
         .user-item__box__card
-          = link_to root_path do
+          = link_to item_path(item.id) do
             .user-item__box__card__photo
               .user-item__box__card__photo__image
                 - if Rails.env.development?
@@ -115,9 +115,9 @@
       = link_to root_path do
         #{@category.category}その他の出品
     .similar-item__box
-      - @category.items.first(6).each do |item|
+      - @category.items.where.not(id: @item.id).first(6).each do |item|
         .similar-item__box__card
-          = link_to root_path do
+          = link_to item_path(item.id) do
             .similar-item__box__card__photo
               .similar-item__box__card__photo__image
                 - if Rails.env.development?
