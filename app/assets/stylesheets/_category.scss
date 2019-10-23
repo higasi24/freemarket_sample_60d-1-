@@ -1,3 +1,17 @@
+//カテゴリ一覧ページ(都道府県も)
+
+//カテゴリ説明mixin
+@mixin category{
+  background-color: white;
+  width: 100%;
+}
+@mixin category-title {
+  background-color: #ea352d;
+  font: bold 22px "MS ゴシック";
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
 .category-links{
   color: #0095ee;
   font-size: 13px;
@@ -39,22 +53,18 @@
       }
     }
     &__index{
-      background-color: white;
-      width: 100%;
-      // height: 180px;
+      @include category;
       margin-top: 30px;
       border-radius: 10px;
       &__title{
-        background-color: #ea352d;
-        font: bold 22px "MS ゴシック";
-        color: white;
-        line-height: 60px;
-        text-align: center;
-        border-radius: 10px 10px 0 0;
+        @include category-title;
+        padding-left: 30px;
+        line-height: 40px;
       }
       &__text{
         padding: 30px 20px;
-        font-size: 14px;
+        font-size: 15px;
+        padding: 24px 30px 10px 30px;
         &__link{
           color: #0099e8;
         }
