@@ -16,9 +16,18 @@
             .categories__box__index__title
               = rootCategory.category
             .categories__box__index__text
-              - @categories[index].each do |category|
-                = link_to(category_path(category.id), class: "categories__box__index__text__link") do
-                  = category.category
+              = link_to(category_path(rootCategory.id), class: "categories__box__index__text__link") do
+                すべて
+              .categories__box__index__text__child
+                - rootCategory.children.each do |child|
+                  .categories__box__index__text__child__black
+                    = child.category
+                  .categories__box__index__text__child__blue
+                    = link_to(category_path(child.id), class: "categories__box__index__text__child__blue__link") do
+                      すべて
+                    - child.children.each do |grandChild|
+                      = link_to(category_path(grandChild.id), class: "categories__box__index__text__child__blue__link") do
+                        = grandChild.category
             
 = render partial: 'layouts/button'
 = render partial: 'layouts/aside'

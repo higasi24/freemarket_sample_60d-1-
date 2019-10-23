@@ -67,6 +67,22 @@
         padding: 24px 30px 10px 30px;
         &__link{
           color: #0099e8;
+          line-height: 50px;
+        }
+        &__child{
+          &__black{
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 50px;
+          }
+          &__blue{
+            &__link{
+              display: inline-block;
+              width: 50%;
+              line-height: 40px;
+              color: #0099e8;
+            }
+          }
         }
       }
     }

@@ -1,12 +1,8 @@
 class CategoriesController < ApplicationController
   def index
     @root_categories = Category.where(ancestry: nil)
-    @categories = []
-    @root_categories.each do |category|
-      subcategory = category.subtree
-      @categories << subcategory
-    end
   end
+
   def show
     @category = Category.find(params[:id])
     @categories = CategoryItem.where(category_id: @category.subtree_ids).map{|t| t.item_id}
