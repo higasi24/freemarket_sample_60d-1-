@@ -142,17 +142,19 @@
                 .send__main__content__form__box5__content__group1__title__box
                   ¥
                   .send__main__content__form__box5__content__group1__title__box__div
-                    = f.text_field :price, class:"send__main__content__form__box5__content__group1__title__box__div__form", placeholder: "例) 300"
+                    = f.text_field :price, class:"send__main__content__form__box5__content__group1__title__box__div__form", placeholder: "例) 300", id: "selling-price"
             %li.send__main__content__form__box5__content__group2
               .send__main__content__form__box5__content__group2__left
                 販売手数料(10%)
               .send__main__content__form__box5__content__group2__right
-                \-
+                #sales-commission
+                  \-
             %li.send__main__content__form__box5__content__group3
               .send__main__content__form__box5__content__group3__left
                 販売利益
               .send__main__content__form__box5__content__group3__right
-                \-
+                #sales-profit
+                  \-
         .send__main__content__form__box6
         .send__main__content__form__box7
           .send__main__content__form__box7__notice
