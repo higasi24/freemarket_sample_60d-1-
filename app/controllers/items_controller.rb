@@ -91,6 +91,13 @@ end
   end
 
   def edit
+    num = @item.category_ids.first
+    child = Category.find(num)
+    @children = child.siblings
+    @parent = child.parent
+    @parents = @parent.siblings
+    @grandparent = @parent.parent
+    @grandparents = @grandparent.siblings
   end
 
   def pre_edit
@@ -102,6 +109,10 @@ end
     else
       redirect_to root_path
     end
+  end
+
+  def search
+    @items = Item.search(params[:search]).order("id DESC").page(params[:page]).per(5)
   end
 
   private
