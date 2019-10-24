@@ -6,7 +6,9 @@
     margin: 40px auto;
     width: 1020px;
     position: relative;
+    display: flex;
     .left__box {
+      margin: 0 40px 0 0;
       width: 280px;
       .sort {
         &__icon {

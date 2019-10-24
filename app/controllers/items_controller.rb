@@ -47,12 +47,6 @@ class ItemsController < ApplicationController
     end
   end
 
-def search
-  @category = Category.all
-  @items = Item.search(params[:search]).order("id DESC").page(params[:page]).per(5)
-end
-
-
   def show
   end
 
@@ -113,6 +107,7 @@ end
 
   def search
     @items = Item.search(params[:search]).order("id DESC").page(params[:page]).per(5)
+    @category = Category.all
   end
 
   private

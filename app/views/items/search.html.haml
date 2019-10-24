@@ -3,42 +3,38 @@
 .search
   .search__wrapper
     .left__box
-      = form_with( model: @item, url: {action: "create"}, data: {remote: false}) do |f|
+      = form_with( url: search_items_path, method: :get, data: {remote: false}, class:"header__box__upper__search-form") do |f|
         .sort
           .sort__icon
             = f.select :size, ["価格の安い順", "価格の高い順", "出品の古い順", "出品の新しい順", "いいね！の多い順", ], {prompt: "並べ替え"}, {class:"sort__select"}
         .search
           %h3 詳細検索
-
-          = form_with( url: search_items_path, method: :get, data: {remote: false}, class:"header__box__upper__search-form") do |f|
-            .search__keyword
-              = f.label :キーワードを追加する, id:"title"
-              = f.text_field :search, class:"header__box__upper__search-form__input", placeholder:"例）値下げ", name:"search"
-              = f.button :get, class:"header__box__upper__search-form__btn" do
-                = fa_icon 'search', class:"icon__black"
           
-            = f.label :カテゴリーを選択する, id:"title"
-            = f.fields_for :category_items do |c|
-              = c.collection_select(:category_id, @category, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
+          .search__keyword
+            = f.label :キーワードを追加する, id:"title"
+            = f.text_field :search, class:"header__box__upper__search-form__input", placeholder:"例）値下げ", name:"search"
+            = f.button :get, class:"header__box__upper__search-form__btn" do
+              = fa_icon 'search', class:"icon__black"
+        
+          = f.label :カテゴリーを選択する, id:"title"
+          = f.fields_for :category_items do |c|
+            = c.collection_select(:category_id, @category, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
           
-          = form_with( url: search_items_path, method: :get, data: {remote: false}, class:"header__box__upper__search-form") do |f|
-            .search__keyword
-              = f.label :ブランド名から探す, id:"title"
-              = f.text_field :search, class:"header__box__upper__search-form__input", placeholder:"例）シャネル", name:"search"
-              = f.button :get, class:"header__box__upper__search-form__btn" do
-                = fa_icon 'search', class:"icon__black"
+          .search__keyword
+            = f.label :ブランド名から探す, id:"title"
+            = f.text_field :search, class:"header__box__upper__search-form__input", placeholder:"例）シャネル", name:"search"
+            = f.button :get, class:"header__box__upper__search-form__btn" do
+              = fa_icon 'search', class:"icon__black"
 
-          = form_with( model: @item, url: {action: "create"}, data: {remote: false}, class:"send__main__content__form" ) do |f|
-            = f.label :サイズを指定する, id:"title"
-            .send__main__content__form__box3__content__group2__select
-              = f.select :size, [["XXS以下", "XXS以下"], ["XS(SS)", "XS(SS)"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL(LL)", "XL(LL)"],["2XL(3L)", "2XL(3L)"],["3XL(4L)", "3XL(4L)"],["4XL(5L)", "4XL(5L)"],["FREE SIZE", "FREE SIZE"]], {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"}
+          = f.label :サイズを指定する, id:"title"
+          .send__main__content__form__box3__content__group2__select
+            = f.select :size, [["XXS以下", "XXS以下"], ["XS(SS)", "XS(SS)"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL(LL)", "XL(LL)"],["2XL(3L)", "2XL(3L)"],["3XL(4L)", "3XL(4L)"],["4XL(5L)", "4XL(5L)"],["FREE SIZE", "FREE SIZE"]], {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"}
 
-          = form_with( url: search_items_path, method: :get, data: {remote: false}, class:"header__box__upper__search-form") do |f|
-            .search__keyword
-              = f.label :価格, id:"title"
-              = f.text_field :search, class:"header__box__upper__search-form__input", placeholder:"例）シャネル", name:"search"
-              = f.button :get, class:"header__box__upper__search-form__btn" do
-                = fa_icon 'search', class:"icon__black"
+          .search__keyword
+            = f.label :価格, id:"title"
+            = f.text_field :search, class:"header__box__upper__search-form__input", placeholder:"例）シャネル", name:"search"
+            = f.button :get, class:"header__box__upper__search-form__btn" do
+              = fa_icon 'search', class:"icon__black"
 
           .search__item-status 商品の状態
           .check-box
