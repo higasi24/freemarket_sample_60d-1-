@@ -37,9 +37,10 @@
         font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
       
         &__box1 {
-          width: 540px;
+          box-sizing: border-box;
+          width: 100%;
           padding: 40px;
-
+          overflow: scroll;
           &__title {
             font-size: 16px;
           }
