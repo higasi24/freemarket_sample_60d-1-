@@ -48,6 +48,7 @@
         #slider_thumb {
           width: 300px;
           height: 60px;
+          font-size: 0;
         }
         #slider_thumb ul {
           display: block;
@@ -70,13 +71,6 @@
           visibility: hidden;
           content: "";
         }
-        // #slider_main ul:after {
-        //   content: ".";
-        //   height: 0;
-        //   clear: both;
-        //   display: block;
-        //   visibility: hidden;
-        // }
         #slider_thumb img {
           width: 60px;
           height: 60px;
