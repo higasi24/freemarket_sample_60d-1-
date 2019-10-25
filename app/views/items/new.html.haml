@@ -76,18 +76,13 @@
           =link_to items_path, id: "question" do
             ?
           .send__main__content__form__box4__content
-            .send__main__content__form__box4__content__group1
-              = f.label :配送料の負担, id:"title"
-              %span#mark
-                必須
-              .send__main__content__form__box4__content__group1__select
-                = f.select :delivery_fee, [["送料込み（出品者負担）", "送料込み（出品者負担）"],["着払い（購入者負担）", "着払い（購入者負担）"]], {prompt: "---"}, {class:"send__main__content__form__box4__content__group1__select__show"}
-            .send__main__content__form__box4__content__group1
-              = f.label :配送の方法, id:"title"
-              %span#mark
-                必須
-              .send__main__content__form__box4__content__group1__select
-                = f.select :delivery_method, [["未定", "未定"],["らくらくメルカリ便", "らくらくメルカリ便"],["ゆうメール", "ゆうメール"],["レターパック", "レターパック"],["普通郵便（定形、定形外）", "普通郵便（定形、定形外）"],["クロネコヤマト", "クロネコヤマト"],["ゆうパック", "ゆうパック"],["クリックポスト", "クリックポスト"],["ゆうパケット", "ゆうパケット"]], {prompt: "---"}, {class:"send__main__content__form__box4__content__group1__select__show"}
+            #shipment-box
+              .send__main__content__form__box4__content__group1#shipment-form
+                = f.label :配送料の負担, id:"title"
+                %span#mark
+                  必須
+                .send__main__content__form__box4__content__group1__select
+                  = f.select :delivery_fee, [["送料込み（出品者負担）", "送料込み（出品者負担）"],["着払い（購入者負担）", "着払い（購入者負担）"]], {prompt: "---"}, {class:"send__main__content__form__box4__content__group1__select__show"}
             .send__main__content__form__box4__content__group2
               = f.label :発送元の地域, id:"title"
               %span#mark
