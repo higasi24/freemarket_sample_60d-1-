@@ -106,8 +106,12 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:search]).order("id DESC").page(params[:page]).per(5)
-    @category = Category.all
+    # @items = Item.search(params[:search]).order("id DESC").page(params[:page]).per(5)
+
+    # 検索オブジェクト
+    @search = Item.ransack(params[:q])
+    # 検索結果
+    @items = @search.result(distinct: true)
   end
 
   private
