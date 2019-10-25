@@ -106,7 +106,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:search])
+    @items = Item.search(params[:search]).page(params[:page]).per(5)
 
     # 検索オブジェクト
     # @search = Item.ransack(params[:q])
