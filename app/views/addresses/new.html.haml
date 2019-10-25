@@ -28,7 +28,7 @@
               = f.label :prefecture_id, "都道府県", class: "text"
               .required
                 必須
-            = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, id:"address_prefecture_id"
           .field
             .string
               = f.label :city, "市町区村", class: "text"
