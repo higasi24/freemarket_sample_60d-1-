@@ -2,35 +2,35 @@
 
 .search
   .search__wrapper
-    .left__box
-      = search_form_for(@search, url: search_items_path, method: :get) do |f|
-        .search__keyword
-          = f.label :name_cont, "キーワードを追加する"
-          = f.search_field :name_cont, class:"search__keyword__input", placeholder:"例）値下げ"
-        .search__brand
-          = f.label :brand_cont, "ブランド名から探す"
-          = f.search_field :brand_cont
-        .send__main__content__form__box3__content__group2__select
-          = f.label :size_cont, "サイズを指定する"
-          = f.select :size_cont, [["XXS以下", "XXS以下"], ["XS(SS)", "XS(SS)"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL(LL)", "XL(LL)"],["2XL(3L)", "2XL(3L)"],["3XL(4L)", "3XL(4L)"],["4XL(5L)", "4XL(5L)"],["FREE SIZE", "FREE SIZE"]], {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"}
-        .search__price
-          = f.label :price_gteq, "価格"
-          = f.number_field :price_gteq
-          = f.label :price_lteq, "~"
-          = f.number_field :price_lteq
+    -# .left__box
+    -#   = search_form_for(@search, url: search_items_path, method: :get) do |f|
+    -#     .search__keyword
+    -#       = f.label :name_cont, "キーワードを追加する"
+    -#       = f.search_field :name_cont, class:"search__keyword__input", placeholder:"例）値下げ"
+    -#     .search__brand
+    -#       = f.label :brand_cont, "ブランド名から探す"
+    -#       = f.search_field :brand_cont
+    -#     .send__main__content__form__box3__content__group2__select
+    -#       = f.label :size_cont, "サイズを指定する"
+    -#       = f.select :size_cont, [["XXS以下", "XXS以下"], ["XS(SS)", "XS(SS)"], ["S", "S"], ["M", "M"], ["L", "L"], ["XL(LL)", "XL(LL)"],["2XL(3L)", "2XL(3L)"],["3XL(4L)", "3XL(4L)"],["4XL(5L)", "4XL(5L)"],["FREE SIZE", "FREE SIZE"]], {prompt: "---"}, {class:"send__main__content__form__box3__content__group1__div__select__show"}
+    -#     .search__price
+    -#       = f.label :price_gteq, "価格"
+    -#       = f.number_field :price_gteq
+    -#       = f.label :price_lteq, "~"
+    -#       = f.number_field :price_lteq
 
-        .search__category#category-form
-          = f.label :category_cont, "カテゴリーを選択する"
-          = f.fields_for :category_cont do |c|
-            = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
+    -#     .search__category#category-form
+    -#       = f.label :category_cont, "カテゴリーを選択する"
+    -#       = f.fields_for :category_cont do |c|
+    -#         = c.collection_select(:category_id, Category.all, :id, :category, {prompt: "---"}, class:"send__main__content__form__box3__content__group1__div__select__show", id:"parent-form")
             -# 別テーブルなので持ってこれてないっぽい。
-        .search__state
-          = f.label :state_eq, "商品の状態"
-          = f.collection_check_boxes :state_eq, [[id: 1, name: "新品、未使用"], [id: 2, name: "未使用に近い"], [id: 3, name: "目立った傷や汚れなし"], [id: 4, name: "やや傷や汚れあり"], [id: 5, name: "傷や汚れあり"], [id: 6, name: "全体的に状態が悪い"]], :id, :name, {class:"send__main__content__form__box3__content__group1__div__select__show"}
+        -# .search__state
+        -#   = f.label :state_eq, "商品の状態"
+        -#   = f.collection_check_boxes :state_eq, [[id: 1, name: "新品、未使用"], [id: 2, name: "未使用に近い"], [id: 3, name: "目立った傷や汚れなし"], [id: 4, name: "やや傷や汚れあり"], [id: 5, name: "傷や汚れあり"], [id: 6, name: "全体的に状態が悪い"]], :id, :name, {class:"send__main__content__form__box3__content__group1__div__select__show"}
           -# 引数が足りない。引数の当て方がわからない。
 
-        .search__btn
-          = f.submit "検索"
+        -# .search__btn
+        -#   = f.submit "検索"
 
       -# = f.search_form_for :category_items do |c|
       -# = form_with( url: search_items_path, method: :get, data: {remote: false}) do |f|
