@@ -153,6 +153,18 @@
       margin-top: 16px;
       text-align: center;
       width: 620px;
+      &__soldout {
+        background-color: gray;
+        border: none;
+        color: #fff;
+        display: block;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 60px;
+        margin-top: 16px;
+        text-align: center;
+        width: 620px;
+      }
     }
     &__comment {
       padding-top: 32px;
