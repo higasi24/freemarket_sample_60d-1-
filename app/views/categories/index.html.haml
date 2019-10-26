@@ -9,11 +9,11 @@
           カテゴリー一覧
         .categories__box__root
           - @root_categories.each do |category|
-            .categories__box__root__category
+            .categories__box__root__category{data: {id: category.id}}
               = category.category
         - @root_categories.each_with_index do |rootCategory,index|
           .categories__box__index
-            .categories__box__index__title
+            .categories__box__index__title{data: {name: rootCategory.id}}
               = rootCategory.category
             .categories__box__index__text
               = link_to(category_path(rootCategory.id), class: "categories__box__index__text__link") do

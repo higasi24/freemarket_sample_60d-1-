@@ -6,7 +6,6 @@
 @mixin categories {
   cursor: pointer;
   height: 44px;
-  z-index: 3;
   position: relative;
   &__link {
     display: block;
@@ -14,13 +13,6 @@
     font-weight: 600;
     line-height: 36px;
     white-space: nowrap;
-    .categoryList{
-      display: block;
-      background-color: white;
-      line-height: 44px;
-      padding-left: 15px;
-      width: 100%;
-    }
     &__icon{
     }
   }
@@ -142,6 +134,7 @@ ul {
         display: flex;
         &__category {
           padding-right: 10px;
+          // background-color: #ea352d;
           @include categories;
         }
         &__brand {
@@ -203,3 +196,63 @@ ul {
   }
 }
 
+
+//headerのカテゴリリスト
+
+#categoryAll{
+
+  #categoryBox{
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    &__box{
+    }
+    &__childbox{
+      background-color: white;
+      height: 616px;
+    }
+    &__grandchildbox{
+      background-color: white;
+      height: 616px;
+    }
+  }
+}
+
+
+
+@mixin category-list {
+  display: block;
+  background-color: white;
+  font-size: 13px;
+  padding-left: 15px;
+  border-left: solid 1px #eee;
+}
+
+.categoryList{
+  @include category-list;
+  line-height: 44px;
+  width: 200px;
+}
+.categoryList:hover{
+  background-color: #ea352d;
+  color: white;
+}
+
+.childcategoryList{
+  @include category-list;
+  line-height: 30px;
+  width: 200px;
+}
+.childcategoryList:hover{
+  background-color: #eee;
+}
+
+.grandchildcategoryList{
+  @include category-list;
+  line-height: 30px;
+  width: 200px;
+  border-right: solid 1px #eee;
+}
+.grandchildcategoryList:hover{
+  background-color: #eee;
+}
