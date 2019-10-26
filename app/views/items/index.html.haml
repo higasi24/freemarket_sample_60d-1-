@@ -17,13 +17,13 @@
         .category__top__contents
           .category__top__contents__box
             - @categories.each do |category|
-              = link_to(root_path, class: "category__top__contents__box__rank") do
+              .category__top__contents__box__rank{data: {id: category.id}}
                 = category.category
 
     - @categories.each_with_index do |category, index|
       .category__new-items
         .category__new-items__upper
-          .category__new-items__upper__text
+          .category__new-items__upper__text{data: {name: category.id}}
             = "#{category.category}新着アイテム"
           = link_to(category_path(category.id), class: "category__new-items__upper__more") do
             もっと見る >

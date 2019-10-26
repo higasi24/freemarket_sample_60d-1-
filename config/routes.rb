@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       get :search
       get :get_children, defaults: {format: 'json'}
       get :get_grandchildren, defaults: {format: 'json'}
+      get :getCategory, defaults: {format: 'json'}
+      get :getAllCategory, defaults: {format: 'json'}
     end
     member do
       get :pre_edit
