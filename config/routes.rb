@@ -32,9 +32,9 @@ Rails.application.routes.draw do
       get :pre_edit
     end
   end
-
+  # 後日確認
   resources :categories, only: [:show, :index]
-  resources :addresses
+  resources :addresses, only: [:new, :create, :edit, :update]
   resources :cards
   resources :orders, except: [:new, :show] do
     collection do

@@ -37,9 +37,10 @@
         font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
       
         &__box1 {
-          width: 540px;
+          box-sizing: border-box;
+          width: 100%;
           padding: 40px;
-
+          overflow: scroll;
           &__title {
             font-size: 16px;
           }
@@ -155,9 +156,8 @@
 
         &__box3 {
           padding: 40px;
-          min-height: 500px;
           border-top: 1px solid #eee;
-        
+          overflow: scroll;
           &__title {
             color: #888;
             font-size: 14px;
@@ -169,18 +169,17 @@
             min-height: 186px;
             background-color: white;
             float: right;
-          
+
             &__group1 {
-              height: 200px;
               #title {
                 @include font-weight;
                 #mark {
                   @include mark;
                 }
               }
-            
+
               &__div {
-                
+
                 &__select {
                   margin: 8px 0 0;
                   background: #fff;
@@ -249,7 +248,7 @@
         }
 
         &__box4 {
-          height: 420px;
+          overflow: scroll;
           padding: 40px;
           border-top: 1px solid #eee;
         
@@ -275,11 +274,9 @@
 
           &__content {
             width: 400px;
-            height: 296px;
             background-color: white;
             float: right;
             &__group1 {
-              height: 80px;
               #title {
                 @include font-weight;
                 #mark {

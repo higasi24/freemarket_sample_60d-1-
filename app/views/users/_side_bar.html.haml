@@ -68,8 +68,8 @@
     .left__title__li
       メール/パスワード
       = fa_icon 'chevron-right', class: 'left__title__li__fa'
-    .left__title__li
-      = link_to edit_address_path(current_user.addresses.ids) do
+    = link_to edit_address_path(current_user.addresses.ids) do
+      .left__title__li
         本人情報
         = fa_icon 'chevron-right', class: 'left__title__li__fa'
     .left__title__li
