@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   $(function(){
-    Payjp.setPublicKey("pk_test_216ba725e842c4463703a5a7");
+    Payjp.setPublicKey("pk_test_051cb92c91fa25532f6d5eef");
     const btn = document.getElementById('token_submit'); //IDがtoken_submitの場合に取得されます
     btn.addEventListener("click", (e) => { //ボタンが押されたときに作動します
       e.preventDefault(); //ボタンを一旦無効化します
@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function() {
   },false);
 
   $(function(){
-    Payjp.setPublicKey("pk_test_216ba725e842c4463703a5a7");
+    Payjp.setPublicKey("pk_test_051cb92c91fa25532f6d5eef");
     const btn2 = document.getElementById('token_submit2'); //IDがtoken_submitの場合に取得されます
     btn2.addEventListener("click", (e) => { //ボタンが押されたときに作動します
       e.preventDefault(); //ボタンを一旦無効化します
