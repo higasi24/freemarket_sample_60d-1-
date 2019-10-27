@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :create, :edit]
   before_action :set_value, only: [:show, :pre_edit] 
   before_action :set_item, only: [:edit, :update, :destroy]
+  # before_action :search_params, only: :search
 
   def index
     #category
@@ -45,6 +46,7 @@ class ItemsController < ApplicationController
       end
       @all_brand_items << brand_items
     end
+    @search = Item.ransack(params[:q])
   end
 
   def getCategory
@@ -113,12 +115,16 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:search]).page(params[:page]).per(5)
-
-    # 検索オブジェクト
-    # @search = Item.ransack(params[:q])
-    # 検索結果
-    # @items = @search.result(distinct: true)
+    before_uri = URI.parse(request.referer)
+    @path = Rails.application.routes.recognize_path(before_uri.path)
+    if @path[:action] == "index" || params[:q].present?
+      @search = Item.ransack(search_params)
+      @items = @search.result(distinct: true).references(:category_items, :categories).page(params[:page]).per(5)
+    else
+      params[:q] = { sorts:"id desc" }
+      @search = Item.ransack()
+      @items = Item.all
+    end
   end
 
   private
@@ -144,4 +150,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def search_params
+    params.require(:q).permit(:sorts, :name_cont, :brand_cont, :size_cont, :price_gteq, :price_lteq, :state_eq_any, :delivery_fee_eq_any, :buyer_id_not_null)
+  end
 end
