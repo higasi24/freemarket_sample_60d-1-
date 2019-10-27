@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :create, :edit]
   before_action :set_value, only: [:show, :pre_edit] 
   before_action :set_item, only: [:edit, :update, :destroy]
-  before_action :set_search, only: [:index, :show, :create, :update, :pre_edit]
+  before_action :set_search, only: [:index, :show, :create, :pre_edit]
 
   def index
     #category
