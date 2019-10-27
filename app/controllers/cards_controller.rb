@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :show, :edit]
+  before_action :set_search, only: [:show, :edit]
   require "payjp"
   before_action :set_card
 
@@ -124,6 +125,10 @@ class CardsController < ApplicationController
 
   def order_params
     params.require(:order).permit(:name, :detail, :state, :size, :delivery_fee, :delivery_method, :price, :delivery_date, :saler_id, :buyer_id, :item_id)
+  end
+
+  def set_search
+    @search = Item.ransack(params[:q])
   end
 
 end
