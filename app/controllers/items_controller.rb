@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_category, only: [:new, :create, :edit]
   before_action :set_value, only: [:show, :pre_edit] 
   before_action :set_item, only: [:edit, :update, :destroy]
-  # before_action :search_params, only: :search
+  before_action :set_search, only: [:index, :show, :create, :update, :pre_edit]
 
   def index
     #category
@@ -46,7 +46,6 @@ class ItemsController < ApplicationController
       end
       @all_brand_items << brand_items
     end
-    @search = Item.ransack(params[:q])
   end
 
   def getCategory
@@ -152,6 +151,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_search
+    @search = Item.ransack(params[:q])
   end
 
   def search_params
