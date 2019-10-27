@@ -47,18 +47,3 @@
             = link_to("新規会員登録", new_user_path, class:"header__box__lower__btn-box__btn__orange")
           .header__box__lower__btn-box__btn
             = link_to("ログイン", new_user_session_path, class:"header__box__lower__btn-box__btn__blue")
-    -# .rootCategoryList.categoryList
-    -#   - categories.each do |category|
-    -#     .categoryList__box
-    -#       = link_to(category_path(category.id)) do
-    -#         = category.category
-    -#       %br/
-    -#   .categoryList__box
-    -#     = link_to(categories_path) do
-    -#       カテゴリー一覧
-    -# .childCategoryList.categoryList
-    -#   - categories[0].children.each do |child|
-    -#     .categoryList__box
-    -#       = link_to(category_path(child.id)) do
-    -#         = child.category
-    -#       %br/

@@ -51,7 +51,8 @@ class ItemsController < ApplicationController
     @categoryList = Category.where(ancestry: nil) 
   end
   def getAllCategory
-    @categoryAll = Category.all
+    # @categoryAll = Category.all
+    @categoryAll = Category.find(params[:child_id]).children
   end
 
   def show
