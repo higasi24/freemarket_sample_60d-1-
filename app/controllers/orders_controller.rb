@@ -11,8 +11,6 @@ class OrdersController < ApplicationController
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @card_information = customer.cards.retrieve(@card.card_id)
-
-      # 《＋α》 登録しているカード会社のブランドアイコンを表示するためのコードです。---------
       @card_brand = @card_information.brand
       case @card_brand
       when "Visa"
@@ -28,7 +26,6 @@ class OrdersController < ApplicationController
       when "Discover"
         @card_src = "discover.png"
       end
-      # ---------------------------------------------------------------
     end
   end
 
