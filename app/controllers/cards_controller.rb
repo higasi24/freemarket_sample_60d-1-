@@ -48,7 +48,6 @@ class CardsController < ApplicationController
   def create #PayjpとCardのデータベースを作成
     @url = request.referer
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-    # Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
     if params['payjp-token'].blank? && @url.match(/\/cards\/\d+\/edit/)
       redirect_to edit_card_path(current_user.id)
     elsif params['payjp-token'].blank?
@@ -99,3 +98,5 @@ class CardsController < ApplicationController
   end
 
 end
+
+# Payjp.api_key = 'sk_test_cfbdb30c289d9e6dfcd07fde'
