@@ -104,6 +104,9 @@ class ItemsController < ApplicationController
   end
 
   def pre_edit
+    if @item.saler_id != current_user.id
+      redirect_to root_path
+    end
   end
 
   def destroy
