@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load',(function(){
 
+  //親表示
   function appendCategories(categories){
     $('#categoryBox__box').empty();
     let num = 0;
@@ -12,43 +13,48 @@ $(document).on('turbolinks:load',(function(){
     $('#categoryBox__box').append(listhtml);
 
     $(".categoryList").on("mouseover",function(e){
-      e.preventDefault();
       let datachild = $(this).data('child');
-      $("#categoryBox__childbox").empty();
-      categories[datachild].children.forEach(function(childCategory){
-        var childhtml = `<a href="/categories/${childCategory.id}" class="childcategoryList", data-parent="${childCategory.ancestry}", data-grandchild="${childCategory.id}">${childCategory.category}</a>`
-        $('#categoryBox__childbox').append(childhtml);
-      });
-      $(".childcategoryList").on("mouseover",function(e){
-        let dataparent = $(this).data('parent');
-        let datagrand = $(this).data('grandchild');
-        e.preventDefault();
-        $.ajax({
-          type: "GET",
-          url: "/items/getAllCategory",
-          // data: "",
-          dataType: "json"
-        })
-        .done(function(categories){
-          $("#categoryBox__grandchildbox").empty();
-          let grandchildren = categories.filter(function(category){
-            return category.ancestry == dataparent + "/" + datagrand;
-          });
-          grandchildren.forEach(function(grandchildCategory){
-            var childhtml = `<a href="/categories/${grandchildCategory.id}" class="grandchildcategoryList">${grandchildCategory.category}</a>`
-            $('#categoryBox__grandchildbox').append(childhtml);
-          });
-        })
-        .fail(function(){
-          alert("通信エラー...");
-        });
-      });
+      let parentdata = categories[datachild]
+      e.preventDefault();
+      appendChildCategories(parentdata);
+    });
+  };
+
+  //子表示
+  function appendChildCategories(parentdata){
+    $("#categoryBox__childbox").empty();
+    parentdata.children.forEach(function(childCategory){
+      var childhtml = `<a href="/categories/${childCategory.id}" class="childcategoryList", data-parent="${childCategory.ancestry}", data-grandchild="${childCategory.id}">${childCategory.category}</a>`
+      $('#categoryBox__childbox').append(childhtml);
     });
 
-    // $("#categoryBox").on("mouseout",function(){
-    //   $("#categoryBox").empty();
-    // });
-  };
+    $(".childcategoryList").on("mouseover",function(e){
+      let datagrand = $(this).data('grandchild');
+      e.preventDefault();
+      appendGrandChildCategories(datagrand);
+    });
+  }
+
+  //孫表示
+  function appendGrandChildCategories(datagrand){
+    $.ajax({
+      type: "GET",
+      url: "/items/getAllCategory",
+      data: {child_id: datagrand},
+      dataType: "json"
+    })
+    .done(function(categories){
+      $("#categoryBox__grandchildbox").empty();
+      categories.forEach(function(grandchildCategory){
+        var childhtml = `<a href="/categories/${grandchildCategory.id}" class="grandchildcategoryList">${grandchildCategory.category}</a>`
+        $('#categoryBox__grandchildbox').append(childhtml);
+      });
+    })
+    .fail(function(){
+      alert("通信エラー...");
+    });
+  }
+
   function scroller(id){
     var target = $("[data-name=" + id + "]");
     var position = target.offset().top
@@ -57,16 +63,16 @@ $(document).on('turbolinks:load',(function(){
     }, 300, 'swing');
   };
 
-  $('.header__box__lower__list-categories__category').on("mouseover",function(e){
-    e.preventDefault();
+  //:hover
+  $('.header__box__lower__list-categories__category').on("mouseover",function(){
     $.ajax({
       type: 'GET',
       url:   '/items/getCategory',
-      // data:  '',
       dataType: 'json' 
     })
     .done(function(categories){
       appendCategories(categories);
+      $('#categoryBox').css("display", "flex");
     })
     .fail(function(){
       alert("通信エラー");
@@ -81,5 +87,18 @@ $(document).on('turbolinks:load',(function(){
     var id = $(this).data('id');
     scroller(id);
   });
+
+  $("#categoryBox__box").on("mouseover",function(){
+    $("#categoryBox__grandchildbox").empty();
+  });
+
+  $("#categoryBox").on("mouseleave",function(){
+    $("#categoryBox").css("display", "none");
+  });
+
+  $("#categoryAll").on("mouseleave",function(){
+    $("#categoryBox").css("display", "none");
+  });
+
 
 }));
