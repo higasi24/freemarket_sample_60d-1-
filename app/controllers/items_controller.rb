@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_category, only: [:new, :create, :edit, :search]
+  before_action :authenticate_user!, except: [:index, :show, :getCategory, :getAllCategory]
+  before_action :set_category, only: [:new, :create, :edit]
   before_action :set_value, only: [:show, :pre_edit] 
   before_action :set_item, only: [:edit, :update, :destroy]
   # before_action :search_params, only: :search
@@ -47,6 +47,13 @@ class ItemsController < ApplicationController
       @all_brand_items << brand_items
     end
     @search = Item.ransack(params[:q])
+  end
+
+  def getCategory
+    @categoryList = Category.where(ancestry: nil) 
+  end
+  def getAllCategory
+    @categoryAll = Category.all
   end
 
   def show

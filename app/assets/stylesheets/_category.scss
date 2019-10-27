@@ -50,6 +50,7 @@
         margin: 5px;
         line-height: 40px;
         color: #333;
+        cursor: pointer;
       }
     }
     &__index{
@@ -87,4 +88,9 @@
       }
     }
   }
+}
+
+.categories__box__root__category:hover{
+  background-color: #ea352d;
+  color: white;
 }

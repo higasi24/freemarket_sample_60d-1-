@@ -25,14 +25,16 @@ Rails.application.routes.draw do
       get :search
       get :get_children, defaults: {format: 'json'}
       get :get_grandchildren, defaults: {format: 'json'}
+      get :getCategory, defaults: {format: 'json'}
+      get :getAllCategory, defaults: {format: 'json'}
     end
     member do
       get :pre_edit
     end
   end
-
+  # 後日確認
   resources :categories, only: [:show, :index]
-  resources :addresses
+  resources :addresses, only: [:new, :create, :edit, :update]
   resources :cards
   resources :orders, except: [:new, :show] do
     collection do
