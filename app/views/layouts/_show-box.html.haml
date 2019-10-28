@@ -20,6 +20,9 @@
                 = image_tag "/uploads/image/image/#{img.id}/"+img[:image], size:'300x300'
               - if Rails.env.production?
                 = image_tag img.image.url, size:'300x300'
+      - if @item.buyer_id.present?
+        .show-box__main__image-box__main-image__sold-text SOLD
+        .show-box__main__image-box__main-image__soldout
     .show-box__main__image-box__sub-image#slider_thumb
       %ul
         - @image.each do |img|
@@ -89,6 +92,9 @@
   %span.show-box__item-price-box__tax (税込)
   %span.show-box__item-price-box__fee 送料込み
 - unless current_page?(controller: "items", action: "pre_edit")
-  = link_to("購入画面に進む", new_order_path(@item), class: "show-box__btn")
+  - if @item.buyer_id.present?
+    = link_to("売り切れました", root_path, class: "show-box__btn__soldout")
+  - else
+    = link_to("購入画面に進む", new_order_path(@item), class: "show-box__btn")
 .show-box__comment
   %p #{@item.detail}

@@ -5,51 +5,212 @@
   &__wrapper {
     margin: 40px auto;
     width: 1020px;
-    position: relative;
+    // position: relative;
     display: flex;
     .left__box {
       margin: 0 40px 0 0;
       width: 280px;
-      .sort {
-        &__icon {
-          margin: 8px 0 0;
-          background: #fff;
-          position: relative;
-          display: inline-block;
-          width: 100%;
-        }
-        &__select {
-          @include select_show;
-        }
-        :after {
-          content: '';
-          width: 9px;
-          height: 9px;
-          border: 0px;
-          border-bottom: solid 2px #888;
-          border-right: solid 2px #888;
-          -ms-transform: rotate(45deg);
-          -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-          position: absolute;
-          right: 16px;
-          top: 50%;
-          margin-top: -7px;
-        }
+      #q_sorts {
+        cursor: pointer;
+        font-size: 16px;
+        height: 48px;
+        line-height: 1.4em;
+        width: 100%;
+        -webkit-appearance: none;
+        background: rgb(255, 255, 255);
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(204, 204, 204);
+        border-radius: 4px;
+        outline: none;
+        padding: 10px 16px 8px;
       }
-      .search {
-        background-color: white;
-        
+      &__detail {
+        background-color: rgb(255, 255, 255);;
+        min-height: 500px;
         margin: 40px 0 0;
         padding: 16px;
-        label,h3 {
-          font-weight: bold;
+        &__text {
+          font-size: 16px;
+          font-weight: 600;
         }
         label {
           font-size: 14px;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        input {
+          background-color: rgb(255, 255, 255);
+          border-color: rgb(204, 204, 204);
+          border-style: solid;
+          border-image: initial;
+          border-width: 1px;
+          border-radius: 4px;
+          padding: 0 50px 0 10px;
+          height: 48px;
+          font-size: 16px;
         }
         &__keyword {
           margin: 24px 0 0;
+        }
+        // &__category {
+        //   height: 180px;
+        //   border-radius: 2px;
+        //   border-radius: 4px;
+        //   font-size: 16px;
+        //   line-height: 1.5;
+        // }
+        &__brand {
+          margin: 24px 0 0;
+        }
+        &__size {
+          margin: 24px 0 0;
+        }
+        &__price {
+          margin: 24px 0 0;
+          input {
+            padding: 0;
+            width: 100px;
+          }
+          &__box {
+            display: flex;
+            label {
+              margin: auto 8px;
+            }
+          }
+        }
+        &__state {
+          margin: 24px 0 40px;
+          &__text {
+            font-size: 16px;
+            font-weight: 600;
+          }
+          &__box {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -10px -5px 0px;
+            &__boxes {
+              -webkit-box-align: center;
+              align-items: center;
+              height: 50px;
+              width: calc(50% - 10px);
+              margin: 10px 5px 0px;
+              input {
+                vertical-align: middle;
+              }
+              label {
+                font-size: 14px;
+                font-weight: normal;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+        &__delivery-fee {
+          margin: 24px 0 40px;
+          &__text {
+            font-size: 16px;
+            font-weight: 600;
+          }
+          &__box {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -10px -5px 0px;
+            &__boxes {
+              -webkit-box-align: center;
+              align-items: center;
+              height: 50px;
+              width: calc(50% - 10px);
+              margin: 10px 5px 0px;
+              input {
+                vertical-align: middle;
+              }
+              label {
+                font-size: 14px;
+                font-weight: normal;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+        &__order-status {
+          margin: 24px 0 40px;
+          &__text {
+            font-size: 16px;
+            font-weight: 600;
+          }
+          &__sale {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -10px -5px 0px;
+            &__boxes {
+              -webkit-box-align: center;
+              align-items: center;
+              height: 50px;
+              width: calc(50% - 10px);
+              margin: 10px 5px 0px;
+              input {
+                vertical-align: middle;
+              }
+              label {
+                font-size: 14px;
+                font-weight: normal;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+        &__btn {
+          display: flex;
+          // width: 100%;
+          &__clear {
+            height: 50px;
+            width: 100%;
+            input {
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(204, 204, 204);
+              color: rgb(255, 255, 255);
+              cursor: pointer;
+              font-size: 14px;
+              font-weight: 600;
+              width: 100%;
+              -webkit-box-pack: center;
+              justify-content: center;
+              -webkit-appearance: none;
+              border-width: initial;
+              border-style: none;
+              border-color: initial;
+              border-image: initial;
+              border-radius: 4px;
+              outline: none;
+              padding: 0px;
+            }
+          }
+          &__fix {
+            height: 50px;
+            width: 100%;
+            input {
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(234, 53, 45);
+              color: rgb(255, 255, 255);
+              cursor: pointer;
+              font-size: 14px;
+              font-weight: 600;
+              width: 100%;
+              -webkit-box-pack: center;
+              justify-content: center;
+              -webkit-appearance: none;
+              border-width: initial;
+              border-style: none;
+              border-color: initial;
+              border-image: initial;
+              border-radius: 4px;
+              outline: none;
+              padding: 0px;
+            }
+          }
         }
       }
     }

@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  
   def index
     @root_categories = Category.where(ancestry: nil)
   end
