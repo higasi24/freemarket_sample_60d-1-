@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+
   before_action :authenticate_user!, except: [:index, :show, :getCategory, :getAllCategory]
   before_action :set_category, only: [:new, :create, :edit, :search]
   before_action :set_value, only: [:show, :pre_edit] 
@@ -67,9 +68,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      # params[:images_attributes][:images.length][:image].each do |image|
-      #   @item.images.create(image: image, item_id: @item.id)
-      # end
       redirect_to root_path
     else
       render :new
@@ -152,6 +150,15 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+
+  def delete_imgs
+    if params.has_key?(:delete_ids)
+      return params.require(:delete_ids)
+    else
+      return nil
+    end
+  end
+  
   def search_params
     params.require(:q).permit(:sorts, :name_cont, :brand_cont, :size_cont, :price_gteq, :price_lteq, :state_eq_any, :delivery_fee_eq_any, :buyer_id_not_null)
   end
