@@ -142,6 +142,32 @@ $(document).on('turbolinks:load', function(){
                     </div>`;
     $('#category-form').append(grandchildrenhtml);
   }
+
+  // search時の子カテゴリcheckbox
+  function appendCheckbox(category) {
+    let html = `<div class="left__box__detail__state__box__boxes">
+                  <input name="q[state_eq_any][]" type="hidden" value="${ category.id }">
+                  <input type="checkbox" value="やや傷や汚れあり" name="q[state_eq_any][]" id="q_state_eq_any_やや傷や汚れあり">
+                  <label for="q_やや傷や汚れあり">${ category.name }</label>
+                </div>`;
+    
+    // `<input type="checkbox" id="grandChildCategories-137" name="grandChildCategories" data-name="grandChildCategoryIds" class="sc-fyjhYU kqtqYb" value="137">
+    // <label for="grandChildCategories-137" class="sc-kXeGPI dhtGNr"></label>
+    // <label for="grandChildCategories-137" class="sc-ugnQR hduMcU">${ category.name }</label>`;
+                
+    // let html = `<option value="${ category.id }", data-category="${ category.id }">${ category.name }</option>`;
+    return html;
+  }
+  function appendGrandchildrenCheckBox(insertHTML) {
+    let grandchildrenhtml = '';
+    grandchildrenhtml = `<div class="send__main__content__form__box3__content__group1__div__select", id="grandchildren_box", name="item[category_items_attributes][0][category_id]" >
+                          
+                            ${ insertHTML }
+                          
+                        </div>`;
+    $('#category-form').append(grandchildrenhtml);
+  }
+
 // 親選択時のイベント
   $("#parent-form").on("change",function(){
     let parent = document.getElementById("parent-form").value;
@@ -189,10 +215,19 @@ $(document).on('turbolinks:load', function(){
           // $('#size_box').remove();
           // $('#brand_form').remove();
           let insertHTML = '';
-          grandchildren.forEach(function(grandchild) {
-            insertHTML += appendOption(grandchild);
-          });
-        appendGrandchildrenSelectBox(insertHTML);
+          if (document.URL.match("/items/search")) {
+            grandchildren.forEach(function(grandchild) {
+              insertHTML += appendCheckbox(grandchild);
+            });
+            appendGrandchildrenCheckBox(insertHTML);
+            // console.log(location.href);
+            // console.log(location.pathname);
+          } else {
+            grandchildren.forEach(function(grandchild) {
+              insertHTML += appendOption(grandchild);
+            });
+            appendGrandchildrenSelectBox(insertHTML);
+          }
         }
       })
       .fail(function() {
