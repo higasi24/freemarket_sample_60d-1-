@@ -4,16 +4,21 @@
       .header__box__upper__logo
         = link_to(root_path, class:"logo-link") do
           %img{src:"https://web-jp-assets.mercdn.net/_next/static/images/logo-acdd90ac4f472d5a6f7a330d33ab1225.svg", class:"logo-link__image"}
-      = form_with( url: search_items_path, method: :get, data: {remote: false}, class:"header__box__upper__search-form") do |f|
-        = f.text_field :search, class:"header__box__upper__search-form__input", placeholder:"何かお探しですか？", name:"search"
+      = search_form_for(@search, url: search_items_path, method: :get, data: {remote: false}, class:"header__box__upper__search-form") do |f|
+        = f.search_field :name_cont, class:"header__box__upper__search-form__input", placeholder:"何かお探しですか？"
         = f.button :get, class:"header__box__upper__search-form__btn" do
           = fa_icon 'search', class:"icon__black"
     .header__box__lower
       .header__box__lower__list-categories
-        .header__box__lower__list-categories__category
-          = link_to(categories_path, class:"header__box__lower__list-categories__category__link") do
-            = fa_icon 'list-ul', class:"header__box__lower__list-categories__category__link__icon icon-orange"
-            カテゴリーから探す
+        #categoryAll
+          .header__box__lower__list-categories__category
+            = link_to(categories_path, class:"header__box__lower__list-categories__category__link") do
+              = fa_icon 'list-ul', class:"header__box__lower__list-categories__category__link__icon icon-orange"
+              カテゴリーから探す
+          #categoryBox
+            #categoryBox__box
+            #categoryBox__childbox
+            #categoryBox__grandchildbox
         .header__box__lower__list-categories__brand
           = link_to(root_path, class:"header__box__lower__list-categories__brand__link") do
             = fa_icon 'tag', class:"header__box__lower__list-categories__brand__link__icon icon-orange"
